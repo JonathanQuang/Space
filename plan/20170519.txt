@@ -1,1 +1,15 @@
 The first thing to add to the game is the moveable object class.
+
+- Asteroids that move
+- Asteroid spawner
+- Player that moves
+- Player that can kill astroids
+- Asteroids that can die.
+- Asteroids/Player with money
+- Ability to make a base
+- Builders of the base / defense spawner ( ArrayPriorityQueue) 
+- Waves / time between bases
+- Shop for weapons 
+- Switching different weapons ( Double Linked List )  / buying weapons
+- Making friendly ships OR towers
+- Spawning friendly towers with priority / pay for speed
