@@ -1,0 +1,1 @@
+The first thing to add to the game is the moveable object class.
