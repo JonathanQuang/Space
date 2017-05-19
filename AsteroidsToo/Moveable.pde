@@ -8,11 +8,11 @@ PVector pos, vel, accel;
   }
   
   void updatePos(){
-     pos.add(vel); 
+     pos.add(vel/100.0); 
   }
   
   void updateVel() {
-     vel.add(accel); 
+     vel.add(accel/100.0); 
   }
 
   void display(){
