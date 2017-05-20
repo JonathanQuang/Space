@@ -1,5 +1,3 @@
-
-
 public class AstSpawner{
 
   ArrayList<Asteroid> astList;
