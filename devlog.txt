@@ -1,0 +1,7 @@
+==============================================================
+2017-05-19/20/21/22
+--------------------------------------------------------------
+Absorbed Datian into our group
+1. Jonathan Quang: Devlog, laid out basic framework for asteroids and spawning asteroids. Fixed Datian's bugs
+2. Brian Kwong: Worked on the asteroid code.
+3. Datian : Updated plans to fit new group ambitions. Worked on asteroid code.
