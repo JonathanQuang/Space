@@ -1,3 +1,14 @@
+
+
+==============================================================
+2017-05-22
+--------------------------------------------------------------
+
+1. Jonathan Quang: Devlog, laid out basic ship rendering, rotating, and moving code. Discussed major changes about the project
+2. Brian Kwong: Discussed major changes about the project.
+3. Datian : ??
+
+
 ==============================================================
 2017-05-19/20/21/22
 --------------------------------------------------------------
