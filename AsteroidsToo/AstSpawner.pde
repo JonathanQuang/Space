@@ -11,6 +11,11 @@ public class AstSpawner{
     
   }
 
+  void collisionMarketAll( Market m ){
+    for(int i=0;i<astList.size();i++){
+     astList.get(i).collisionWithMarket( m );
+   }
+  }
   
   void displayAll(){
    for(int i=0;i<astList.size();i++){
