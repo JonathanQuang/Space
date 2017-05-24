@@ -3,7 +3,7 @@ class Ship extends Moveable {
   //float maxVel = 1;
   //float maxAccel = 1;
   float collisionRad = 25;
-  PImage img = loadImage("ship.png");
+
   
   //Placeholder constructor for a general ship
   Ship(){
