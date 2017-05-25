@@ -2,6 +2,7 @@ Moveable test1;
 AstSpawner def;
 Ship theShip;
 Market theMarket;
+PlayerShip thePlayer;
 
 
 void setup(){
@@ -12,10 +13,13 @@ void setup(){
  theMarket = new Market();
  theShip.changeYaw(90);
  theShip.accelViaYaw(0.01);
+ thePlayer = new PlayerShip();
 }
 
 void draw(){
     background(0);
+    thePlayer.display();
+    thePlayer.keyPressed();
     theShip.display();
     theShip.applyShipMovement();
     def.displayAll();

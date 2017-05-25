@@ -1,6 +1,6 @@
 class Ship extends Moveable {
   float yaw = 0;
-  //float maxVel = 1;
+  float maxVel = 0.6;
   //float maxAccel = 1;
   float collisionRad = 25;
 
@@ -28,11 +28,14 @@ class Ship extends Moveable {
      PVector addTo = new PVector();
      addTo.x = magnitude*cos(radians(yaw-90));
      addTo.y = magnitude*sin(radians(yaw-90));
-     accel.add(addTo);
+     accel=addTo;
   }
   
   //This update the velocity and position according to acceleration
   void applyShipMovement(){
+    if (vel.mag() > maxVel){
+       vel.setMag(maxVel); 
+    }
      updateVel(); 
     updatePos();
   }
