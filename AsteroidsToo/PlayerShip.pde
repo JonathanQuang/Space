@@ -11,16 +11,16 @@ class PlayerShip extends Ship {
      System.out.println(vel);
      if (keyPressed==true){
        if (key == 'a'){
-        changeYaw(-1); 
+        changeYaw(-3); 
        }
        if (key == 'd'){
-        changeYaw(1); 
+        changeYaw(3); 
        }
        if (key == 'w'){
-         accelViaYaw(0.025);
+         accelViaYaw(0.05);
        }
        if (key == 's'){
-         accelViaYaw(-0.025);
+         accelViaYaw(-0.05);
        }
       }
     applyShipMovement();

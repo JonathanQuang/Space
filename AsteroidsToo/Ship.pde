@@ -1,6 +1,6 @@
 class Ship extends Moveable {
   float yaw = 0;
-  float maxVel = 0.6;
+  float maxVel = 1.4;
   //float maxAccel = 1;
   float collisionRad = 25;
 
