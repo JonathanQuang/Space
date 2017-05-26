@@ -1,8 +1,19 @@
-class Asteroid extends Moveable { 
+class Asteroid extends Moveable {
+  
+
+  public boolean dead;
+  
   Asteroid(){
-    super(new PVector(random(1000)-500,random(800)-400),
-          new PVector(random(10)-5,random(10)-5),
+    super(new PVector(random(1000),random(800)),
+          new PVector(random(4)-2,random(4)-2),
           new PVector(0,0));
+    dead = false;
+  }
+  
+  void isDead(){
+     if (pos.x < 0 || pos.y<0 || pos.x > width || pos.y > height){
+        dead = true; 
+     }
   }
   
   void collisionWithMarket( Market m ) {
