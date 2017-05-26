@@ -1,6 +1,6 @@
 class PlayerShip extends Ship {
    PlayerShip(){
-      super(); 
+      super( new PVector(0, 0)); 
    }
    
     

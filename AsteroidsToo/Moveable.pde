@@ -1,19 +1,16 @@
 class Moveable{
-PVector pos, vel, accel;
+PVector pos, vel;
 
-    Moveable(PVector thePos, PVector theVel, PVector theAccel){
+    Moveable(PVector thePos, PVector theVel){
       pos = thePos;
-      vel = theVel;
-      accel = theAccel;
+      vel = theVel;   
   }
   
   void updatePos(){
      pos.add(vel); 
   }
   
-  void updateVel() {
-     vel.add(accel ); 
-  }
+  
 
   void display(){
      ellipse(pos.x,pos.y,20,20); 

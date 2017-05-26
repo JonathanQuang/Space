@@ -5,8 +5,7 @@ class Asteroid extends Moveable {
   
   Asteroid(){
     super(new PVector(random(1000),random(800)),
-          new PVector(random(4)-2,random(4)-2),
-          new PVector(0,0));
+          new PVector(random(4)-2,random(4)-2));
     dead = false;
   }
   

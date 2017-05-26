@@ -3,13 +3,18 @@ class Ship extends Moveable {
   float maxVel = 1.4;
   //float maxAccel = 1;
   float collisionRad = 25;
+  PVector accel;
 
   
   //Placeholder constructor for a general ship
   Ship(){
      super(new PVector(400,400),
-          new PVector(0,0),
           new PVector(0,0));
+     accel = new PVector(0,0);
+  }
+  
+  void updateVel() {
+     vel.add(accel ); 
   }
   
   //This keeps the yaw within the 0-360 degrees or 0-2pi range that the sine and cosine function accept

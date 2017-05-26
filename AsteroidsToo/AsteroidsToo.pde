@@ -24,7 +24,6 @@ void draw(){
     theShip.applyShipMovement();
     def.displayAll();
     def.posAll();
-    def.velAll();
     def.collisionMarketAll( theMarket );
     def.manageRespawn();
     theMarket.display();

@@ -39,10 +39,13 @@ public class AstSpawner{
       astList.get(i).updatePos(); 
     }
   }
+  
+  /*
   void velAll(){
     
     for(int i=0;i<astList.size();i++){
       astList.get(i).updateVel(); 
     }
   }
+  */
 }
