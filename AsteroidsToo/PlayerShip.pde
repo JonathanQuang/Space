@@ -3,18 +3,20 @@ class PlayerShip extends Ship {
       super(); 
    }
    
-    
+   ArrayList<Bullet> shotsFired = new ArrayList<Bullet>(); 
   
   
     void keyPressed(){
-     System.out.println(key); 
-     System.out.println(vel);
+     //System.out.println(key); 
+     //System.out.println(vel);
      if (keyPressed==true){
        if (key == 'a'){
-        changeYaw(-3); 
+        changeYaw(-10);
+        key = 'f';
        }
        if (key == 'd'){
-        changeYaw(3); 
+        changeYaw(10);
+        key = 'f';
        }
        if (key == 'w'){
          accelViaYaw(0.05);
@@ -22,7 +24,18 @@ class PlayerShip extends Ship {
        if (key == 's'){
          accelViaYaw(-0.05);
        }
+       if (key == 'e') {
+         shotsFired.add(fireBullet());
+         key = 'f';
+       }
       }
     applyShipMovement();
-  }
+    }
+    
+    void fireAll() {
+      for (Bullet b : shotsFired) {
+         b.updateMovement();
+         b.display();
+      }
+    }
 }

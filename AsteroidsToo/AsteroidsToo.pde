@@ -20,8 +20,11 @@ void draw(){
     background(0);
     thePlayer.display();
     thePlayer.keyPressed();
+    thePlayer.fireAll();
+    thePlayer.checkBoundary();
     theShip.display();
     theShip.applyShipMovement();
+    theShip.checkBoundary();
     def.displayAll();
     def.posAll();
     def.collisionMarketAll( theMarket );

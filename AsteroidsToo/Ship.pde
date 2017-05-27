@@ -36,7 +36,7 @@ class Ship extends Moveable {
      accel=addTo;
   }
   
-  //This update the velocity and position according to acceleration
+  //This update the vel and pos according to acceleration
   void applyShipMovement(){
     if (vel.mag() > maxVel){
        vel.setMag(maxVel); 
@@ -45,7 +45,24 @@ class Ship extends Moveable {
     updatePos();
   }
   
-  //currently, this just displays an equilateral triangle at the ship's position.
+  // spawns bullet
+  Bullet fireBullet(){
+    return new Bullet(this);
+  }
+  
+  void checkBoundary() {
+    if (pos.x > width) {
+      pos.x = 20;
+    } else if (pos.x < 0) {
+      pos.x = width-20;
+    } else if (pos.y > height) {
+      pos.y = 20;
+    } else if (pos.y < 0) {
+      pos.y = height-20;
+    } 
+  }
+  
+  //currently, this just displays an equilateral triangle at the ship's pos.
   void display(){
      float vert[] = new float[6]; 
      float a = yaw;
