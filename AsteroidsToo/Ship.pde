@@ -78,6 +78,9 @@ class Ship extends Moveable {
         bullets++; 
         System.out.println("new bullet added");
       }
+      if(bullets==3){
+        startTiming=false;
+      }
     }
   }
   //currently, this just displays an equilateral triangle at the ship's pos.
