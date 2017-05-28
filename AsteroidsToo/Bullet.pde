@@ -24,4 +24,5 @@ class Bullet extends Moveable{
     public void updateMovement(){
       updatePos();
     }
+
 }

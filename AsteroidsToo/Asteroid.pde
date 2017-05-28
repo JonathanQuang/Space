@@ -2,11 +2,12 @@ class Asteroid extends Moveable {
   
 
   public boolean dead;
-  
+  public float health;
   Asteroid(){
     super(new PVector(random(1000),random(800)),
           new PVector(random(4)-2,random(4)-2));
     dead = false;
+    health = 100;
   }
   
   void isDead(){
@@ -14,7 +15,9 @@ class Asteroid extends Moveable {
         dead = true; 
      }
   }
-  
+  void damage(float dmg){
+    health-=dmg;
+  }
   void collisionWithMarket( Market m ) {
     if ( pos.x > m.position.x && pos.x < m.position.x + 40 && pos.y > m.position.y && pos.y < m.position.y + 40 ) {
        m.loseHP( 20 );

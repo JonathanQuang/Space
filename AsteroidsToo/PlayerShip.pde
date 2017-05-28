@@ -5,7 +5,9 @@ class PlayerShip extends Ship {
    
    ArrayList<Bullet> shotsFired = new ArrayList<Bullet>(); 
   
-  
+    ArrayList<Bullet> getShots(){
+      return shotsFired;  
+    }
     void keyPressed(){
      //System.out.println(key); 
      //System.out.println(vel);
