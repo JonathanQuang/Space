@@ -12,3 +12,7 @@
   higher priority
 - functional shop -- 6/2, same reason as above applies
 - Wave based enemies - 6/3
+
+
+- guns that do binarySearchTree by killing highest health enemy / asteroid  
+- gold digging tool- shows asteroid with highest gold.
