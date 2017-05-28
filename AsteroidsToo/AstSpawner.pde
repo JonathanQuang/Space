@@ -45,10 +45,8 @@ public class AstSpawner{
     ArrayList<Bullet> pShots = pShip.getShots();
     for(int j=0;j<pShots.size();j++){
       for(int i=0;i<astList.size();i++){
-        if( astList.get(i).pos == pShots.get(j).pos){
-          System.out.println( astList.get(i).pos.x == pShots.get(j).pos.x && astList.get(i).pos.y == pShots.get(j).pos.y);
+        if( dist(astList.get(i).pos.x,astList.get(i).pos.y,pShots.get(j).pos.x,pShots.get(j).pos.y) < 4){
           astList.remove(i);
-          //at.damage(100);  
         }
       }
     }

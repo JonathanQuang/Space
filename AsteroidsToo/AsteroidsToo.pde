@@ -24,6 +24,7 @@ void draw(){
     theShip.display();
     theShip.applyShipMovement();
     theShip.checkBoundary();
+    theShip.makeBullets();
     _spawner.displayAll();
     _spawner.posAll();
     _spawner.collisionMarketAll( theMarket );
@@ -31,5 +32,4 @@ void draw(){
     _spawner.collisions(thePlayer);
     theMarket.display();
     theMarket.isAlive();
-    
 }

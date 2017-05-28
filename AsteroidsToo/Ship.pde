@@ -4,13 +4,21 @@ class Ship extends Moveable {
   //float maxAccel = 1;
   float collisionRad = 25;
   PVector accel;
-
-  
+  int bullets;
+  int bulletCap;
+  int lastFrame; // last frame of shooting
+  boolean startTiming; // for when bullets < 3 -- you want to cap bullets
+  int last_not_full;
   //Placeholder constructor for a general ship
   Ship(){
      super(new PVector(400,400),
           new PVector(0,0));
      accel = new PVector(0,0);
+     bullets = 3;
+     bulletCap = 3;
+     lastFrame = 0;
+     startTiming=false;
+     last_not_full = 0;
   }
   
   void updateVel() {
@@ -62,6 +70,16 @@ class Ship extends Moveable {
     } 
   }
   
+  void makeBullets(){
+   // System.out.println(bullets);
+    if( bullets < 3 ){
+      System.out.println(frameCount);
+      if(frameCount % 100 == 0 ) {
+        bullets++; 
+        System.out.println("new bullet added");
+      }
+    }
+  }
   //currently, this just displays an equilateral triangle at the ship's pos.
   void display(){
      float vert[] = new float[6]; 
