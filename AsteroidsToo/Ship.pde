@@ -1,4 +1,7 @@
+import java.util.LinkedList;
+
 class Ship extends Moveable {
+
   float yaw = 0;
   float maxVel = 1.4;
   //float maxAccel = 1;
@@ -9,6 +12,8 @@ class Ship extends Moveable {
   int lastFrame; // last frame of shooting
   boolean startTiming; // for when bullets < 3 -- you want to cap bullets
   int last_not_full;
+  LinkedList wepps; 
+  //
   //Placeholder constructor for a general ship
   Ship(){
      super(new PVector(400,400),
@@ -19,6 +24,8 @@ class Ship extends Moveable {
      lastFrame = 0;
      startTiming=false;
      last_not_full = 0;
+     wepps = new LinkedList();
+     wepps.add("eV1");
   }
   
   void updateVel() {

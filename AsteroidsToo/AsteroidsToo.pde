@@ -1,7 +1,9 @@
+
 Moveable test1;
 AstSpawner _spawner;
 Ship theShip;
 Market theMarket;
+
 PlayerShip thePlayer;
 
 void setup(){
