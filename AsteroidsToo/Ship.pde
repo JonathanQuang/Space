@@ -82,15 +82,18 @@ class Ship extends Moveable {
   void makeBullets(){
    // System.out.println(bullets);
     if( bullets < 3 ){
-      System.out.println(frameCount);
+      //System.out.println(frameCount);
       if(frameCount % 100 == 0 ) {
         bullets++; 
-        System.out.println("new bullet added");
+        //System.out.println("new bullet added");
       }
       if(bullets==3){
         startTiming=false;
       }
     }
+  }
+  void changeMoney(float x){
+    money +=x;
   }
   //currently, this just displays an equilateral triangle at the ship's pos.
   void display(){

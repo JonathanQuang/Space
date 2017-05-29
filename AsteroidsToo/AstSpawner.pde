@@ -45,7 +45,12 @@ public class AstSpawner{
     for(int j=0;j<pShots.size();j++){
       for(int i=0;i<astList.size();i++){
         if( dist(astList.get(i).pos.x,astList.get(i).pos.y,pShots.get(j).pos.x,pShots.get(j).pos.y) < 10){
-          astList.remove(i);
+          astList.get(i).damage(100);
+          if( astList.get(i).killed){
+            pShip.changeMoney(astList.get(i).money);
+            astList.remove(i);
+            System.out.println(pShip.money);
+          }
         }
       }
     }
@@ -54,7 +59,7 @@ public class AstSpawner{
   public void killAst(){
     for(int i=0;i<astList.size();i++){
       if (astList.get(i).health<=0){
-        astList.remove(i);
+        astList.remove(i);  
       }
     }
   }

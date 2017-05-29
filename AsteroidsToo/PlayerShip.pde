@@ -45,7 +45,7 @@ class PlayerShip extends Ship {
           }
           shotsFired.add(fireBullet());        
           bullets = bullets - 1;
-          System.out.println(bullets);
+          //System.out.println(bullets);
         }
       }
     }

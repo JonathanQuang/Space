@@ -18,6 +18,6 @@ PVector pos, vel;
   }
 
   void display(){
-     ellipse(pos.x,pos.y,20,20); 
+     ellipse(pos.x,pos.y,50,50); 
   }
 }
