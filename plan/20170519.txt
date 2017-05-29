@@ -13,3 +13,6 @@ The first thing to add to the game is the moveable object class.
 - Switching different weapons ( Double Linked List )  / buying weapons
 - Making friendly ships OR towers
 - Spawning friendly towers with priority / pay for speed
+
+0. Making richest enemy move
+1. Making enemies spawn in waves 
