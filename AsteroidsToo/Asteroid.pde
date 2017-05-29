@@ -1,13 +1,16 @@
 class Asteroid extends Moveable {
   
-
+  
   public boolean dead;
   public float health;
+  public float money;
+  
   Asteroid(){
     super(new PVector(random(1000),random(800)),
           new PVector(random(4)-2,random(4)-2));
     dead = false;
     health = 100;
+    money = random(10,100);
   }
   
   void isDead(){

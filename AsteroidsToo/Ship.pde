@@ -1,5 +1,5 @@
 class Ship extends Moveable {
-
+  int money;
   float yaw = 0;
   float maxVel = 1.4;
   //float maxAccel = 1;

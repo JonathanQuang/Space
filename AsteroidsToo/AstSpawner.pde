@@ -3,7 +3,6 @@ public class AstSpawner{
   
   ArrayList<Asteroid> astList;
   ArrayList<Bullet> bullets;
-  BinarySearch 
   AstSpawner(int num_Asteroids){
      astList = new ArrayList();
      while(num_Asteroids > 0 ){ 

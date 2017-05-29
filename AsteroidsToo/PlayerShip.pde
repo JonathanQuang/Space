@@ -1,7 +1,9 @@
 class PlayerShip extends Ship {
+  
   PlayerShip() { 
     super();
     lastFrame = 0;
+    money = 0;
   }
 
   ArrayList<Bullet> shotsFired = new ArrayList<Bullet>(); 
@@ -21,20 +23,11 @@ class PlayerShip extends Ship {
     //System.out.println(vel);
     if (keyPressed==true) {
       if (key == 'a') {
-<<<<<<< HEAD
         changeYaw(-2);
       }
       if (key == 'd') {
         changeYaw(2);
 
-=======
-        changeYaw(-3);
-        
-      }
-      if (key == 'd') {
-        changeYaw(3);
-        
->>>>>>> 6ceb7aac557d2a0403716270486e518cc00d5434
       }
       if (key == 'w') {
         accelViaYaw(0.05);
@@ -43,7 +36,7 @@ class PlayerShip extends Ship {
         accelViaYaw(-0.05);
       }
       if (key == 'e') {
-        if ( bullets > 0 && (frameCount - lastFrame > 20 )) {
+        if ( bullets > 0 && (frameCount - lastFrame > 50 )) {
           lastFrame = frameCount; // update last shot
           // If bullets now one less than cap and not timing yet you need to start the timer
           if (  ( bullets <= bulletCap - 1) && startTiming == false) {
