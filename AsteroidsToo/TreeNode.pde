@@ -12,7 +12,7 @@
 public class TreeNode 
 {
     //instance variables / attributes of a TreeNode:
-    int _cargo;     //this node's data
+    EnemyShip _cargo;     //this node's data
     TreeNode _lt, _rt; //pointers to left, right subtrees
 
 
@@ -21,7 +21,7 @@ public class TreeNode
      * Construct a tree node with specified value, 
      * with null left and right subtrees.
      *****************************************************/
-    TreeNode( int initValue )
+    TreeNode( EnemyShip initValue )
     {
   _cargo = initValue;
     }
@@ -32,7 +32,7 @@ public class TreeNode
      * Construct a tree node with specified
      * value, left, and right subtrees.
      *****************************************************/
-    TreeNode( int initValue, TreeNode initLeft, TreeNode initRight ) 
+    TreeNode( EnemyShip initValue, TreeNode initLeft, TreeNode initRight ) 
     {
   this(initValue);
   _lt = initLeft;
@@ -61,9 +61,9 @@ public class TreeNode
     /*****************************************************
      * Returns the value stored in this tree node.
      *****************************************************/
-    int getValue() 
+    float getValue() 
     {
-  return _cargo;
+      return _cargo.money;
     }
 
 
@@ -88,7 +88,7 @@ public class TreeNode
     /*****************************************************
      * Sets the value of this tree node.
      *****************************************************/
-    void setValue( int theNewValue ) 
+    void setValue( EnemyShip theNewValue ) 
     {
   _cargo = theNewValue;
     }

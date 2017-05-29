@@ -33,7 +33,7 @@ public class BST
      * void insert( int ) 
      * Adds a new data element to the tree at appropriate location.
      *****************************************************/
-    public void insert( int newVal ) 
+    public void insert( EnemyShip newVal ) 
     {
   TreeNode newNode = new TreeNode( newVal );
 
@@ -118,17 +118,17 @@ public class BST
      * returns pointer to node containing target,
      * or null if target not found
      *****************************************************/
-    TreeNode search( int target )
+    TreeNode search( EnemyShip target )
     {
   return search( target, _root );
     }
-    TreeNode search( int target, TreeNode currNode )
+    TreeNode search( EnemyShip target, TreeNode currNode )
     {
-  if ( currNode==null || currNode.getValue()==target )
+  if ( currNode==null || currNode.getValue()==target.money )
       return currNode;
-  else if ( target < currNode.getValue() )
+  else if ( target.money < currNode.getValue() )
       return search( target, currNode.getLeft() );
-  else if ( target > currNode.getValue() )
+  else if ( target.money > currNode.getValue() )
       return search( target, currNode.getRight() );
   else
       return null; //to get past compiler

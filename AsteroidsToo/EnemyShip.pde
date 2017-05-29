@@ -6,6 +6,10 @@ class EnemyShip extends Ship{
   void display(){
     super.display();
     c = color(250,0,0);
+    //System.out.println(c);
     fill(c);
+  }
+  void move(){
+    
   }
 }

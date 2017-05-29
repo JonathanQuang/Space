@@ -7,6 +7,7 @@ Market theMarket;
 
 PlayerShip thePlayer;
 EnemyShip theEnemy;
+BST enemyS;
 void setup() {
   size(1000, 800);
   //test1 = new Moveable(new PVector(400,0),new PVector(0,1),new PVector(0,0.05));
@@ -17,6 +18,11 @@ void setup() {
   //theShip.accelViaYaw(0.01);
   thePlayer = new PlayerShip();
   theEnemy = new EnemyShip();
+  enemyS = new BST();
+  enemyS.insert(theEnemy);
+  enemyS.insert(new EnemyShip());
+  enemyS.insert(new EnemyShip());
+  enemyS.insert(new EnemyShip());
 }
 
 void draw() {

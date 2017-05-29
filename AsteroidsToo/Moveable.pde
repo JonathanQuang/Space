@@ -20,7 +20,7 @@ class Moveable {
 
   void display() {
     ellipse(pos.x, pos.y, 50, 50);
-    c = color(0,350,0);
+    c = color(0,250,0);
     fill(c);
   }
 }
