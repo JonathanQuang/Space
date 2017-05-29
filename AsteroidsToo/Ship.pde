@@ -10,7 +10,7 @@ class Ship extends Moveable {
   int lastFrame; // last frame of shooting
   boolean startTiming; // for when bullets < 3 -- you want to cap bullets
   int last_not_full;
-  LinkedList wepps; 
+  //  LinkedList wepps; 
   //
   //Placeholder constructor for a general ship
   Ship(){
@@ -22,6 +22,7 @@ class Ship extends Moveable {
      lastFrame = 0;
      startTiming=false;
      last_not_full = 0;
+     /*
      wepps = new LinkedList();
      wepps.add("eV1");
      wepps.add("eV1");
@@ -29,6 +30,7 @@ class Ship extends Moveable {
      wepps.add("eV1");
      wepps.add("eV1");
      money = 0;
+     */
   }
   
   void updateVel() {
