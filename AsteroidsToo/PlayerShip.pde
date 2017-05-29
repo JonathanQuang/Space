@@ -58,4 +58,10 @@ class PlayerShip extends Ship {
       b.display();
     }
   }
+  
+  void display(){
+    super.display();
+    c = color(0,350,0);
+    fill(c);
+  }
 }

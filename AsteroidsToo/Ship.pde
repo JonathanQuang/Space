@@ -1,5 +1,5 @@
 class Ship extends Moveable {
-  int money;
+  float money;
   float yaw = 0;
   float maxVel = 1.4;
   //float maxAccel = 1;
@@ -28,6 +28,7 @@ class Ship extends Moveable {
      wepps.add("eV1");
      wepps.add("eV1");
      wepps.add("eV1");
+     money = 0;
   }
   
   void updateVel() {
@@ -95,10 +96,12 @@ class Ship extends Moveable {
   void changeMoney(float x){
     money +=x;
   }
+  
+
   //currently, this just displays an equilateral triangle at the ship's pos.
   void display(){
      float vert[] = new float[6]; 
-     float a = yaw;
+     float a = yaw; // i don't get this line
      for (int x = 0; x < 6; x+=2){
         vert[x] = pos.x + collisionRad*cos(radians(a-90));
         vert[x+1] = pos.y + collisionRad*sin(radians(a-90));

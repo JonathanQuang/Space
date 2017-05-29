@@ -1,23 +1,26 @@
-class Moveable{
-PVector pos, vel;
+class Moveable {
+  color c;
+  PVector pos, vel;
 
-    Moveable(PVector thePos, PVector theVel){
-      pos = thePos;
-      vel = theVel;   
+  Moveable(PVector thePos, PVector theVel) {
+    pos = thePos;
+    vel = theVel;
   }
-  
-  void updatePos(){
-     pos.add(vel); 
+
+  void updatePos() {
+    pos.add(vel);
   }
-  
-  PVector getPos(){
+
+  PVector getPos() {
     return pos;
   }
-  PVector getVel(){
+  PVector getVel() {
     return vel;
   }
 
-  void display(){
-     ellipse(pos.x,pos.y,50,50); 
+  void display() {
+    ellipse(pos.x, pos.y, 50, 50);
+    c = color(0,350,0);
+    fill(c);
   }
 }

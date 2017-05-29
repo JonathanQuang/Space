@@ -30,5 +30,9 @@ class Asteroid extends Moveable {
        m.loseHP( 20 );
     }
   }
-  
+  void display(){
+    super.display();
+    c = color(0,0,350);
+    fill(c);
+  }
 }
