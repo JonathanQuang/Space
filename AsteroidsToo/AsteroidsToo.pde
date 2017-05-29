@@ -34,9 +34,10 @@ void draw() {
   thePlayer.fireAll();
   thePlayer.checkBoundary();
   thePlayer.makeBullets();
-
-  theEnemy.display();
-
+  for (EnemyShip x : enemyS) {
+    x.display();
+    x.applyShipMovement();
+  }
   //  thePlayer.stopLR();
   /*
     theShip.display();
