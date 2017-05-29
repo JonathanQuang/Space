@@ -20,7 +20,19 @@ class Moveable {
 
   void display() {
     ellipse(pos.x, pos.y, 50, 50);
-    c = color(0,250,0);
+    c = color(0, 250, 0);
     fill(c);
+  }
+
+  void checkBoundary() {
+    if (pos.x > width) {
+      pos.x = 20;
+    } else if (pos.x < 0) {
+      pos.x = width-20;
+    } else if (pos.y > height) {
+      pos.y = 20;
+    } else if (pos.y < 0) {
+      pos.y = height-20;
+    }
   }
 }

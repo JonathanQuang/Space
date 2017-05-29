@@ -14,7 +14,7 @@ public class AstSpawner {
 
   void manageRespawn() {
     for (int i=0; i < astList.size(); i++) {
-      astList.get(i).isDead();
+      //astList.get(i).isDead();
       if (astList.get(i).dead == true) {
         astList.set(i, new Asteroid());
       }
@@ -30,6 +30,7 @@ public class AstSpawner {
   void displayAll() {
     for (int i=0; i<astList.size(); i++) {
       astList.get(i).display();
+      astList.get(i).checkBoundary();
     }
   }
 

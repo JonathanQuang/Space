@@ -9,8 +9,7 @@ class Ship extends Moveable {
   int bulletCap;
   int lastFrame; // last frame of shooting
   boolean startTiming; // for when bullets < 3 -- you want to cap bullets
-  int last_not_full;
-  //  LinkedList wepps; 
+  int last_not_full;//  LinkedList wepps; 
   //
   //Placeholder constructor for a general ship
   Ship(){
@@ -70,18 +69,7 @@ class Ship extends Moveable {
     return new Bullet(this);
   }
   
-  void checkBoundary() {
-    if (pos.x > width) {
-      pos.x = 20;
-    } else if (pos.x < 0) {
-      pos.x = width-20;
-    } else if (pos.y > height) {
-      pos.y = 20;
-    } else if (pos.y < 0) {
-      pos.y = height-20;
-    } 
-  }
-  
+
   void makeBullets(){
    // System.out.println(bullets);
     if( bullets < 3 ){

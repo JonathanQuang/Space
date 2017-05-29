@@ -1,5 +1,5 @@
 import java.util.PriorityQueue;
-
+import java.util.ArrayDeque;
 Moveable test1;
 AstSpawner _spawner;
 Ship theShip;
@@ -7,7 +7,7 @@ Market theMarket;
 
 PlayerShip thePlayer;
 EnemyShip theEnemy;
-PriorityQueue<EnemyShip> enemyS;
+PriorityQueue<EnemyShip> enemyS; 
 void setup() {
   size(1000, 800);
   //test1 = new Moveable(new PVector(400,0),new PVector(0,1),new PVector(0,0.05));
@@ -37,6 +37,7 @@ void draw() {
   for (EnemyShip x : enemyS) {
     x.display();
     x.applyShipMovement();
+    x.checkBoundary();
   }
   //  thePlayer.stopLR();
   /*

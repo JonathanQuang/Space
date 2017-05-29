@@ -14,11 +14,12 @@ class Asteroid extends Moveable {
     killed = false;
   }
   
-  void isDead(){
+  /*void isDead(){
      if (pos.x < 0 || pos.y<0 || pos.x > width || pos.y > height){
         dead = true; 
      }
   }
+  */
   void damage(float dmg){
     health-=dmg;
     if(health <= 0 ) {
