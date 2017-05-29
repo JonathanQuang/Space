@@ -1,5 +1,3 @@
-
-
 class Ship extends Moveable {
 
   float yaw = 0;
@@ -25,6 +23,10 @@ class Ship extends Moveable {
      startTiming=false;
      last_not_full = 0;
      wepps = new LinkedList();
+     wepps.add("eV1");
+     wepps.add("eV1");
+     wepps.add("eV1");
+     wepps.add("eV1");
      wepps.add("eV1");
   }
   

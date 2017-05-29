@@ -21,12 +21,11 @@ class PlayerShip extends Ship {
     //System.out.println(vel);
     if (keyPressed==true) {
       if (key == 'a') {
-        changeYaw(-10);
-        key = 'f';
+        changeYaw(-2);
       }
       if (key == 'd') {
-        changeYaw(10);
-        key = 'f';
+        changeYaw(2);
+
       }
       if (key == 'w') {
         accelViaYaw(0.05);
@@ -35,7 +34,7 @@ class PlayerShip extends Ship {
         accelViaYaw(-0.05);
       }
       if (key == 'e') {
-        if ( bullets > 0 && (frameCount - lastFrame > 10 )) {
+        if ( bullets > 0 && (frameCount - lastFrame > 20 )) {
           lastFrame = frameCount; // update last shot
           // If bullets now one less than cap and not timing yet you need to start the timer
           if (  ( bullets <= bulletCap - 1) && startTiming == false) {
