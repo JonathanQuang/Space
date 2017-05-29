@@ -12,7 +12,7 @@
 public class TreeNode 
 {
     //instance variables / attributes of a TreeNode:
-    EnemyShip _cargo;     //this node's data
+    public EnemyShip _cargo;     //this node's data
     TreeNode _lt, _rt; //pointers to left, right subtrees
 
 

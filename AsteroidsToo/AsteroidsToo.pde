@@ -46,7 +46,25 @@ void draw() {
   _spawner.posAll();
   _spawner.collisionMarketAll( theMarket );
   _spawner.manageRespawn();
-  _spawner.collisions(thePlayer);
+  pShipAst(thePlayer,_spawner.astList);
   theMarket.display();
   theMarket.isAlive();
 }
+
+  public void pShipAst(PlayerShip pShip, ArrayList<Asteroid> astList){
+    ArrayList<Bullet> pShots = pShip.getShots();
+    for(int j=0;j<pShots.size();j++){
+      for(int i=0;i<astList.size();i++){
+        if( dist(astList.get(i).pos.x,astList.get(i).pos.y,pShots.get(j).pos.x,pShots.get(j).pos.y) < 10){
+          astList.get(i).damage(100);
+          if( astList.get(i).killed){
+            pShip.changeMoney(astList.get(i).money);
+            astList.remove(i);
+            //System.out.println(pShip.money);
+          }
+        }
+      }
+    }
+  }
+  
+  
