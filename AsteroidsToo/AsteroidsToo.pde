@@ -1,13 +1,15 @@
 import java.util.PriorityQueue;
 import java.util.ArrayDeque;
-Moveable test1;
-AstSpawner _spawner;
-Ship theShip;
-Market theMarket;
 
+// instances
+AstSpawner _spawner;
+Market theMarket;
 PlayerShip thePlayer;
 EnemyShip theEnemy;
-PriorityQueue<EnemyShip> enemyS; 
+PriorityQueue<EnemyShip> enemyS;
+
+boolean start = false;
+
 void setup() {
   size(1000, 800);
   //test1 = new Moveable(new PVector(400,0),new PVector(0,1),new PVector(0,0.05));
@@ -26,33 +28,47 @@ void setup() {
   enemyS.poll(); // removes richest
 }
 
+void mouseClicked() {
+  start = true;
+}
+
 void draw() {
   //System.out.println(enemyS.peek().money);
-  background(0);
-  thePlayer.display();
-  thePlayer.keyPressed();
-  thePlayer.fireAll();
-  thePlayer.checkBoundary();
-  thePlayer.makeBullets();
-  for (EnemyShip x : enemyS) {
-    x.display();
-    x.applyShipMovement();
-    x.checkBoundary();
-  }
-  //  thePlayer.stopLR();
-  /*
-    theShip.display();
-   theShip.applyShipMovement();
-   theShip.checkBoundary();
-   theShip.makeBullets();
-   */
-  _spawner.run();
-  pShipAst(thePlayer, _spawner.astList);
-  theMarket.display();
-  theMarket.isAlive();
 
-  posAtEdge();
-  moveRichestEnemy();
+  if (!start) {
+    background( 0, 255, 0 );
+    fill(0);
+    textSize(64); 
+    text( "Press anywhere to start", 140, 100 );
+  } else {
+    background(0);
+    thePlayer.displayWalls();
+    thePlayer.display();
+    thePlayer.keyPressed();
+    thePlayer.fireAll();
+    thePlayer.checkBoundary();
+    thePlayer.makeBullets();
+    
+    for (EnemyShip x : enemyS) {
+      x.display();
+      x.applyShipMovement();
+      x.checkBoundary();
+    }
+    //  thePlayer.stopLR();
+    /*
+    theShip.display();
+     theShip.applyShipMovement();
+     theShip.checkBoundary();
+     theShip.makeBullets();
+     */
+    _spawner.run();
+    pShipAst(thePlayer, _spawner.astList);
+    theMarket.display();
+    theMarket.isAlive();
+
+    posAtEdge();
+    moveRichestEnemy();
+  }
 }
 
 // Collisions for player ship and asteroids.

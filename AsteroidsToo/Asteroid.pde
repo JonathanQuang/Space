@@ -1,10 +1,11 @@
 class Asteroid extends Moveable {
   
-  
+  // instance vars
   public boolean dead;
   public float health;
   public float money;
   public boolean killed;
+  
   Asteroid(){
     super(new PVector(random(1000),random(800)),
           new PVector(random(4)-2,random(4)-2));
@@ -20,17 +21,20 @@ class Asteroid extends Moveable {
      }
   }
   */
+  
   void damage(float dmg){
     health-=dmg;
     if(health <= 0 ) {
       killed = true;
     }
   }
+  
   void collisionWithMarket( Market m ) {
-    if ( pos.x > m.position.x && pos.x < m.position.x + 40 && pos.y > m.position.y && pos.y < m.position.y + 40 ) {
+    if ( pos.x > m.pos.x && pos.x < m.pos.x + 40 && pos.y > m.pos.y && pos.y < m.pos.y + 40 ) {
        m.loseHP( 20 );
     }
   }
+  
   void display(){
     super.display();
     c = color(0,0,250);

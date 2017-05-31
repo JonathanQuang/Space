@@ -1,27 +1,21 @@
-class Wall extends Moveable {
-  
+class Wall {
+  // instance vars
+  PVector pos;
   int hp;
-  int collRad;
+  int len;
   
-  Wall(PVector) {
-    super(new PVector(-400, -400), 
-      new PVector(0, 0));
+  // overloaded constructor
+  Wall(PVector newPos) {
+    float x = newPos.x;
+    float y = newPos.y;
+    pos = new PVector( x, y );
     hp = 100;
-    collRad = 10;
+    len = 30;
   }
   
-  
-
-  void placeAtPos(PVector placeVec){
-    this.pos=placeVec;  
-  }
-  
-  void display (){
-    rect(pos.x+collRad/2,pos.y+collRad/2,
-         pos.x+collRad/2, pos.y-collRad/2,
-         pos.x - collRad/2, pos.y+collRad/2,
-         pos.x - collRad/2, pos.y-collRad/2);
-         
+  // display wall
+  void display() {
+    rect(pos.x, pos.y, len, len);   
   }
   
   

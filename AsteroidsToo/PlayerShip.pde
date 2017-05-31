@@ -1,6 +1,7 @@
 class PlayerShip extends Ship {
   ArrayDeque<Weps> weapons;
   ArrayList<Bullet> shotsFired;
+  ArrayList<Wall> wallsPlaced;
   PFont f;
 
   PlayerShip() { 
@@ -11,7 +12,8 @@ class PlayerShip extends Ship {
     weapons.addFirst(new Blaster(this));
     weapons.addFirst(new Weps(this));
     shotsFired = new ArrayList<Bullet>();
-    f = createFont("Arial",4,true);
+    wallsPlaced = new ArrayList<Wall>();
+    f = createFont("Arial", 4, true);
   }
 
   ArrayList<Bullet> getShots() {
@@ -24,8 +26,8 @@ class PlayerShip extends Ship {
    boolean startTiming; // for when bullets < 3 -- you want to cap bullets
    int last_not_full;
    */
-   
-   //standard WASD, tank movement, q,e switch weapons, l shoots
+
+  //standard WASD, tank movement, q,e switch weapons, l shoots
   void keyPressed() {
     //System.out.println(key); 
     //System.out.println(vel);
@@ -57,13 +59,25 @@ class PlayerShip extends Ship {
             last_not_full = frameCount;
           }
           shotsFired.add(fireBullet());        
-          weapons.getFirst().bullets--;            //System.out.println(bullets);
+          //weapons.getFirst().bullets--;            //System.out.println(bullets);
+        }
+      }
+      if (key == 'b') {
+        if ( wallsPlaced.size() == 0 ) {
+          wallsPlaced.add( new Wall( pos ) );  
+        }
+        if ( wallsPlaced.size() > 0 && (frameCount - lastFrame > 50)) {
+          lastFrame = frameCount; // update last wall placed
+          if ( !startTiming ) {
+            startTiming=true;
+          }
+          wallsPlaced.add( new Wall( pos ) );       
         }
       }
     }
     applyShipMovement();
   }
-  
+
   //manages the swapping of weapons 
   void changeWep(String x ) {
     // if dequesize is 1 do nothing  
@@ -79,22 +93,28 @@ class PlayerShip extends Ship {
     }
     System.out.println(weapons.getFirst());
   }
-  
-  //tells bullets to move
-    void fireAll() {
-      for (Bullet b : shotsFired) {
-        b.updateMovement();
-        b.display();
-      }
-    }
 
-    void display() {
-      super.display();
-      c = color(0, 100, 0);
-      fill(c);
-      textFont(f,16);                  // STEP 3 Specify font to be used
-      fill(100);                         // STEP 4 Specify font color 
-      text("Money: " + money,10,100);   // STEP 5 Display Text
-      fill(c);
+  //tells bullets to move
+  void fireAll() {
+    for (Bullet b : shotsFired) {
+      b.updateMovement();
+      b.display();
     }
   }
+
+  void displayWalls() {
+    for (Wall w : wallsPlaced) {
+      w.display();
+    }
+  }
+
+  void display() {
+    super.display();
+    c = color(0, 100, 0);
+    fill(c);
+    textFont(f, 16);                  // STEP 3 Specify font to be used
+    fill(100);                         // STEP 4 Specify font color 
+    text("Money: " + money, 10, 100);   // STEP 5 Display Text
+    fill(c);
+  }
+}

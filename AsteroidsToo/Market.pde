@@ -1,18 +1,17 @@
 class Market {
-  PVector position;
+  // instance vars
+  PVector pos;
   int len;
   int hp;
   
+  // default constructor
   Market() {
-     position = new PVector( width/2-len, height/2-len );
+     pos = new PVector( width/2-len, height/2-len );
      len = 40;
      hp = 20;
   }
   
-  void display() {
-    rect( position.x, position.y, len, len );
-  }
-  
+  // deals damage to market
   void loseHP( int dmg ) {
     hp -= dmg;
   }
@@ -20,9 +19,12 @@ class Market {
   //makes the market dissapear when dead by moving it offscreen
   void isAlive() {
    if (hp <= 0) {
-     position = new PVector( -100, -100 );
+     pos = new PVector( -100, -100 );
    }
   }
   
-  
+  // displays market
+  void display() {
+    rect( pos.x, pos.y, len, len );
+  }
 }
