@@ -1,4 +1,7 @@
 class EnemyShip extends Ship implements Comparable<EnemyShip> {
+  
+  //Currently no real functions, needs some more touchups
+  
   public EnemyShip() {
     super();
     money = (int)random(100.0, 500.0);

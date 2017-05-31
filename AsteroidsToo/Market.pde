@@ -17,6 +17,7 @@ class Market {
     hp -= dmg;
   }
   
+  //makes the market dissapear when dead by moving it offscreen
   void isAlive() {
    if (hp <= 0) {
      position = new PVector( -100, -100 );

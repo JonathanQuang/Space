@@ -14,6 +14,7 @@ class Bullet extends Moveable {
     }
   }
 
+  //sets the velocity of a bullet according to the ship's rotation
   void setVel() {
     // Equal velocity for each bullet
     // Will eventually depend on type of gun

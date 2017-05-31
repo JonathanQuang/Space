@@ -24,6 +24,8 @@ class PlayerShip extends Ship {
    boolean startTiming; // for when bullets < 3 -- you want to cap bullets
    int last_not_full;
    */
+   
+   //standard WASD, tank movement, q,e switch weapons, l shoots
   void keyPressed() {
     //System.out.println(key); 
     //System.out.println(vel);
@@ -61,6 +63,8 @@ class PlayerShip extends Ship {
     }
     applyShipMovement();
   }
+  
+  //manages the swapping of weapons 
   void changeWep(String x ) {
     // if dequesize is 1 do nothing  
 
@@ -75,6 +79,8 @@ class PlayerShip extends Ship {
     }
     System.out.println(weapons.getFirst());
   }
+  
+  //tells bullets to move
     void fireAll() {
       for (Bullet b : shotsFired) {
         b.updateMovement();

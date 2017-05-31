@@ -12,6 +12,7 @@ public class AstSpawner {
     bullets = new ArrayList<Bullet>();
   }
 
+  //keeps fixed amount of asteroids on screen
   void manageRespawn() {
     for (int i=0; i < astList.size(); i++) {
       //astList.get(i).isDead();
@@ -21,6 +22,8 @@ public class AstSpawner {
     }
   }
 
+
+  //checks for collision on market
   void collisionMarketAll( Market m ) {
     for (int i=0; i<astList.size(); i++) {
       astList.get(i).collisionWithMarket( m );

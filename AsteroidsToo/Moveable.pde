@@ -7,6 +7,7 @@ class Moveable {
     vel = theVel;
   }
 
+  //update Position based on velocity
   void updatePos() {
     pos.add(vel);
   }
@@ -24,6 +25,7 @@ class Moveable {
     fill(c);
   }
 
+  //establish boundaries for movaeble objects
   void checkBoundary() {
     if (pos.x > width) {
       pos.x = 20;

@@ -32,6 +32,7 @@ class Ship extends Moveable {
      */
   }
   
+  //change the velocity according to acceleration
   void updateVel() {
      vel.add(accel ); 
   }
@@ -47,7 +48,7 @@ class Ship extends Moveable {
      }
   }
   
-  //This applies acceleration in the direction the "ship" is facing in;
+  //This applies acceleration in the direction the "ship" is facing in, we subtract 90 because the the positive y direction is actually downwards
   void accelViaYaw(float magnitude){
      PVector addTo = new PVector();
      addTo.x = magnitude*cos(radians(yaw-90));
@@ -83,6 +84,8 @@ class Ship extends Moveable {
       }
     }
   }
+  
+  //change the amount of money
   void changeMoney(float x){
     money +=x;
   }
