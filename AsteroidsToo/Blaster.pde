@@ -1,5 +1,6 @@
-class Blaster extends Weps{
- public Blaster(PlayerShip shp){
-   super(shp);
- }
+class Blaster extends Weps {
+  // constructor
+  public Blaster(PlayerShip shp) {
+    super(shp);
+  }
 }

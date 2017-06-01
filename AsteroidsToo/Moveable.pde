@@ -1,7 +1,9 @@
-class Moveable {
+abstract class Moveable {
+  // instance var
   color c;
   PVector pos, vel;
 
+  // constructor
   Moveable(PVector thePos, PVector theVel) {
     pos = thePos;
     vel = theVel;
@@ -12,20 +14,16 @@ class Moveable {
     pos.add(vel);
   }
 
+  // #### ACCESSORS #### //
   PVector getPos() {
     return pos;
   }
   PVector getVel() {
     return vel;
   }
+  // ################### //
 
-  void display() {
-    ellipse(pos.x, pos.y, 50, 50);
-    c = color(0, 250, 0);
-    fill(c);
-  }
-
-  //establish boundaries for movaeble objects
+  //establish boundaries for moveable objects
   void checkBoundary() {
     if (pos.x > width) {
       pos.x = 20;
@@ -36,5 +34,12 @@ class Moveable {
     } else if (pos.y < 0) {
       pos.y = height-20;
     }
+  }
+  
+  // displays object
+  void display() {
+    ellipse(pos.x, pos.y, 50, 50);
+    c = color(0, 250, 0);
+    fill(c);
   }
 }

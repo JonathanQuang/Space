@@ -1,9 +1,11 @@
 class PlayerShip extends Ship {
+  // instance vars
   ArrayDeque<Weps> weapons;
   ArrayList<Bullet> shotsFired;
   ArrayList<Wall> wallsPlaced;
   PFont f;
 
+  // default constructor
   PlayerShip() { 
     super();
     lastFrame = 0;
@@ -16,16 +18,19 @@ class PlayerShip extends Ship {
     f = createFont("Arial", 4, true);
   }
 
+  // #### ACCESSORS #### //
   ArrayList<Bullet> getShots() {
     return shotsFired;
   }
+  // ################### //
+
   /*
-    int bullets;
+   int bullets;
    int bulletCap;
    int lastFrame; // last frame of shooting
    boolean startTiming; // for when bullets < 3 -- you want to cap bullets
    int last_not_full;
-   */
+  */
 
   //standard WASD, tank movement, q,e switch weapons, l shoots
   void keyPressed() {
@@ -59,19 +64,20 @@ class PlayerShip extends Ship {
             last_not_full = frameCount;
           }
           shotsFired.add(fireBullet());        
-          //weapons.getFirst().bullets--;            //System.out.println(bullets);
+          // weapons.getFirst().bullets--;            
+          // System.out.println(bullets);
         }
       }
       if (key == 'b') {
         if ( wallsPlaced.size() == 0 ) {
-          wallsPlaced.add( new Wall( pos ) );  
+          wallsPlaced.add( new Wall( pos ) );
         }
         if ( wallsPlaced.size() > 0 && (frameCount - lastFrame > 50)) {
           lastFrame = frameCount; // update last wall placed
           if ( !startTiming ) {
             startTiming=true;
           }
-          wallsPlaced.add( new Wall( pos ) );       
+          wallsPlaced.add( new Wall( pos ) );
         }
       }
     }
@@ -102,12 +108,14 @@ class PlayerShip extends Ship {
     }
   }
 
+  // displays all placed walls
   void displayWalls() {
     for (Wall w : wallsPlaced) {
       w.display();
     }
   }
 
+  // displays player
   void display() {
     super.display();
     c = color(0, 100, 0);

@@ -1,14 +1,14 @@
 class Bullet extends Moveable {
+  // instance vars
+  float yaw; // orientation
+  float speed; // how fast
 
-  float yaw;
-
-  //UNTESTED
-
+  // constructor
   public Bullet(Ship theShooter) {
     super( new PVector( theShooter.pos.x, theShooter.pos.y ), new PVector( 0, 0));
     yaw = theShooter.yaw;
+    speed = 3; // to be put as parameter later
     setVel();
-
     while (theShooter.pos.dist(this.pos) < 40) {
       updatePos();
     }
@@ -18,19 +18,17 @@ class Bullet extends Moveable {
   void setVel() {
     // Equal velocity for each bullet
     // Will eventually depend on type of gun
-    vel.x = 3*cos(radians(yaw-90)); 
-    vel.y = 3*sin(radians(yaw-90));
+    vel.x = speed*cos(radians(yaw-90)); 
+    vel.y = speed*sin(radians(yaw-90));
   }
-  void display() {
-    ellipse(pos.x, pos.y, 5, 5);
-    /*
-    System.out.println(pos.x);
-    System.out.println(pos.y);
-    System.out.println(vel.x);
-    System.out.println(vel.y);
-    */
-  }
+
+  // moves bullet
   public void updateMovement() {
     updatePos();
+  }
+
+  // displays bullet
+  void display() {
+    ellipse(pos.x, pos.y, 5, 5);
   }
 }
