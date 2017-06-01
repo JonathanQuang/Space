@@ -27,13 +27,17 @@ class Asteroid extends Moveable {
   void damage(float dmg) {
     health-=dmg;
     if (health <= 0 ) {
-      killed = true;
+      dead = true;
     }
   }
 
   // if asteroid hits market, inflict damage on market
   void collisionWithMarket( Market m ) {
+    /*
     if ( pos.x > m.pos.x && pos.x < m.pos.x + 40 && pos.y > m.pos.y && pos.y < m.pos.y + 40 ) {
+     */
+    PVector position = new PVector( pos.x, pos.y );
+    if ( position.sub(m.pos).mag() <= 50 + m.len/2 ) {
       m.loseHP(20);
       damage(100);
     }
@@ -41,8 +45,9 @@ class Asteroid extends Moveable {
 
   // if asteroid hits wall, inflict damage on wall
   void collisionWithWalls( ArrayList<Wall> listOfWalls ) {
+    PVector position = new PVector( pos.x, pos.y );
     for ( Wall m : listOfWalls ) {
-      if ( pos.x > m.pos.x && pos.x < m.pos.x + 40 && pos.y > m.pos.y && pos.y < m.pos.y + 40 ) {
+      if ( position.sub(m.pos).mag() <= 50 + m.len/2 ) {
         m.loseHP(20);
         damage(100);
       }
