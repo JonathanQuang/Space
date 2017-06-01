@@ -83,7 +83,7 @@ class PlayerShip extends Ship {
           }
           wallsPlaced.add( new Wall( pos ) );
         }
-      }
+      }  
     }
     applyShipMovement();
   }

@@ -34,8 +34,8 @@ class Asteroid extends Moveable {
     // clamp(value, min, max) - limits value to the range min..max
 
     // Find the closest point to the circle within the rectangle
-    float closestX = clamp(pos.x, m.pos.x, m.pos.x+40);
-    float closestY = clamp(pos.y, m.pos.y, m.pos.y+40);
+    float closestX = clamp(pos.x, m.pos.x, m.pos.x+m.len);
+    float closestY = clamp(pos.y, m.pos.y, m.pos.y+m.len);
 
     // Calculate the distance between the circle's center and this closest point
     float distanceX = pos.x - closestX;
@@ -64,8 +64,8 @@ class Asteroid extends Moveable {
   void collisionWithWalls( ArrayList<Wall> listOfWalls ) {
     for ( Wall m : listOfWalls ) {
       // Find the closest point to the circle within the rectangle
-      float closestX = clamp(pos.x, m.pos.x, m.pos.x+40);
-      float closestY = clamp(pos.y, m.pos.y, m.pos.y+40);
+      float closestX = clamp(pos.x, m.pos.x, m.pos.x+m.len);
+      float closestY = clamp(pos.y, m.pos.y, m.pos.y+m.len);
 
       // Calculate the distance between the circle's center and this closest point
       float distanceX = pos.x - closestX;
