@@ -22,6 +22,10 @@ class PlayerShip extends Ship {
   ArrayList<Bullet> getShots() {
     return shotsFired;
   }
+  
+  ArrayList<Wall> getWalls() {
+    return wallsPlaced; 
+  }
   // ################### //
 
   /*
@@ -105,13 +109,6 @@ class PlayerShip extends Ship {
     for (Bullet b : shotsFired) {
       b.updateMovement();
       b.display();
-    }
-  }
-
-  // displays all placed walls
-  void displayWalls() {
-    for (Wall w : wallsPlaced) {
-      w.display();
     }
   }
 

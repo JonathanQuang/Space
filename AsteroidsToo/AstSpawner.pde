@@ -29,6 +29,13 @@ public class AstSpawner {
       astList.get(i).collisionWithMarket( m );
     }
   }
+  
+  //checks for collision on wall
+  void collisionWallAll( ArrayList<Wall> listOfWalls ) {
+    for (int i=0; i<astList.size(); i++) {
+      astList.get(i).collisionWithWalls( listOfWalls );
+    }
+  }
 
   // calls display method on asteroids 
   void displayAll() {
@@ -50,6 +57,7 @@ public class AstSpawner {
     displayAll();
     posAll();
     collisionMarketAll( theMarket );
+    collisionWallAll( wallS );
     manageRespawn();
   }
 

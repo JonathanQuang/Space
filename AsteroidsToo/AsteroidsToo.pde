@@ -7,7 +7,7 @@ Market theMarket;
 PlayerShip thePlayer;
 EnemyShip theEnemy;
 PriorityQueue<EnemyShip> enemyS;
-
+ArrayList<Wall> wallS;
 boolean start = false;
 
 void setup() {
@@ -26,6 +26,7 @@ void setup() {
   enemyS.add(new EnemyShip());
   enemyS.add(new EnemyShip());
   enemyS.poll(); // removes richest
+  wallS = new ArrayList<Wall>();
 }
 
 void mouseClicked() {
@@ -42,29 +43,46 @@ void draw() {
     text( "Press anywhere to start", 140, 100 );
   } else {
     background(0);
-    thePlayer.displayWalls();
+     
     thePlayer.display();
     thePlayer.keyPressed();
     thePlayer.fireAll();
     thePlayer.checkBoundary();
     thePlayer.makeBullets();
     
+    wallS = thePlayer.getWalls();
+    for (int i = 0; i < wallS.size(); i++) {
+      Wall w = wallS.get(i);
+      if (!w.isAlive()) {
+        wallS.remove(i);
+      } else {
+        w.display();
+      }
+    }
+    
     for (EnemyShip x : enemyS) {
       x.display();
       x.applyShipMovement();
       x.checkBoundary();
     }
-    //  thePlayer.stopLR();
+    
+    // thePlayer.stopLR();
     /*
     theShip.display();
      theShip.applyShipMovement();
      theShip.checkBoundary();
      theShip.makeBullets();
      */
+     
     _spawner.run();
+    
     pShipAst(thePlayer, _spawner.astList);
-    theMarket.display();
-    theMarket.isAlive();
+     
+    if (!theMarket.isAlive()) {
+      theMarket.pos = new PVector( -100, -100 );
+    } else {
+      theMarket.display();
+    }
 
     posAtEdge();
     moveRichestEnemy();
