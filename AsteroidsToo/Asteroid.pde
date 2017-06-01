@@ -1,3 +1,5 @@
+import java.lang.Math;
+
 class Asteroid extends Moveable {
   // instance vars
   public boolean dead;
@@ -31,16 +33,41 @@ class Asteroid extends Moveable {
     }
   }
 
+  float clamp(float value, float min, float max) {
+    return Math.max(min, Math.min(max, value));
+  }
+
   // if asteroid hits market, inflict damage on market
+  // BUGGY
   void collisionWithMarket( Market m ) {
+
+    // clamp(value, min, max) - limits value to the range min..max
+
+    // Find the closest point to the circle within the rectangle
+    float closestX = clamp(pos.x, m.pos.x+15, m.pos.x+20);
+    float closestY = clamp(pos.y, m.pos.y+15, m.pos.y+20);
+
+    // Calculate the distance between the circle's center and this closest point
+    float distanceX = pos.x - closestX;
+    float distanceY = pos.y - closestY;
+
+    // If the distance is less than the circle's radius, an intersection occurs
+    float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
+    
+    if (distanceSquared < (50 * 50)) {
+      m.loseHP(20);
+      damage(100);
+    }
+
     /*
     if ( pos.x > m.pos.x && pos.x < m.pos.x + 40 && pos.y > m.pos.y && pos.y < m.pos.y + 40 ) {
-     */
+     
     PVector position = new PVector( pos.x, pos.y );
     if ( position.sub(m.pos).mag() <= 50 + m.len/2 ) {
       m.loseHP(20);
       damage(100);
     }
+    */
   }
 
   // if asteroid hits wall, inflict damage on wall
