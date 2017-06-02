@@ -4,14 +4,14 @@
 1. Jonathan Quang: UML Update, Plan Update, Minor Comment additions
 1,2,3: Discussed major issues with our code
 2. Brian Kwong: Collision between Wall and Asteroid, Walls are now placeable, Formatted code
-
+3. Datian: Updated weapons (created blaster) and adjusted health 
 ==============================================================
 2017-05-26 to 05-29
 --------------------------------------------------------------
 
 1. Jonathan Quang:readme, devlog
 2. Brian Kwong: turning code
-3. Datian : bullets
+3. Datian : bullets, created ArrayDeque of weapons / method for switching between weapons, weapons class, money in EnemyShip, Asteroids, moving of richest enemy using PriorityQueue, added colors
 
 
 ==============================================================
@@ -20,8 +20,7 @@
 
 1. Jonathan Quang: Respawnable asteroids
 2. Brian Kwong: ?????
-3. Datian : Work on bullet system
-
+3. Datian : Work on bullet system, collision system to register asteroids / bullets
 
 ==============================================================
 2017-05-24
@@ -29,7 +28,7 @@
 
 1. Jonathan Quang: Controllable player ship
 2. Brian Kwong: Market and asteroid collision
-3. Datian : ??
+3. Datian : 
 
 
 
@@ -41,9 +40,7 @@
 
 1. Jonathan Quang: Devlog, UML diagram, proposal update, flowchart.
 2. Brian Kwong: ???conked out at 10pm???
-3. Datian : ???Sick???
-
-
+3. Datian Zhang: UML diagram
 
 ==============================================================
 2017-05-22
@@ -51,7 +48,7 @@
 
 1. Jonathan Quang: Devlog, laid out basic ship rendering, rotating, and moving code. Discussed major changes about the project
 2. Brian Kwong: Discussed major changes about the project.
-3. Datian : ??
+3. Datian : Talked my way into joining group and gave ideas from my proposal like bases/waves
 
 
 ==============================================================
