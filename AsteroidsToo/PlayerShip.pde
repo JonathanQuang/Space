@@ -3,7 +3,9 @@ class PlayerShip extends Ship {
   ArrayDeque<Weps> weapons;
   ArrayList<Bullet> shotsFired;
   ArrayList<Wall> wallsPlaced;
+  ArrayList<MoneyStorage> storagesPlaced;
   PFont f;
+  float maxMoney;
 
   // default constructor
   PlayerShip() { 
@@ -15,16 +17,22 @@ class PlayerShip extends Ship {
     weapons.addFirst(new Weps(this));
     shotsFired = new ArrayList<Bullet>();
     wallsPlaced = new ArrayList<Wall>();
+    storagesPlaced = new ArrayList<MoneyStorage>();
     f = createFont("Arial", 4, true);
+    maxMoney = 300;
   }
 
   // #### ACCESSORS #### //
   ArrayList<Bullet> getShots() {
     return shotsFired;
   }
-  
+
   ArrayList<Wall> getWalls() {
-    return wallsPlaced; 
+    return wallsPlaced;
+  }
+
+  ArrayList<MoneyStorage> getStorages() {
+    return storagesPlaced;
   }
   // ################### //
 
@@ -34,7 +42,7 @@ class PlayerShip extends Ship {
    int lastFrame; // last frame of shooting
    boolean startTiming; // for when bullets < 3 -- you want to cap bullets
    int last_not_full;
-  */
+   */
 
   //standard WASD, tank movement, q,e switch weapons, l shoots
   void keyPressed() {
@@ -78,12 +86,22 @@ class PlayerShip extends Ship {
         }
         if ( wallsPlaced.size() > 0 && (frameCount - lastFrame > 50)) {
           lastFrame = frameCount; // update last wall placed
-          if ( !startTiming ) {
-            startTiming=true;
-          }
           wallsPlaced.add( new Wall( pos ) );
         }
-      }  
+      }
+      if (key == 'n') {
+        if ( storagesPlaced.size() == 0 ) {
+          storagesPlaced.add( new MoneyStorage( pos ) );
+          maxMoney += 100; 
+          
+        }
+        else if ( frameCount - lastFrame > 50) {
+          lastFrame = frameCount; // update last wall placed
+          storagesPlaced.add( new MoneyStorage( pos ) );
+          maxMoney += 100;
+        }
+        key = 'f'; // interupter 
+      }
     }
     applyShipMovement();
   }
@@ -119,7 +137,7 @@ class PlayerShip extends Ship {
     fill(c);
     textFont(f, 16);                  // STEP 3 Specify font to be used
     fill(100);                         // STEP 4 Specify font color 
-    text("Money: " + money, 10, 100);   // STEP 5 Display Text
+    text("Money: " + money + "\nMax Money: " + maxMoney, 10, 100);   // STEP 5 Display Text
     fill(c);
   }
 }

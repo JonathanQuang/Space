@@ -8,6 +8,7 @@ PlayerShip thePlayer;
 EnemyShip theEnemy;
 PriorityQueue<EnemyShip> enemyS;
 ArrayList<Wall> wallS;
+ArrayList<MoneyStorage> storageS;
 boolean start = false;
 
 void setup() {
@@ -27,6 +28,7 @@ void setup() {
   enemyS.add(new EnemyShip());
   enemyS.poll(); // removes richest
   wallS = new ArrayList<Wall>();
+  storageS = new ArrayList<MoneyStorage>();
 }
 
 void mouseClicked() {
@@ -55,6 +57,16 @@ void draw() {
       Wall w = wallS.get(i);
       if (!w.isAlive()) {
         wallS.remove(i);
+      } else {
+        w.display();
+      }
+    }
+    
+    storageS = thePlayer.getStorages();
+    for (int i = 0; i < storageS.size(); i++) {
+      MoneyStorage w = storageS.get(i);
+      if (!w.isAlive()) {
+        storageS.remove(i);
       } else {
         w.display();
       }
@@ -99,6 +111,9 @@ public static void pShipAst(PlayerShip pShip, ArrayList<Asteroid> astList) {
         astList.get(i).damage(100);
         if ( astList.get(i).dead) {
           pShip.changeMoney(astList.get(i).money);
+          if (pShip.money > pShip.maxMoney) {
+             pShip.money = pShip.maxMoney; 
+          }
           //astList.remove(i);
           //System.out.println(pShip.money);
         }
