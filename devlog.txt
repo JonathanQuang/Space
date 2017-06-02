@@ -1,9 +1,17 @@
 ==============================================================
+2017-06-01
+--------------------------------------------------------------
+1. Jonathan Quang:  collision code
+2. Brian Kwong: collision code and started to implement storages
+3. Datian:  worked on weapons code and minor bug fixes
+
+
+==============================================================
 2017-05-31
 --------------------------------------------------------------
-1. Jonathan Quang:  
-2. Brian Kwong: 
-3. Datian:  
+1. Jonathan Quang:  work on market/wall
+2. Brian Kwong: work on market/wall
+3. Datian:  worked on weapons code
 
 
 ==============================================================
@@ -37,10 +45,6 @@
 1. Jonathan Quang: Controllable player ship
 2. Brian Kwong: Market and asteroid collision
 3. Datian : 
-
-
-
-
 
 ==============================================================
 2017-05-23
