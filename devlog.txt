@@ -1,6 +1,14 @@
 ==============================================================
 2017-05-31
 --------------------------------------------------------------
+1. Jonathan Quang:  
+2. Brian Kwong: 
+3. Datian:  
+
+
+==============================================================
+2017-05-30
+--------------------------------------------------------------
 1. Jonathan Quang: UML Update, Plan Update, Minor Comment additions
 1,2,3: Discussed major issues with our code
 2. Brian Kwong: Collision between Wall and Asteroid, Walls are now placeable, Formatted code
