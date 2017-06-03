@@ -132,7 +132,7 @@ class PlayerShip extends Ship {
     fill(c);
     textFont(f, 16);                  // STEP 3 Specify font to be used
     fill(100);                         // STEP 4 Specify font color 
-    text("Money: " + money, 10, 100);   // STEP 5 Display Text
+    text("Money: " + money + "\nMax Money: " + maxMoney, 10, 100);   // STEP 5 Display Text
     fill(c);
   }
 }

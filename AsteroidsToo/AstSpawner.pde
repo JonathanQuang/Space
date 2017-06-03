@@ -36,6 +36,13 @@ public class AstSpawner {
       astList.get(i).collisionWithWalls( listOfWalls );
     }
   }
+  
+  //checks for collision on storages
+  void collisionStorageAll( ArrayList<MoneyStorage> listOfStorages ) {
+    for (int i=0; i<astList.size(); i++) {
+      astList.get(i).collisionWithStorages( listOfStorages );
+    }
+  }
 
   // calls display method on asteroids 
   void displayAll() {
@@ -58,6 +65,7 @@ public class AstSpawner {
     posAll();
     collisionMarketAll( theMarket );
     collisionWallAll( wallS );
+    collisionStorageAll( storageS );
     manageRespawn();
   }
 
