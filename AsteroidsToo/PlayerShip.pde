@@ -4,7 +4,9 @@ class PlayerShip extends Ship {
   ArrayList<Wall> wallsPlaced;
   PFont f;
   int lastFrame;
+  ArrayList<MoneyStorage> storagesPlaced;
 
+  float maxMoney;
   // default constructor
   PlayerShip() { 
     super();
@@ -14,17 +16,21 @@ class PlayerShip extends Ship {
     shotsFired = new ArrayList<Bullet>();
     wallsPlaced = new ArrayList<Wall>();
     f = createFont("Arial", 4, true);
+    storagesPlaced = new ArrayList<MoneyStorage>();
   }
 
   // #### ACCESSORS #### //
   ArrayList<Bullet> getShots() {
     return shotsFired;
   }
-  
+
   ArrayList<Wall> getWalls() {
-    return wallsPlaced; 
+    return wallsPlaced;
   }
   // ################### //
+  ArrayList<MoneyStorage> getStorages() {
+    return storagesPlaced;
+   }
 
   /*
    int bullets;
@@ -32,7 +38,7 @@ class PlayerShip extends Ship {
    int lastFrame; // last frame of shooting
    boolean startTiming; // for when bullets < 3 -- you want to cap bullets
    int last_not_full;
-  */
+   */
 
   //standard WASD, tank movement, q,e switch weapons, l shoots
   void keyPressed() {

@@ -6,6 +6,7 @@ AstSpawner _spawner;
 Market theMarket;
 PlayerShip thePlayer;
 EnemyShip theEnemy;
+ArrayList<MoneyStorage> storageS;
 ArrayList<EnemyShip> enemyS;
 ArrayList<Wall> wallS;
 boolean start = false;
@@ -29,6 +30,7 @@ void setup() {
   enemyS.add(new EnemyShip());
   //enemyS.poll(); // removes richest
   wallS = new ArrayList<Wall>();
+  storageS = new ArrayList<MoneyStorage>();
 }
 
 void mouseClicked() {
@@ -61,6 +63,15 @@ void draw() {
       }
     }
 
+    storageS = thePlayer.getStorages();
+    for (int i = 0; i < storageS.size(); i++) {
+      MoneyStorage w = storageS.get(i);
+      if (!w.isAlive()) {
+        storageS.remove(i);
+      } else {
+        w.display();
+      }
+    }
     for (EnemyShip x : enemyS) {
       x.display();
       x.applyShipMovement();
@@ -116,34 +127,37 @@ public void pShipAst(PlayerShip pShip, ArrayList<Asteroid> astList) {
       }
     }
   }
-}
-  void posAtEdge() {
-    int x = (int)random(4); // 0 to 3
-    //System.out.println(x);
-    if ( x == 0 ) {
-      // leftmost
-    }
-    if ( x == 1 ) { 
-      // rightmost
-    }
-    if ( x == 2 ) { 
-      // top most
-    }
-    if ( x == 3 ) {
-      // bottom most
-    }
+  if (pShip.money > pShip.maxMoney) {
+    pShip.money = pShip.maxMoney;
   }
-  /*
+}
+void posAtEdge() {
+  int x = (int)random(4); // 0 to 3
+  //System.out.println(x);
+  if ( x == 0 ) {
+    // leftmost
+  }
+  if ( x == 1 ) { 
+    // rightmost
+  }
+  if ( x == 2 ) { 
+    // top most
+  }
+  if ( x == 3 ) {
+    // bottom most
+  }
+}
+/*
     0. Traverse through and find value of richest
-   1. Search for richest
-   2. Have that richest move.
-   */
-  /*
+ 1. Search for richest
+ 2. Have that richest move.
+ */
+/*
 public void moveRichestEnemy() {
-   //System.out.println(enemyS.peek().money);
-   enemyS.peek().accelViaYaw(0.05);
-   
-   // enemyS.
-   
-   }
-   */
+ //System.out.println(enemyS.peek().money);
+ enemyS.peek().accelViaYaw(0.05);
+ 
+ // enemyS.
+ 
+ }
+ */
