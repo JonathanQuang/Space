@@ -22,9 +22,12 @@ The Driver class for all of this is contained within <em>AsteroidsToo.pde<em>.
 2. Navigate to the AsteroidsToo directory.
 3. Open AsteroidsToo.pde
 4. Hit run (AKA, the right facing arrow inside a circle)
-5. Double click on the screen that pops up to enable detectiong of keypresses.
+5. Click on the screen to start playing!
+6. Have fun!
 
 ## Controls
 - WASD for movement (A & D rotate you left / right, W & S accelerates you forwards / back)
 - Q & E for selecting weapons
 - L to fire a bullet
+- B to place a wall ($50)
+- N to place a storage ($100)
