@@ -57,6 +57,7 @@ void draw() {
     thePlayer.fireAll();
     thePlayer.checkBoundary();
     thePlayer.makeBullets();
+    thePlayer.collisionWithEnemies();
 
     wallS = thePlayer.getWalls();
     for (int i = 0; i < wallS.size(); i++) {
@@ -78,11 +79,15 @@ void draw() {
         w.display();
       }
     }
-    for (EnemyShip x : waveSpawner.enemyS ) {
+    for (int j = 0; j < waveSpawner.enemyS.size(); j++ ) {
+      EnemyShip x = waveSpawner.enemyS.get(j);
       x.display();
       x.applyShipMovement();
       x.checkBoundary();
       x.move(thePlayer);
+      if (x.health <= 0) {
+        waveSpawner.enemyS.remove(x);
+      }
     }
     
     // thePlayer.stopLR();

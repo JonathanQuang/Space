@@ -104,6 +104,19 @@ class PlayerShip extends Ship {
     }
     applyShipMovement();
   }
+  
+  //collision with enemies
+  void collisionWithEnemies() {
+    ArrayList<EnemyShip> listOfEnemies = waveSpawner.enemyS;
+    for (Enemy e : listOfEnemies) {
+      PVector playerPos = new PVector( pos.x, pos.y );
+      PVector enemyPos = new PVector( e.pos.x, e.pos.y );
+      if (playerPos.sub(enemyPos).mag() <= 50) {
+        damageShip( 5 );
+        e.damageShip( 100 );
+      }
+    }
+  }
 
   //manages the swapping of weapons 
   void changeWep(String x ) {
