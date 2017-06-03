@@ -9,9 +9,13 @@ class EnemyShip extends Ship implements Comparable<EnemyShip> {
   }
 
   // moves ship
-  void move() {
+  void move(PlayerShip pShip) {
     // add movement calls
-  }
+    this.vel.y = pShip.pos.y-this.pos.y;
+    
+    this.vel.x = pShip.pos.x-this.pos.x;
+    this.vel.normalize();
+}
 
   // ??
   void posAtEdge() {
@@ -64,7 +68,7 @@ class EnemyShip extends Ship implements Comparable<EnemyShip> {
     }
     if ( x == 3 ) {
       // bottom most
-      
+
       pos.x=random(0, width);
       pos.y=random(0, 100);
     }

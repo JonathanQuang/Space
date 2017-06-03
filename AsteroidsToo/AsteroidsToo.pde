@@ -81,8 +81,9 @@ void draw() {
       x.display();
       x.applyShipMovement();
       x.checkBoundary();
+      x.move(thePlayer);
     }
-
+    
     // thePlayer.stopLR();
     /*
     theShip.display();

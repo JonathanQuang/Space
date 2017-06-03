@@ -29,7 +29,7 @@ class Asteroid extends Moveable {
   void damage(float dmg) {
     health-=dmg;
     if (health <= 0 ) {
-      dead = true;
+      dead = true;  
     }
   }
 
