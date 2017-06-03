@@ -12,7 +12,7 @@ class PlayerShip extends Ship {
     super();
     lastFrame = 0;
     money = 0;
-
+    health = 1000;
     shotsFired = new ArrayList<Bullet>();
     wallsPlaced = new ArrayList<Wall>();
     f = createFont("Arial", 4, true);
@@ -28,10 +28,11 @@ class PlayerShip extends Ship {
   ArrayList<Wall> getWalls() {
     return wallsPlaced;
   }
-  // ################### //
+
   ArrayList<MoneyStorage> getStorages() {
     return storagesPlaced;
   }
+  // ################### //
 
   /*
    int bullets;
@@ -74,26 +75,29 @@ class PlayerShip extends Ship {
         }
       }
       if (key == 'b') {
-        if ( wallsPlaced.size() == 0 ) {
-          wallsPlaced.add( new Wall( pos ) );
-        }
-        if ( wallsPlaced.size() > 0 && (frameCount - lastFrame > 50)) {
-          lastFrame = frameCount; // update last wall placed
-          if ( !startTiming ) {
-            startTiming=true;
+        if (money >= 50) {
+          if ( wallsPlaced.size() == 0 ) {
+            wallsPlaced.add( new Wall( pos ) );
+            money -= 50;
+          } else if (frameCount - lastFrame > 50) {
+            lastFrame = frameCount; // update last wall placed
+            wallsPlaced.add( new Wall( pos ) );
+            money -= 50;
           }
-          wallsPlaced.add( new Wall( pos ) );
         }
       }
       if (key == 'n') {
-        if ( storagesPlaced.size() == 0 ) {
-          storagesPlaced.add( new MoneyStorage( pos ) );
-          maxMoney += 100;
-        } 
-        else if ( frameCount - lastFrame > 50) {
-          lastFrame = frameCount; // update last wall placed
-          storagesPlaced.add( new MoneyStorage( pos ) );
-          maxMoney += 100;
+        if (money >= 100) {
+          if ( storagesPlaced.size() == 0 ) {
+            storagesPlaced.add( new MoneyStorage( pos ) );
+            maxMoney += 100;
+            money -= 100;
+          } else if ( frameCount - lastFrame > 50) {
+            lastFrame = frameCount; // update last wall placed
+            storagesPlaced.add( new MoneyStorage( pos ) );
+            maxMoney += 100;
+            money -= 100;
+          }
         }
         key = 'f'; // interupter
       }
@@ -132,7 +136,7 @@ class PlayerShip extends Ship {
     fill(c);
     textFont(f, 16);                  // STEP 3 Specify font to be used
     fill(100);                         // STEP 4 Specify font color 
-    text("Money: " + money + "\nMax Money: " + maxMoney, 10, 100);   // STEP 5 Display Text
+    text("Money: " + money + "\nMax Money: " + maxMoney + "\nShip HP: " + health  + "\nMarket HP: " + theMarket.hp , 10, 100);   // STEP 5 Display Text
     fill(c);
   }
 }

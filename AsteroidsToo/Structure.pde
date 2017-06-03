@@ -13,6 +13,6 @@ abstract class Structure {
   }
   
   boolean isAlive() {
-   return hp >= 0;
+   return hp > 0;
   }
 }
