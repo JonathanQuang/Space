@@ -1,12 +1,11 @@
 class PlayerShip extends Ship {
   // instance vars
-
   ArrayList<Wall> wallsPlaced;
   PFont f;
   int lastFrame;
   ArrayList<MoneyStorage> storagesPlaced;
-
   float maxMoney;
+  
   // default constructor
   PlayerShip() { 
     super();
@@ -108,11 +107,11 @@ class PlayerShip extends Ship {
   //collision with enemies
   void collisionWithEnemies() {
     ArrayList<EnemyShip> listOfEnemies = waveSpawner.enemyS;
-    for (Enemy e : listOfEnemies) {
+    for (EnemyShip e : listOfEnemies) {
       PVector playerPos = new PVector( pos.x, pos.y );
       PVector enemyPos = new PVector( e.pos.x, e.pos.y );
       if (playerPos.sub(enemyPos).mag() <= 50) {
-        damageShip( 5 );
+        damageShip( 100 );
         e.damageShip( 100 );
       }
     }

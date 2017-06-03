@@ -8,7 +8,7 @@ PlayerShip thePlayer;
 EnemyShip theEnemy;
 ArrayList<MoneyStorage> storageS;
 ArrayList<Wall> wallS;
-
+boolean gameOver = false;
 boolean start = false;
 int frameTracker;
 Waves waveSpawner;
@@ -50,7 +50,7 @@ void draw() {
     fill(0);
     textSize(64); 
     text( "Press anywhere to start", 140, 100 );
-  } else {
+  } else if (!gameOver) {
     background(0);
     thePlayer.display();
     thePlayer.keyPressed();
@@ -102,13 +102,19 @@ void draw() {
 
     pShipAst(thePlayer, _spawner.astList);
 
-    if (!theMarket.isAlive()) { // change after 
-      theMarket.pos = new PVector( -100, -100 );
-    } else {
-      theMarket.display();
-    }
+    theMarket.display();
+
     waveSpawner.waveTrack();
     //moveRichestEnemy();
+    if (thePlayer.health <= 0 || !theMarket.isAlive() ) {
+      gameOver = true;
+    }
+  }
+  else {
+    background( 50, 100, 150 );
+    fill(0);
+    textSize(64); 
+    text( "Game Over", 140, 100 );
   }
 }
 
