@@ -1,0 +1,7 @@
+class cashChaser{
+ cashChaser(){
+   super();  
+   
+ }
+  
+}

@@ -1,6 +1,5 @@
 class Ship extends Moveable {
   // instance vars
-  int health;
   float money;
   float yaw = 0;
   float maxVel = 1.4;
@@ -12,10 +11,7 @@ class Ship extends Moveable {
   int lastFrame; // last frame of shooting
   boolean startTiming; // for when bullets < 3 -- you want to cap bullets
   int last_not_full; // LinkedList wepps; 
-  boolean killed;
 
-  ArrayDeque<Weps> weapons;
-  ArrayList<Bullet> shotsFired;
   //Placeholder constructor for a general ship
   Ship() {
     super(new PVector(400, 400), 
@@ -26,8 +22,6 @@ class Ship extends Moveable {
     lastFrame = 0;
     startTiming=false;
     last_not_full = 0;
-    health = 100;
-    killed = false;
     /*
      wepps = new LinkedList();
      wepps.add("eV1");
@@ -37,23 +31,8 @@ class Ship extends Moveable {
      wepps.add("eV1");
      money = 0;
      */
+  }
 
-
-    weapons = new ArrayDeque();
-    weapons.addFirst(new Blaster(this));
-    weapons.addFirst(new Weps(this));
-  }
-  void shoot(Ship currShip) {
-    shotsFired.add( new Bullet(currShip, currShip.weapons.getFirst().damage));
-  }
-  
-  void damageShip(int dmg) {
-    health -= dmg;
-    if ( health <= 0 ) { 
-      killed = true;
-    }
-  }
-  
   //change the velocity according to acceleration
   void updateVel() {
     vel.add(accel );
@@ -88,6 +67,9 @@ class Ship extends Moveable {
   }
 
   // spawns bullet
+  Bullet fireBullet() {
+    return new Bullet(this);
+  }
 
 
   void makeBullets() {

@@ -1,0 +1,25 @@
+Space: Jonathan Quang and Brian Kwong and Datian Zhang
+APCS2 pd01
+Asteroids Too
+2017-05-18
+
+1. Which jobs are most crucial?
+      The most crucial tasks are writing the movement code for moveable objects, asteroids, and the player's ship. 
+	  This constitutes a basic working version.
+2. Which components constitute core functionality (vs non-essential)?
+		Writing the moveable class and the player's ship class are the absolute core functionality because the 
+		entirety of the game is dependent on player interaction and the movement code.
+3. Which components are prerequisites for others?
+      The movement class is a prerequisite for the asteroid class and the ship class. The player class and enemy
+	  ship class are dependent on the ship class
+
+4. Which tasks can be delegated, and which must be collaboratively tackled?
+	  After working on the moveable class together, we can branch off into working on the ship class and the asteroid class.
+
+5. What is the timeline, and how does it accommodate setbacks, course changes?	
+		5/24 - Have asteroids and player ship coded.
+		5/26 - Have weapons system implemented
+		5/30 - Have rudimentary enemy ships coded
+		6/2 - Have power up system and inventory coded
+		6/6 - Create enemy wave spawning function
+		until 6/9 Polish up the code, create custom levels if time permits.

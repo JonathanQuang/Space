@@ -1,28 +1,38 @@
 class PlayerShip extends Ship {
   // instance vars
-
+  ArrayDeque<Weps> weapons;
+  ArrayList<Bullet> shotsFired;
   ArrayList<Wall> wallsPlaced;
+  ArrayList<MoneyStorage> storagesPlaced;
   PFont f;
-  int lastFrame;
+  float maxMoney;
 
   // default constructor
   PlayerShip() { 
     super();
     lastFrame = 0;
     money = 0;
-
+    weapons = new ArrayDeque();
+    weapons.addFirst(new Blaster(this));
+    weapons.addFirst(new Weps(this));
     shotsFired = new ArrayList<Bullet>();
     wallsPlaced = new ArrayList<Wall>();
+    storagesPlaced = new ArrayList<MoneyStorage>();
     f = createFont("Arial", 4, true);
+    maxMoney = 300;
   }
 
   // #### ACCESSORS #### //
   ArrayList<Bullet> getShots() {
     return shotsFired;
   }
-  
+
   ArrayList<Wall> getWalls() {
-    return wallsPlaced; 
+    return wallsPlaced;
+  }
+
+  ArrayList<MoneyStorage> getStorages() {
+    return storagesPlaced;
   }
   // ################### //
 
@@ -32,7 +42,7 @@ class PlayerShip extends Ship {
    int lastFrame; // last frame of shooting
    boolean startTiming; // for when bullets < 3 -- you want to cap bullets
    int last_not_full;
-  */
+   */
 
   //standard WASD, tank movement, q,e switch weapons, l shoots
   void keyPressed() {
@@ -58,10 +68,14 @@ class PlayerShip extends Ship {
         changeWep("q");
       }
       if (key == 'l') {
-        if ( frameCount - lastFrame > weapons.getFirst().frameCD ) {
+        if ( weapons.getFirst().bullets > 0 && (frameCount - lastFrame > weapons.getFirst().frameCD )) {
           lastFrame = frameCount; // update last shot
-          // If bullets now one less than cap and not timing yet you need to start the timer          
-          shoot(this);
+          // If bullets now one less than cap and not timing yet you need to start the timer
+          if (  ( weapons.getFirst().bullets <= weapons.getFirst().bulletCap - 1) && startTiming == false) {
+            startTiming=true;
+            last_not_full = frameCount;
+          }
+          shotsFired.add(fireBullet());        
           // weapons.getFirst().bullets--;            
           // System.out.println(bullets);
         }
@@ -72,11 +86,21 @@ class PlayerShip extends Ship {
         }
         if ( wallsPlaced.size() > 0 && (frameCount - lastFrame > 50)) {
           lastFrame = frameCount; // update last wall placed
-          if ( !startTiming ) {
-            startTiming=true;
-          }
           wallsPlaced.add( new Wall( pos ) );
         }
+      }
+      if (key == 'n') {
+        if ( storagesPlaced.size() == 0 ) {
+          storagesPlaced.add( new MoneyStorage( pos ) );
+          maxMoney += 100; 
+          
+        }
+        else if ( frameCount - lastFrame > 50) {
+          lastFrame = frameCount; // update last wall placed
+          storagesPlaced.add( new MoneyStorage( pos ) );
+          maxMoney += 100;
+        }
+        key = 'f'; // interupter 
       }
     }
     applyShipMovement();
@@ -113,7 +137,7 @@ class PlayerShip extends Ship {
     fill(c);
     textFont(f, 16);                  // STEP 3 Specify font to be used
     fill(100);                         // STEP 4 Specify font color 
-    text("Money: " + money, 10, 100);   // STEP 5 Display Text
+    text("Money: " + money + "\nMax Money: " + maxMoney, 10, 100);   // STEP 5 Display Text
     fill(c);
   }
 }

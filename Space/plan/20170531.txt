@@ -1,0 +1,11 @@
+Order of most important to least imporant
+
+- Projectile system - Flesh it out
+- Enemyships should be able to move without spazzing out and weirdly synchonizing with the player - Item above can be done simultaneously
+- Ability to make a base that consists of walls and money storages. Storages increase the max money the player can hold, - Can be done simultaneously
+  allowing the user to purchase more expensive things from the shop 
+- Enemies that attack the base(with ArrayPriorityQueue based AI) 
+- functional shop
+- Wave based enemies
+- GUI for the market
+- Powerup system - thinking of getting rid of this due to time constraints.

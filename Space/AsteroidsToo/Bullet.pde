@@ -2,14 +2,13 @@ class Bullet extends Moveable {
   // instance vars
   float yaw; // orientation
   float speed; // how fast
-  int damage;
+
   // constructor
-  public Bullet(Ship theShooter, int dmg) {
+  public Bullet(Ship theShooter) {
     super( new PVector( theShooter.pos.x, theShooter.pos.y ), new PVector( 0, 0));
     yaw = theShooter.yaw;
     speed = 3; // to be put as parameter later
     setVel();
-    damage = dmg;
     while (theShooter.pos.dist(this.pos) < 40) {
       updatePos();
     }

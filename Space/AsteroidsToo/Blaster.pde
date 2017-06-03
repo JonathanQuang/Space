@@ -1,8 +1,6 @@
 class Blaster extends Weps {
   // constructor
-  public Blaster(Ship shp) {
+  public Blaster(PlayerShip shp) {
     super(shp);
-    frameCD = 10;
-    damage = 1;
   }
 }
