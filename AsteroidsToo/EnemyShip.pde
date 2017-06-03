@@ -14,7 +14,14 @@ class EnemyShip extends Ship implements Comparable<EnemyShip> {
     this.vel.y = pShip.pos.y-this.pos.y;
     
     this.vel.x = pShip.pos.x-this.pos.x;
+    
+    
     this.vel.normalize();
+    
+    yaw = atan(pShip.pos.y-this.pos.y/pShip.pos.x-this.pos.x);
+        //this..y = pShip.pos.y-this.pos.y;
+    //this.accel.y =
+    //this.vel.x = pShip.pos.x-this.pos.x;
 }
 
   // ??
