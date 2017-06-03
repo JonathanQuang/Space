@@ -5,6 +5,7 @@ class Asteroid extends Moveable {
   public boolean dead;
   public float health;
   public float money;
+  public boolean killed;
 
   // default constructor
   Asteroid() {
@@ -13,7 +14,16 @@ class Asteroid extends Moveable {
     dead = false;
     health = 100;
     money = random(10, 100);
+    killed = false;
   }
+
+  /*
+  void isDead(){
+   if (pos.x < 0 || pos.y<0 || pos.x > width || pos.y > height){
+   dead = true; 
+   }
+   }
+   */
 
   // inflicts damage on asteroid
   void damage(float dmg) {
@@ -34,8 +44,8 @@ class Asteroid extends Moveable {
     // clamp(value, min, max) - limits value to the range min..max
 
     // Find the closest point to the circle within the rectangle
-    float closestX = clamp(pos.x, m.pos.x, m.pos.x+m.len);
-    float closestY = clamp(pos.y, m.pos.y, m.pos.y+m.len);
+    float closestX = clamp(pos.x, m.pos.x+15, m.pos.x+20);
+    float closestY = clamp(pos.y, m.pos.y+15, m.pos.y+20);
 
     // Calculate the distance between the circle's center and this closest point
     float distanceX = pos.x - closestX;
@@ -43,8 +53,8 @@ class Asteroid extends Moveable {
 
     // If the distance is less than the circle's radius, an intersection occurs
     float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
-
-    if (distanceSquared < (25 * 25)) {
+    
+    if (distanceSquared < (50 * 50)) {
       m.loseHP(20);
       damage(100);
     }
@@ -52,29 +62,19 @@ class Asteroid extends Moveable {
     /*
     if ( pos.x > m.pos.x && pos.x < m.pos.x + 40 && pos.y > m.pos.y && pos.y < m.pos.y + 40 ) {
      
-     PVector position = new PVector( pos.x, pos.y );
-     if ( position.sub(m.pos).mag() <= 50 + m.len/2 ) {
-     m.loseHP(20);
-     damage(100);
-     }
-     */
+    PVector position = new PVector( pos.x, pos.y );
+    if ( position.sub(m.pos).mag() <= 50 + m.len/2 ) {
+      m.loseHP(20);
+      damage(100);
+    }
+    */
   }
 
   // if asteroid hits wall, inflict damage on wall
   void collisionWithWalls( ArrayList<Wall> listOfWalls ) {
+    PVector position = new PVector( pos.x, pos.y );
     for ( Wall m : listOfWalls ) {
-      // Find the closest point to the circle within the rectangle
-      float closestX = clamp(pos.x, m.pos.x, m.pos.x+m.len);
-      float closestY = clamp(pos.y, m.pos.y, m.pos.y+m.len);
-
-      // Calculate the distance between the circle's center and this closest point
-      float distanceX = pos.x - closestX;
-      float distanceY = pos.y - closestY;
-
-      // If the distance is less than the circle's radius, an intersection occurs
-      float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
-
-      if (distanceSquared < (25 * 25)) {
+      if ( position.sub(m.pos).mag() <= 50 + m.len/2 ) {
         m.loseHP(20);
         damage(100);
       }
