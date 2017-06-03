@@ -25,9 +25,11 @@ void setup() {
   enemyS = new ArrayList<EnemyShip>();
 
   enemyS.add(theEnemy);  
-  enemyS.add(new EnemyShip());
-  enemyS.add(new EnemyShip());
-  enemyS.add(new EnemyShip());
+  for (int i=0; i<100; i++) {
+
+    enemyS.add(new EnemyShip());
+    
+  }
   //enemyS.poll(); // removes richest
   wallS = new ArrayList<Wall>();
   storageS = new ArrayList<MoneyStorage>();
@@ -96,7 +98,6 @@ void draw() {
       theMarket.display();
     }
 
-    posAtEdge();
     //moveRichestEnemy();
   }
 }
@@ -127,28 +128,12 @@ public void pShipAst(PlayerShip pShip, ArrayList<Asteroid> astList) {
       }
     }
   }
-  
+
   if (pShip.money > pShip.maxMoney) {
     pShip.money = pShip.maxMoney;
   }
-  
 }
-void posAtEdge() {
-  int x = (int)random(4); // 0 to 3
-  //System.out.println(x);
-  if ( x == 0 ) {
-    // leftmost
-  }
-  if ( x == 1 ) { 
-    // rightmost
-  }
-  if ( x == 2 ) { 
-    // top most
-  }
-  if ( x == 3 ) {
-    // bottom most
-  }
-}
+
 /*
     0. Traverse through and find value of richest
  1. Search for richest
