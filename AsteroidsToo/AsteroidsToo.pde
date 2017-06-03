@@ -7,8 +7,8 @@ Market theMarket;
 PlayerShip thePlayer;
 EnemyShip theEnemy;
 ArrayList<MoneyStorage> storageS;
-ArrayList<EnemyShip> enemyS;
 ArrayList<Wall> wallS;
+
 boolean start = false;
 int frameTracker;
 Waves waveSpawner;
@@ -23,17 +23,18 @@ void setup() {
   thePlayer = new PlayerShip();
   theEnemy = new EnemyShip();
   //enemyS = new PriorityQueue();
-  enemyS = new ArrayList<EnemyShip>();
-  enemyS.add(theEnemy);  
-  for (int i=0; i<100; i++) {
+  waveSpawner = new Waves();
 
-    enemyS.add(new EnemyShip());
-  }
+  waveSpawner.enemyS.add(theEnemy);
+  /*
+  for (int i=0; i<100; i++) {
+   
+   waveSpawner.enemyS.add(new EnemyShip());
+   }
+   */
   //enemyS.poll(); // removes richest
   wallS = new ArrayList<Wall>();
   storageS = new ArrayList<MoneyStorage>();
-
-  waveSpawner = new Waves();
 }
 
 void mouseClicked() {
@@ -76,7 +77,7 @@ void draw() {
         w.display();
       }
     }
-    for (EnemyShip x : enemyS) {
+    for (EnemyShip x : waveSpawner.enemyS ) {
       x.display();
       x.applyShipMovement();
       x.checkBoundary();
@@ -94,12 +95,12 @@ void draw() {
 
     pShipAst(thePlayer, _spawner.astList);
 
-    if (!theMarket.isAlive()) {
+    if (!theMarket.isAlive()) { // change after 
       theMarket.pos = new PVector( -100, -100 );
     } else {
       theMarket.display();
     }
-
+    waveSpawner.waveTrack();
     //moveRichestEnemy();
   }
 }
@@ -119,13 +120,13 @@ public void pShipAst(PlayerShip pShip, ArrayList<Asteroid> astList) {
         }
       }
     }
-    for (int k = 0; k<enemyS.size(); k++) {
-      //eShip = enemyS.get(k);
-      if ( dist(enemyS.get(k).pos.x, enemyS.get(k).pos.y, pShots.get(j).pos.x, pShots.get(j).pos.y) < 35) {
-        enemyS.get(k).damageShip(100);
-        if ( enemyS.get(k).killed) {
-          pShip.changeMoney(enemyS.get(k).money);
-          enemyS.remove(k);
+    for (int k = 0; k<waveSpawner.enemyS.size(); k++) {
+      //eShip = waveSpawner.enemyS.get(k);
+      if ( dist(waveSpawner.enemyS.get(k).pos.x, waveSpawner.enemyS.get(k).pos.y, pShots.get(j).pos.x, pShots.get(j).pos.y) < 35) {
+        waveSpawner.enemyS.get(k).damageShip(100);
+        if ( waveSpawner.enemyS.get(k).killed) {
+          pShip.changeMoney(waveSpawner.enemyS.get(k).money);
+          waveSpawner.enemyS.remove(k);
         }
       }
     }

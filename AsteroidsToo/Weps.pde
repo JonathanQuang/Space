@@ -6,6 +6,7 @@ class Weps {
   int bulletDirections;
   PVector _pos;
   int damage;
+
   // constructor
   public Weps(Ship sh) {
     bullets= 3;

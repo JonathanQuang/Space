@@ -1,16 +1,31 @@
-public class Waves{
+public class Waves {
+  int time_allotted;
   int num_shooters;
   int level;
-  int time_allotment;
+  int time_left;
   int shooters_spawned;
   boolean all_at_once;
-  Waves(){
+  ArrayList<EnemyShip> enemyS;
+
+  Waves() {
     level = 0;
     num_shooters = 0;
-    time_allotment = 600; // in frames 
+    time_allotted = time_left = 600; // in frames
     shooters_spawned=0;
+    enemyS = new ArrayList<EnemyShip>();
+    all_at_once = false;
   }
-  waveTrack(){
-    
+  void waveTrack() {
+    if ( level == 1 ) {
+      num_shooters = 10;
+      if ( time_left % 10 == 0 ) {
+        enemyS.add(new EnemyShip());
+      }
+    }
+    time_left--;
+    if( time_left == 0 ){
+      time_allotted +=50;
+      time_left = time_allotted;
+    }
   }
 }
