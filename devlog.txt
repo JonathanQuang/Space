@@ -1,4 +1,11 @@
 ==============================================================
+2017-06-03
+--------------------------------------------------------------
+1. Jonathan Quang: ??
+2. Brian Kwong: collision b/w player and enemies, game over screen, collision improvements, economy changes
+3. Datian: waves, enemy movement
+
+==============================================================
 2017-06-01
 --------------------------------------------------------------
 1. Jonathan Quang:  collision code
