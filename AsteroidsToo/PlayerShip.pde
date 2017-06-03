@@ -17,6 +17,7 @@ class PlayerShip extends Ship {
     wallsPlaced = new ArrayList<Wall>();
     f = createFont("Arial", 4, true);
     storagesPlaced = new ArrayList<MoneyStorage>();
+    maxMoney=300;
   }
 
   // #### ACCESSORS #### //
@@ -30,13 +31,13 @@ class PlayerShip extends Ship {
   // ################### //
   ArrayList<MoneyStorage> getStorages() {
     return storagesPlaced;
-   }
+  }
 
   /*
    int bullets;
    int bulletCap;
    int lastFrame; // last frame of shooting
-   boolean startTiming; // for when bullets < 3 -- you want to cap bullets
+   boolean startTiming; // for when bullets < 3 - you want to cap bullets
    int last_not_full;
    */
 
@@ -83,6 +84,18 @@ class PlayerShip extends Ship {
           }
           wallsPlaced.add( new Wall( pos ) );
         }
+      }
+      if (key == 'n') {
+        if ( storagesPlaced.size() == 0 ) {
+          storagesPlaced.add( new MoneyStorage( pos ) );
+          maxMoney += 100;
+        } 
+        else if ( frameCount - lastFrame > 50) {
+          lastFrame = frameCount; // update last wall placed
+          storagesPlaced.add( new MoneyStorage( pos ) );
+          maxMoney += 100;
+        }
+        key = 'f'; // interupter
       }
     }
     applyShipMovement();

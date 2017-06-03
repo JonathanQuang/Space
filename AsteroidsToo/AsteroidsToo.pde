@@ -127,9 +127,11 @@ public void pShipAst(PlayerShip pShip, ArrayList<Asteroid> astList) {
       }
     }
   }
+  /*
   if (pShip.money > pShip.maxMoney) {
     pShip.money = pShip.maxMoney;
   }
+  */
 }
 void posAtEdge() {
   int x = (int)random(4); // 0 to 3
