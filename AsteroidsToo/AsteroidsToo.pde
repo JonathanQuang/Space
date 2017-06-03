@@ -10,7 +10,8 @@ ArrayList<MoneyStorage> storageS;
 ArrayList<EnemyShip> enemyS;
 ArrayList<Wall> wallS;
 boolean start = false;
-
+int frameTracker;
+Waves waveSpawner;
 void setup() {
   size(1000, 800);
   //test1 = new Moveable(new PVector(400,0),new PVector(0,1),new PVector(0,0.05));
@@ -23,20 +24,21 @@ void setup() {
   theEnemy = new EnemyShip();
   //enemyS = new PriorityQueue();
   enemyS = new ArrayList<EnemyShip>();
-
   enemyS.add(theEnemy);  
   for (int i=0; i<100; i++) {
 
     enemyS.add(new EnemyShip());
-    
   }
   //enemyS.poll(); // removes richest
   wallS = new ArrayList<Wall>();
   storageS = new ArrayList<MoneyStorage>();
+
+  waveSpawner = new Waves();
 }
 
 void mouseClicked() {
   start = true;
+  waveSpawner.level = 1;
 }
 
 void draw() {
