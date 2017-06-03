@@ -14,7 +14,7 @@ class Asteroid extends Moveable {
     dead = false;
     health = 100;
     money = random(10, 100);
-    killed = false;
+    killed = false; 
   }
 
   /*

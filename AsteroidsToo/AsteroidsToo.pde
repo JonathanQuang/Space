@@ -109,7 +109,7 @@ public void pShipAst(PlayerShip pShip, ArrayList<Asteroid> astList) {
     for (int i=0; i<astList.size(); i++) {
       if ( dist(astList.get(i).pos.x, astList.get(i).pos.y, pShots.get(j).pos.x, pShots.get(j).pos.y) < 25) {
         astList.get(i).damage(100);
-        if ( astList.get(i).killed) {
+        if ( astList.get(i).dead) {
           pShip.changeMoney(astList.get(i).money);
           astList.remove(i);
           //System.out.println(pShip.money);
@@ -127,11 +127,11 @@ public void pShipAst(PlayerShip pShip, ArrayList<Asteroid> astList) {
       }
     }
   }
-  /*
+  
   if (pShip.money > pShip.maxMoney) {
     pShip.money = pShip.maxMoney;
   }
-  */
+  
 }
 void posAtEdge() {
   int x = (int)random(4); // 0 to 3
