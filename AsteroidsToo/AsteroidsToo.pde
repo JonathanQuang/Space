@@ -5,7 +5,7 @@ import java.util.ArrayDeque;
 AstSpawner _spawner;
 Market theMarket;
 PlayerShip thePlayer;
-EnemyShip theEnemy;
+//EnemyShip theEnemy;
 ArrayList<MoneyStorage> storageS;
 ArrayList<Wall> wallS;
 boolean gameOver = false;
