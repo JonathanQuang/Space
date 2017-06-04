@@ -22,7 +22,7 @@ void setup() {
   //theShip.changeYaw(90);
   //theShip.accelViaYaw(0.01);
   thePlayer = new PlayerShip();
-  theEnemy = new EnemyShip();
+//  theEnemy = new EnemyShip();
   //enemyS = new PriorityQueue();
   waveSpawner = new Waves();
 
