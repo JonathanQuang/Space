@@ -59,10 +59,13 @@ class Market extends Structure {
     noFill();
     rect(cursorX*400, 50+cursorY*100, 400, 50);
   }
-  void display() {
-    fill(250, 0, 0);
-    text("Market health: " + hp, 10, 90  );   // STEP 5 Display Text
+
+    
+  void displayPlayerMoney(PlayerShip Player){
+      text("Money" + Player.money,0,50);
   }
+
+  
     boolean isBought(int itemIndex) {
       for (int i=0; i<indexList.size(); i++) {
         if (indexList.get(i)== itemIndex) {
@@ -72,6 +75,8 @@ class Market extends Structure {
      }
      return false;
   }
+  
+  
   
   void processPurchase(PlayerShip Player){
     if (keyPressed==true) {
@@ -85,19 +90,23 @@ class Market extends Structure {
            }
 
       }
-      return false;
     }
-
-
-    void processBought() {
-      for (int i = 0; i < indexList.size(); i++) {
-        int purchaseIndex = indexList.get(i);
-        beginShape();
-        vertex(0, 50+100*i);
-        vertex(0+400, 50+100+100*i);
-        vertex(0, 50+100+100*i);
-        vertex(0+400, 50+100*i);
-        endShape();
-      }
     }
   }
+
+ 
+  void processBought(){
+     for (int i = 0; i < indexList.size(); i++){
+        int purchaseIndex = indexList.get(i);
+        purchaseIndex = 1;
+        fill(250);
+        beginShape();
+        vertex(0,50+100*purchaseIndex);
+        vertex(0+400,50+100+100*purchaseIndex);
+        vertex(0,50+100+100*purchaseIndex);
+        vertex(0+400,50+100*purchaseIndex);
+        endShape();
+     }
+  }
+  
+}
