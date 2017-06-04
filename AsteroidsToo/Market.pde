@@ -87,11 +87,11 @@ class Market extends Structure {
   void processPurchase(PlayerShip Player){
     if (keyPressed==true) {
       if(keyCode == ENTER) {
-        if (cursorX=0){
-           if(cursorY=0 && Player.money >= 1000 && !isBought(0)){
+        if (cursorX==0){
+           if(cursorY==0 && (Player.money >= 1000)){
                indexList.add(0);
            }
-           if(cursorY=1 && Player.money >= 1000 && !isBought(1)){
+           if(cursorY==1 && (Player.money >= 1000)){
                indexList.add(1);
            }
         }
@@ -101,7 +101,7 @@ class Market extends Structure {
   
   void processBought(){
      for (int i = 0; i < indexList.size(); i++){
-        purchaseIndex = indexList.get(i);
+        int purchaseIndex = indexList.get(i);
         beginShape();
         vertex(0,50+100*i);
         vertex(0+400,50+100+100*i);
