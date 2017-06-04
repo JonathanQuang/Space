@@ -43,6 +43,13 @@ public class AstSpawner {
       astList.get(i).collisionWithStorages( listOfStorages );
     }
   }
+  
+  //checks for collision on player
+  void collisionPlayerAll() {
+    for (Asteroid a : astList) {
+      a.collisionWithPlayer();
+    }
+  }
 
   // calls display method on asteroids 
   void displayAll() {
@@ -77,6 +84,7 @@ public class AstSpawner {
     collisionMarketAll( theMarket );
     collisionWallAll( wallS );
     collisionStorageAll( storageS );
+    collisionPlayerAll();
     manageSplit();
     //manageRespawn();
   }

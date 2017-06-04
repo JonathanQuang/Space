@@ -6,6 +6,7 @@ class Asteroid extends Moveable {
   public float health;
   public float money;
   public int size;
+  public int damage;
 
   // default constructor
   Asteroid(int newSize) {
@@ -15,6 +16,7 @@ class Asteroid extends Moveable {
     health = 100;
     money = random(10, 100);
     size = newSize;
+    damage = size/2;
   }
   
   Asteroid( int newSize, PVector position ) {
@@ -64,7 +66,7 @@ class Asteroid extends Moveable {
     float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
 
     if (distanceSquared < (size * size / 4)) {
-      m.loseHP(20);
+      m.loseHP(damage);
       damage(100);
     }
   }
@@ -84,7 +86,7 @@ class Asteroid extends Moveable {
       float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
 
       if (distanceSquared < (size * size / 4)) {
-        m.loseHP(20);
+        m.loseHP(damage);
         damage(100);
       }
     }
@@ -105,9 +107,19 @@ class Asteroid extends Moveable {
       float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
 
       if (distanceSquared < (size * size / 4)) {
-        m.loseHP(20);
+        m.loseHP(damage);
         damage(100);
       }
+    }
+  }
+  
+  // collision with player
+  void collisionWithPlayer() {
+    PVector AstPos = new PVector( pos.x, pos.y );
+    PVector PlayerPos = new PVector( thePlayer.pos.x, thePlayer.pos.y );
+    if (AstPos.sub(PlayerPos).mag() <= size/2 + thePlayer.collisionRad) {
+      thePlayer.damageShip(damage);
+      damage(100);
     }
   }
   //#########################################################// 
