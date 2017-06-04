@@ -1,7 +1,6 @@
 public class AstSpawner {
   // instance vars
   public ArrayList<Asteroid> astList;
-  ArrayList<Bullet> bullets;
 
   // constructor
   AstSpawner(int num_Asteroids) {
@@ -10,7 +9,6 @@ public class AstSpawner {
       astList.add( new Asteroid() );
       num_Asteroids--;
     }
-    bullets = new ArrayList<Bullet>();
   }
 
   //keeps fixed amount of asteroids on screen
@@ -68,22 +66,4 @@ public class AstSpawner {
     collisionStorageAll( storageS );
     manageRespawn();
   }
-
-  /*
-  public void killAst() {
-   for (int i=0; i<astList.size(); i++) {
-   if (astList.get(i).health<=0) {
-   astList.remove(i);
-   }
-   }
-   }
-   */
-
-  /*
-  void velAll() {
-   for (int i=0; i<astList.size(); i++) {    
-   astList.get(i).updateVel();
-   }
-   }
-   */
 }

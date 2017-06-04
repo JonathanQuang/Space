@@ -27,10 +27,11 @@ class Asteroid extends Moveable {
     }
   }
 
-  float clamp(float value, float min, float max) {
+  private float clamp(float value, float min, float max) {
     return Math.max(min, Math.min(max, value));
   }
 
+  //##################### COLLISION CODE #####################// 
   // if asteroid hits market, inflict damage on market
   void collisionWithMarket( Market m ) {
 
@@ -94,6 +95,7 @@ class Asteroid extends Moveable {
       }
     }
   }
+  //#########################################################// 
 
   // display asteroid
   void display() {
