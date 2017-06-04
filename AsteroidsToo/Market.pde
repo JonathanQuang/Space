@@ -106,7 +106,6 @@ class Market extends Structure {
           if (cursorY==2 && Player.money >= 300){
               Player.money -= 300;
               Player.storedMoneyStorages += 1;
-              System.out.println(MoneyStorages);
           }
       }
     }
@@ -123,4 +122,4 @@ class Market extends Structure {
      }
   }
   
-  
+}

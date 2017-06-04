@@ -75,7 +75,7 @@ class PlayerShip extends Ship {
         }
       }
       if (key == 'b') {
-        if (money >= 50) {
+        if (storedWalls > 0) {
           if ( wallsPlaced.size() == 0 ) {
             wallsPlaced.add( new Wall( pos ) );
             money -= 50;
@@ -87,7 +87,7 @@ class PlayerShip extends Ship {
         }
       }
       if (key == 'n') {
-        if (money >= 100) {
+        if (storedMoneyStorages > 0) {
           if ( storagesPlaced.size() == 0 ) {
             storagesPlaced.add( new MoneyStorage( pos ) );
             maxMoney += 100;
