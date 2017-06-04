@@ -18,7 +18,6 @@ class EnemyShip extends Ship implements Comparable<EnemyShip> {
     
     this.vel.normalize();
     
-    yaw = atan(pShip.pos.y-this.pos.y/pShip.pos.x-this.pos.x);
         //this..y = pShip.pos.y-this.pos.y;
     //this.accel.y =
     //this.vel.x = pShip.pos.x-this.pos.x;
@@ -88,5 +87,30 @@ class EnemyShip extends Ship implements Comparable<EnemyShip> {
      pos.y = height-20;
      }
      */
+  }
+  
+  void turnToCoordinate(PVector tarPos) {
+    //get the angle in radians between the two objects relative to 0 degrees North in a clockwise manner
+    float redirectYaw = atan((this.pos.y-tarPos.y)/(this.pos.x-tarPos.x)) + PI/2; 
+    
+    //adjust for when atan is negative
+    if (this.pos.y > tarPos.y || this.pos.x > tarPos.x){
+      redirectYaw += PI;
+    }  
+    
+    //adjust for when atan is corrected above, but is a special case due to how the y axis going down is positive
+    if (this.pos.y > tarPos.y && this.pos.x < tarPos.x){
+     redirectYaw -= PI; 
+    }
+    
+    //turn to face the the targeted coordinate
+    redirectYaw = degrees(redirectYaw);
+    System.out.println(redirectYaw + ":" + this.yaw);
+    if (this.yaw > redirectYaw){
+      this.changeYaw(-2);
+    }
+    else if (this.yaw < redirectYaw){
+      this.changeYaw(2);
+    }  
   }
 }

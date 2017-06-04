@@ -88,6 +88,7 @@ void draw() {
       if (x.health <= 0) {
         waveSpawner.enemyS.remove(x);
       }
+      x.turnToCoordinate(thePlayer.pos);
     }
     
     // thePlayer.stopLR();
