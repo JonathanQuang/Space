@@ -5,7 +5,7 @@ import java.util.ArrayDeque;
 AstSpawner _spawner;
 Market theMarket;
 PlayerShip thePlayer;
-EnemyShip theEnemy;
+//EnemyShip theEnemy;
 ArrayList<MoneyStorage> storageS;
 ArrayList<Wall> wallS;
 boolean gameOver = false;
@@ -22,11 +22,11 @@ void setup() {
   //theShip.changeYaw(90);
   //theShip.accelViaYaw(0.01);
   thePlayer = new PlayerShip();
-  theEnemy = new EnemyShip();
+//  theEnemy = new EnemyShip();
   //enemyS = new PriorityQueue();
   waveSpawner = new Waves();
 
-  waveSpawner.enemyS.add(theEnemy);
+//  waveSpawner.enemyS.add(theEnemy);
   /*
   for (int i=0; i<100; i++) {
    
@@ -152,11 +152,13 @@ public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) {
       if ( dist(astList.get(i).pos.x, astList.get(i).pos.y, pShip.getShots().get(j).pos.x, pShip.getShots().get(j).pos.y) < 25) {
         astList.get(i).damage(100);
         pShip.getShots().get(j).damage(1);
+        /*
         if ( astList.get(i).dead) {
           pShip.changeMoney(astList.get(i).money);
           astList.remove(i);
           //System.out.println(pShip.money);
         }
+        */
       }
     }
     // Collision between player bullets and asteroids
