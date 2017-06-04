@@ -142,20 +142,12 @@ void draw() {
   }
 }
 
-<<<<<<< HEAD
-// Collisions for player ship and asteroids.
 
-public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) { 
-  //  ArrayList<Bullet> pShots = ;
-  for (int j=0; j<pShip.getShots().size(); j++) {
-    for (int i=0; i<astList.size(); i++) {
-=======
 // Master Collision Code
 public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) {
   // Collision between player bullets and asteroids
   for (int j=0; j<pShip.getShots().size(); j++) { 
     for (int i=0; i<astList.size(); i++) { // Asteroids (I)
->>>>>>> 5921d73b5eadd742de61fdab8e9125902997f5ce
       if ( dist(astList.get(i).pos.x, astList.get(i).pos.y, pShip.getShots().get(j).pos.x, pShip.getShots().get(j).pos.y) < 25) {
         astList.get(i).damage(100);
         pShip.getShots().get(j).damage(1);
