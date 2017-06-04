@@ -26,7 +26,7 @@ void setup() {
   //enemyS = new PriorityQueue();
   waveSpawner = new Waves();
 
-  waveSpawner.enemyS.add(theEnemy);
+//  waveSpawner.enemyS.add(theEnemy);
   /*
   for (int i=0; i<100; i++) {
    
