@@ -24,11 +24,6 @@ class EnemyShip extends Ship implements Comparable<EnemyShip> {
 }
 
   // ??
-  void posAtEdge() {
-    int x = (int)random(4);
-    System.out.println(x);
-  }
-
   // sees which ship has more money
   int compareTo(EnemyShip o) {
     if ( this.money > o.money) {
