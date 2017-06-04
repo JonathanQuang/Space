@@ -28,6 +28,8 @@ class Market extends Structure {
     fill(250);
     text(dispString, 0, wepList.size()*50);
     text("100sHP,$200", 400, 100);
+    text("Wall, $250",400, 200);
+    text("Storage,$300",400,300);
   }
 
   void updateCursor() {
@@ -96,6 +98,14 @@ class Market extends Structure {
               Player.health += 100;
               Player.money -= 200;
               System.out.println("work");
+          }
+          if (cursorY==1 && Player.money >= 250){
+              Player.money -= 250;
+              Player.storedWalls += 1;
+          }
+          if (cursorY==2 && Player.money >= 300){
+              Player.money -= 300;
+              Player.storedMoneyStorages += 1;
           }
       }
     }
