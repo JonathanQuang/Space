@@ -52,8 +52,8 @@ void draw() {
     textSize(64); 
     text( "Press anywhere to start", 140, 100 );
   } else if (inMarket) {
-    theMarket.openGUI();
-    theMarket.updateCursor();
+    //theMarket.openGUI();
+    //theMarket.updateCursor();
     if (key == 'm') {
       inMarket=false;
       key='f';
@@ -75,7 +75,7 @@ void draw() {
       } else {
         w.display();
       }
-    }
+    }  
 
     storageS = thePlayer.getStorages();
     for (int i = 0; i < storageS.size(); i++) {
@@ -119,6 +119,7 @@ void draw() {
     theMarket.display();
 
     waveSpawner.waveTrack();
+    waveSpawner.display();
     //moveRichestEnemy();
     if (thePlayer.health <= 0 || !theMarket.isAlive() ) {
       gameOver = true;

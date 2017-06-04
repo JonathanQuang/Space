@@ -6,7 +6,7 @@ public class Waves {
   int shooters_spawned;
   boolean all_at_once;
   ArrayList<EnemyShip> enemyS;
-
+  PFont f;
   Waves() {
     level = 0;
     num_shooters = 0;
@@ -18,14 +18,27 @@ public class Waves {
   void waveTrack() {
     if ( level == 1 ) {
       num_shooters = 10;
-      if ( time_left % 60 == 0 ) {
+      if ( time_left % 180 == 0 ) {
         enemyS.add(new EnemyShip());
+        shooters_spawned++;
       }
     }  
     time_left--;
-    if( time_left == 0 ){
+    if ( time_left == 0 ) {
       time_allotted +=50;
       time_left = time_allotted;
     }
+  }
+  void display() {
+    f = createFont("Arial", 4, true);
+
+    color c = color(0, 350, 0);
+    fill(c);
+    textFont(f, 16);                  // STEP 3 Specify font to be used
+    fill(100);                         // STEP 4 Specify font color 
+    text(("Level: " + level + "\ntime_left: " + time_left + "\n" +
+      "Shooters spawned: " + shooters_spawned + 
+      "\nEnemies left:" + (num_shooters - shooters_spawned)), width-160, 100);   // STEP 5 Display Text
+    fill(c);
   }
 }
