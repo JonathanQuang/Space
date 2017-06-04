@@ -37,9 +37,7 @@ class Bullet extends Moveable {
   public void updateMovement() {
     updatePos();
   }
-  void changeHealth(int chng){
-    health = health + chng;
-  }
+
   // displays bullet
   void display() {
     ellipse(pos.x, pos.y, 5, 5);

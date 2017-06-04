@@ -52,12 +52,13 @@ void draw() {
     textSize(64); 
     text( "Press anywhere to start", 140, 100 );
   } else if (inMarket) {
-    //theMarket.openGUI();
-    //theMarket.updateCursor();
+    theMarket.openGUI();
+    theMarket.updateCursor();
     if (key == 'm') {
       inMarket=false;
       key='f';
     }
+    */
   } else if (!gameOver) {
     background(0);
     thePlayer.display();
