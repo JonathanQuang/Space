@@ -92,6 +92,7 @@ class Market extends Structure {
            if(cursorY==1 && (Player.money >= 1000) && !isBought(1)){
                indexList.add(1);
                Player.money -= 1000;
+               Player.weapons.addFirst(new Piercer(Player));
            }        
       }
       if (cursorX==1){
