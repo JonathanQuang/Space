@@ -9,7 +9,7 @@ class Market extends Structure {
   Market() {
     pos = new PVector( width/2-len, height/2-len );
     len = 40;
-    hp = 100;
+    hp = 1000;
     wepList = new ArrayList<String>();
     wepList.add("Blaster$1K");
     wepList.add("Piercer$1K");
@@ -17,8 +17,6 @@ class Market extends Structure {
   }
 
   // makes the market dissapear when dead by moving it offscreen
-
-
 
   void openGUI() {
     fill(100);
@@ -30,6 +28,18 @@ class Market extends Structure {
     }
     fill(250);
     text(dispString, 0, wepList.size()*50);
+    
+  void openGUI(){
+       fill(100);
+       background(100);
+       textSize(64);
+       String dispString = "";
+       for (int i=0; i < wepList.size();i++){
+         dispString += wepList.get(i) + "\n";
+       }
+       fill(250);
+       text(dispString,0,wepList.size()*50);
+       text("10HP,$200",400,100);
   }
 
   void updateCursor() {
@@ -64,5 +74,41 @@ class Market extends Structure {
   void display() {
     fill(250, 0, 0);
     text("Market health: " + hp, 10, 90  );   // STEP 5 Display Text
+  
+  boolean isBought(int itemIndex){
+     for (int i=0;i<indexList.size();i++){
+        if(indexList.get(i)== itemIndex){
+           return true; 
+        }
+     }
+     return false;
   }
+  
+  void processPurchase(PlayerShip Player){
+    if (keyPressed==true) {
+      if(keyCode == ENTER) {
+        if (cursorX=0){
+           if(cursorY=0 && Player.money >= 1000 && !isBought(0)){
+               indexList.add(0);
+           }
+           if(cursorY=1 && Player.money >= 1000 && !isBought(1)){
+               indexList.add(1);
+           }
+        }
+      }
+    }
+  }
+  
+  void processBought(){
+     for (int i = 0; i < indexList.size(); i++){
+        purchaseIndex = indexList.get(i);
+        beginShape();
+        vertex(0,50+100*i);
+        vertex(0+400,50+100+100*i);
+        vertex(0,50+100+100*i);
+        vertex(0+400,50+100*i);
+        endShape();
+     }
+  }
+  
 }

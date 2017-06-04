@@ -5,18 +5,24 @@ class Asteroid extends Moveable {
   public boolean dead;
   public float health;
   public float money;
-  public boolean killed;
   public int size;
 
   // default constructor
-  Asteroid() {
+  Asteroid(int newSize) {
     super(new PVector(random(1000), random(800)), 
       new PVector(random(4)-2, random(4)-2));
     dead = false;
     health = 100;
     money = random(10, 100);
-    killed = false;
-    size = 50;
+    size = newSize;
+  }
+  
+  Asteroid( int newSize, PVector position ) {
+    super( position, new PVector(random(4)-2, random(4)-2));
+    dead = false;
+    health = 100;
+    money = random(10, 100);
+    size = newSize;
   }
 
   // inflicts damage on asteroid
@@ -24,6 +30,15 @@ class Asteroid extends Moveable {
     health-=dmg;
     if (health <= 0 ) {
       dead = true;
+    }
+  }
+  
+  void splitAst() {
+    if (size > 20) {
+      PVector newPos = new PVector( pos.x, pos.y );
+      _spawner.astList.add( new Asteroid( size-10, newPos ) );
+      _spawner.astList.add( new Asteroid( size-10, newPos ) );
+      _spawner.astList.add( new Asteroid( size-10, newPos ) );
     }
   }
 
