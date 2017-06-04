@@ -89,8 +89,8 @@ class Asteroid extends Moveable {
       }
     }
   }
-  
-    // if asteroid hits wall, inflict damage on wall
+
+  // if asteroid hits wall, inflict damage on wall
   void collisionWithStorages( ArrayList<MoneyStorage> listOfStorages ) {
     for ( MoneyStorage m : listOfStorages ) {
       // Find the closest point to the circle within the rectangle

@@ -35,7 +35,7 @@ abstract class Moveable {
       pos.y = height-20;
     }
   }
-  
+
   // displays object
   void display() {
     ellipse(pos.x, pos.y, 50, 50);

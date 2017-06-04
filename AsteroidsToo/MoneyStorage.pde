@@ -5,5 +5,4 @@ class MoneyStorage extends Structure {
     len = 30;
     pos = new PVector( newPos.x, newPos.y );
   }
-  
 }

@@ -29,14 +29,14 @@ public class AstSpawner {
       astList.get(i).collisionWithMarket( m );
     }
   }
-  
+
   //checks for collision on wall
   void collisionWallAll( ArrayList<Wall> listOfWalls ) {
     for (int i=0; i<astList.size(); i++) {
       astList.get(i).collisionWithWalls( listOfWalls );
     }
   }
-  
+
   //checks for collision on storages
   void collisionStorageAll( ArrayList<MoneyStorage> listOfStorages ) {
     for (int i=0; i<astList.size(); i++) {
@@ -71,19 +71,19 @@ public class AstSpawner {
 
   /*
   public void killAst() {
-    for (int i=0; i<astList.size(); i++) {
-      if (astList.get(i).health<=0) {
-        astList.remove(i);
-      }
-    }
-  }
-  */
+   for (int i=0; i<astList.size(); i++) {
+   if (astList.get(i).health<=0) {
+   astList.remove(i);
+   }
+   }
+   }
+   */
 
   /*
   void velAll() {
-    for (int i=0; i<astList.size(); i++) {    
-      astList.get(i).updateVel();
-    }
-  }
-  */
+   for (int i=0; i<astList.size(); i++) {    
+   astList.get(i).updateVel();
+   }
+   }
+   */
 }
