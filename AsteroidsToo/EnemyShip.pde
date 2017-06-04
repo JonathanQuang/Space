@@ -43,7 +43,7 @@ class EnemyShip extends Ship implements Comparable<EnemyShip> {
   // displays enemy ship
   void display() {
     super.display();
-    c = color(250, 0, 0);
+    c = color(250, 250, 0);
     //System.out.println(c);
     fill(c);
     //pos = posAtEdge();

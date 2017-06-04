@@ -21,7 +21,7 @@ public class Waves {
       if ( time_left % 60 == 0 ) {
         enemyS.add(new EnemyShip());
       }
-    }
+    }  
     time_left--;
     if( time_left == 0 ){
       time_allotted +=50;

@@ -114,7 +114,7 @@ class Asteroid extends Moveable {
   // display asteroid
   void display() {
     super.display();
-    c = color(0, 0, 250);
+    c = color(0, 350, 250);
     fill(c);
   }
 }

@@ -144,7 +144,7 @@ class PlayerShip extends Ship {
   // displays player
   void display() {
     super.display();
-    c = color(0, 100, 0);
+    c = color(0, 350, 0);
     fill(c);
     textFont(f, 16);                  // STEP 3 Specify font to be used
     fill(100);                         // STEP 4 Specify font color 
