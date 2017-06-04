@@ -106,7 +106,7 @@ void draw() {
 
     _spawner.run();
 
-    pShipAst(thePlayer, _spawner.astList);
+    collisions(thePlayer, _spawner.astList);
 
     theMarket.display();
 
@@ -125,7 +125,7 @@ void draw() {
 
 // Collisions for player ship and asteroids.
 
-public void pShipAst(PlayerShip pShip, ArrayList<Asteroid> astList) {
+public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) {
   ArrayList<Bullet> pShots = pShip.getShots();
   for (int j=0; j<pShots.size(); j++) {
     for (int i=0; i<astList.size(); i++) {
@@ -147,6 +147,14 @@ public void pShipAst(PlayerShip pShip, ArrayList<Asteroid> astList) {
           waveSpawner.enemyS.remove(k);
         }
       }
+    }
+  }
+  for(int l=0;l<waveSpawner.enemyS.size();l++){
+    for(int m=0;m<waveSpawner.enemyS.get(l).shotsFired.size();m++){
+       if(dist(waveSpawner.enemyS.get(l).shotsFired.get(m).pos.x, waveSpawner.enemyS.get(l).shotsFired.get(m).pos.y, pShip.pos.x,pShip.pos.y) < 35){
+         pShip.damageShip(100);
+         waveSpawner.enemyS.get(l).shotsFired.remove(m);
+       }
     }
   }
 
