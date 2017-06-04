@@ -16,7 +16,7 @@ class Asteroid extends Moveable {
     health = 100;
     money = random(10, 100);
     size = newSize;
-    damage = size/2;
+    damage = size/5;
   }
   
   Asteroid( int newSize, PVector position ) {
@@ -25,6 +25,7 @@ class Asteroid extends Moveable {
     health = 100;
     money = random(10, 100);
     size = newSize;
+    damage = size/5;
   }
 
   // inflicts damage on asteroid
