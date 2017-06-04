@@ -39,7 +39,6 @@ class Ship extends Moveable {
 
 
     weapons = new ArrayDeque();
-    weapons.addFirst(new Blaster(this));
     weapons.addFirst(new Weps(this));
 
     shotsFired = new ArrayList<Bullet>();

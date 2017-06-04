@@ -87,6 +87,7 @@ class Market extends Structure {
            if(cursorY==0 && (Player.money >= 1000) && !isBought(0)){
                indexList.add(0);
                Player.money -= 1000;
+               Player.weapons.addFirst(new Blaster(Player));
            }
            if(cursorY==1 && (Player.money >= 1000) && !isBought(1)){
                indexList.add(1);
@@ -97,7 +98,6 @@ class Market extends Structure {
           if (cursorY==0 && Player.money >= 200){
               Player.health += 100;
               Player.money -= 200;
-              System.out.println("work");
           }
           if (cursorY==1 && Player.money >= 250){
               Player.money -= 250;
