@@ -11,8 +11,8 @@ class Market extends Structure {
     len = 40;
     hp = 1000;
     wepList = new ArrayList<String>();
-    wepList.add("Blaster$1K");
-    wepList.add("Piercer$1K");
+    wepList.add("Blaster 2.5K");
+    wepList.add("Piercer 1K");
     indexList = new ArrayList<Integer>();
   }
 
@@ -84,9 +84,9 @@ class Market extends Structure {
     if (keyPressed==true) {
       if(key == 'l') {
         if (cursorX==0){ //first column
-           if(cursorY==0 && (Player.money >= 1000) && !isBought(0)){
+           if(cursorY==0 && (Player.money >= 2500) && !isBought(0)){
                indexList.add(0);
-               Player.money -= 1000;
+               Player.money -= 2500;
                Player.weapons.addFirst(new Blaster(Player));
            }
            if(cursorY==1 && (Player.money >= 1000) && !isBought(1)){
