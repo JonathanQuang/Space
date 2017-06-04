@@ -22,12 +22,9 @@ public class Waves {
     
     if(shooters_spawned != num_shooters) { // if all ur shooters haven't spawned it's lit to spawn more
       if ( time_left % 180 == 0 ) {
-<<<<<<< HEAD
-        enemyS.add(new EnemyShip());
+
         kamikazE.add(new Kamikaze());
-=======
-        enemyS.add(new EnemyShip(theMarket, thePlayer));
->>>>>>> c78ed1fccb19d75452c9277b97d6734b7a40db49
+        enemyS.add(new EnemyShip());
         shooters_spawned++;
       }
     }  

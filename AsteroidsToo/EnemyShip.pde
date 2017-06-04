@@ -1,13 +1,11 @@
-<<<<<<< HEAD
-class EnemyShip extends Ship implements Comparable<EnemyShip>                     {
-=======
-class EnemyShip extends Ship {
->>>>>>> c78ed1fccb19d75452c9277b97d6734b7a40db49
+
+class EnemyShip extends Ship                     {
+
   // Currently no real functions, needs some more touchups
   PriorityQueue<Comparable> targetControl;
   Object target;
   // default constructor
-  public EnemyShip( Market m, PlayerShip p) {
+  public EnemyShip() {
     super();
     money = (int)random(100.0, 500.0);
     setSpawn();

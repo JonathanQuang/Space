@@ -108,12 +108,7 @@ void draw() {
       if (x.health <= 0) {
         waveSpawner.enemyS.remove(x);
       }
-<<<<<<< HEAD
-      x.turnToCoordinate(thePlayer.pos);
-    
-=======
       x.turnToCoordinate();
->>>>>>> c78ed1fccb19d75452c9277b97d6734b7a40db49
     }
    for( int z = 0; z < waveSpawner.kamikazE.size();z++){
          waveSpawner.kamikazE.get(z).display();
