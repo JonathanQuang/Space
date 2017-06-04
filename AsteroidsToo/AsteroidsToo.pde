@@ -10,6 +10,7 @@ ArrayList<MoneyStorage> storageS;
 ArrayList<Wall> wallS;
 boolean gameOver = false;
 boolean start = false;
+boolean inMarket;
 int frameTracker;
 Waves waveSpawner;
 void setup() {
@@ -50,7 +51,16 @@ void draw() {
     fill(0);
     textSize(64); 
     text( "Press anywhere to start", 140, 100 );
-  } else if (!gameOver) {
+  } 
+    else if (inMarket){
+      theMarket.openGUI();
+      theMarket.updateCursor();
+      if (key == 'm'){
+         inMarket=false;
+         key='f';
+       }
+    }
+    else if (!gameOver) {
     background(0);
     thePlayer.display();
     thePlayer.keyPressed();
@@ -114,6 +124,13 @@ void draw() {
     //moveRichestEnemy();
     if (thePlayer.health <= 0 || !theMarket.isAlive() ) {
       gameOver = true;
+    }
+    //detect if player presses m
+    if (keyPressed == true){
+       if (key == 'm'){
+         inMarket=true;
+         key='f';
+       }
     }
   } else {
     background( 50, 100, 150 );
