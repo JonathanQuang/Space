@@ -52,13 +52,13 @@ void draw() {
     textSize(64); 
     text( "Press anywhere to start", 140, 100 );
   } else if (inMarket) {
-    theMarket.openGUI();
-    theMarket.updateCursor();
+    //theMarket.openGUI();
+    //theMarket.updateCursor();
     if (key == 'm') {
       inMarket=false;
       key='f';
     }
-    */
+    
   } else if (!gameOver) {
     background(0);
     thePlayer.display();
@@ -142,7 +142,7 @@ void draw() {
 
 // Collisions for player ship and asteroids.
 
-public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) {
+public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) { 
   //  ArrayList<Bullet> pShots = ;
   for (int j=0; j<pShip.getShots().size(); j++) {
     for (int i=0; i<astList.size(); i++) {
