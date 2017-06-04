@@ -1,4 +1,4 @@
-class Market extends Structure {
+class Market extends Structure implements Comparable {
   // instance vars
   ArrayList<String> wepList;
   ArrayList<Integer> indexList;
@@ -28,8 +28,8 @@ class Market extends Structure {
     fill(250);
     text(dispString, 0, wepList.size()*50);
     text("100sHP,$200", 400, 100);
-    text("Wall, $250",400, 200);
-    text("Storage,$300",400,300);
+    text("Wall, $250", 400, 200);
+    text("Storage,$300", 400, 300);
   }
 
   void updateCursor() {
@@ -62,65 +62,77 @@ class Market extends Structure {
     rect(cursorX*400, 50+cursorY*100, 400, 50);
   }
 
-    
-  void displayPlayerMoney(PlayerShip Player){
-      text("Money" + Player.money,0,50);
+
+  void displayPlayerMoney(PlayerShip Player) {
+    text("Money" + Player.money, 0, 50);
   }
 
-  
-    boolean isBought(int itemIndex) {
-      for (int i=0; i<indexList.size(); i++) {
-        if (indexList.get(i)== itemIndex) {
-          return true;
-        }
 
-     }
-     return false;
+  boolean isBought(int itemIndex) {
+    for (int i=0; i<indexList.size(); i++) {
+      if (indexList.get(i)== itemIndex) {
+        return true;
+      }
+    }
+    return false;
   }
-  
-  
-  
-  void processPurchase(PlayerShip Player){
+
+  void collisionWithEnemy() {
+    for (EnemyShip e : waveSpawner.enemyS) {
+      PVector EnemyPos = new PVector( e.pos.x, e.pos.y );
+      PVector MarketPos = new PVector( pos.x, pos.y );
+      if (EnemyPos.sub(MarketPos).mag() <= len/2 + e.collisionRad) {
+        e.damageShip(100);
+        loseHP(50);
+      }
+    }
+  }
+
+  void processPurchase(PlayerShip Player) {
     if (keyPressed==true) {
-      if(key == 'l') {
-        if (cursorX==0){ //first column
-           if(cursorY==0 && (Player.money >= 2500) && !isBought(0)){
-               indexList.add(0);
-               Player.money -= 2500;
-               Player.weapons.addFirst(new Blaster(Player));
-           }
-           if(cursorY==1 && (Player.money >= 1000) && !isBought(1)){
-               indexList.add(1);
-               Player.money -= 1000;
-               Player.weapons.addFirst(new Piercer(Player));
-           }        
+      if (key == 'l') {
+        if (cursorX==0) { //first column
+          if (cursorY==0 && (Player.money >= 1000) && !isBought(0)) {
+            indexList.add(0);
+            Player.money -= 1000;
+            Player.weapons.addFirst(new Blaster(Player));
+            if (cursorY==1 && (Player.money >= 1000) && !isBought(1)) {
+              indexList.add(1);
+              Player.money -= 1000;
+              Player.weapons.addFirst(new Piercer(Player));
+            }
+          }
+        }
+        if (cursorX==1) {
+          if (cursorY==0 && Player.money >= 200) {
+            Player.health += 100;
+            Player.money -= 200;
+          }
+          if (cursorY==1 && Player.money >= 250) {
+            Player.money -= 250;
+            Player.storedWalls += 1;
+          }
+          if (cursorY==2 && Player.money >= 300) {
+            Player.money -= 300;
+            Player.storedMoneyStorages += 1;
+          }
+        }
       }
-      if (cursorX==1){
-          if (cursorY==0 && Player.money >= 200){
-              Player.health += 100;
-              Player.money -= 200;
-          }
-          if (cursorY==1 && Player.money >= 250){
-              Player.money -= 250;
-              Player.storedWalls += 1;
-          }
-          if (cursorY==2 && Player.money >= 300){
-              Player.money -= 300;
-              Player.storedMoneyStorages += 1;
-          }
-      }
-    }
     }
   }
 
-  
- 
-  void processBought(){
-     for (int i = 0; i < indexList.size(); i++){
-        int purchaseIndex = indexList.get(i);
-        fill(250);
-        rect(0,50+purchaseIndex*100,400,50);
-     }
+  int compareTo( Object o ) {
+    if (o instanceof PlayerShip) {
+      return 1;
+    }
+    return 0;
   }
-  
+
+  void processBought() {
+    for (int i = 0; i < indexList.size(); i++) {
+      int purchaseIndex = indexList.get(i);
+      fill(250);
+      rect(0, 50+purchaseIndex*100, 400, 50);
+    }
+  }
 }

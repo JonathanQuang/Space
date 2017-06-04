@@ -1,4 +1,4 @@
-class PlayerShip extends Ship {
+class PlayerShip extends Ship implements Comparable {
   // instance vars
   ArrayList<Wall> wallsPlaced;
   PFont f;
@@ -132,8 +132,12 @@ class PlayerShip extends Ship {
     System.out.println(weapons.getFirst());
   }
 
-  //tells bullets to move
-
+  int compareTo( Object o ) {
+    if (o instanceof Market ) {
+      return -1;
+    }
+    return 0;
+  }
 
   // displays player
   void display() {
