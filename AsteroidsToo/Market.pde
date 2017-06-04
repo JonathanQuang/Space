@@ -30,7 +30,7 @@ class Market extends Structure {
        }
        fill(250);
        text(dispString,0,wepList.size()*50);
-       
+       text("10HP,$200",400,100);
   }
   
   void updateCursor(){
@@ -65,7 +65,44 @@ class Market extends Structure {
     
   }
   
-    void displayPlayerMoney(PlayerShip Player){
+  void displayPlayerMoney(PlayerShip Player){
       text("Money" + Player.money,0,50);
   }
+  
+  boolean isBought(int itemIndex){
+     for (int i=0;i<indexList.size();i++){
+        if(indexList.get(i)== itemIndex){
+           return true; 
+        }
+     }
+     return false;
+  }
+  
+  void processPurchase(PlayerShip Player){
+    if (keyPressed==true) {
+      if(keyCode == ENTER) {
+        if (cursorX=0){
+           if(cursorY=0 && Player.money >= 1000 && !isBought(0)){
+               indexList.add(0);
+           }
+           if(cursorY=1 && Player.money >= 1000 && !isBought(1)){
+               indexList.add(1);
+           }
+        }
+      }
+    }
+  }
+  
+  void processBought(){
+     for (int i = 0; i < indexList.size(); i++){
+        purchaseIndex = indexList.get(i);
+        beginShape();
+        vertex(0,50+100*i);
+        vertex(0+400,50+100+100*i);
+        vertex(0,50+100+100*i);
+        vertex(0+400,50+100*i);
+        endShape();
+     }
+  }
+  
 }
