@@ -78,12 +78,11 @@ class PlayerShip extends Ship {
         if (storedWalls > 0) {
           if ( wallsPlaced.size() == 0 ) {
             wallsPlaced.add( new Wall( pos ) );
-            money -= 50;
           } else if (frameCount - lastFrame > 50) {
             lastFrame = frameCount; // update last wall placed
             wallsPlaced.add( new Wall( pos ) );
-            money -= 50;
           }
+          storedWalls--;
         }
       }
       if (key == 'n') {
@@ -91,13 +90,12 @@ class PlayerShip extends Ship {
           if ( storagesPlaced.size() == 0 ) {
             storagesPlaced.add( new MoneyStorage( pos ) );
             maxMoney += 100;
-            money -= 100;
           } else if ( frameCount - lastFrame > 50) {
             lastFrame = frameCount; // update last wall placed
             storagesPlaced.add( new MoneyStorage( pos ) );
             maxMoney += 100;
-            money -= 100;
           }
+          storedMoneyStorages--;
         }
         key = 'f'; // interupter
       }
