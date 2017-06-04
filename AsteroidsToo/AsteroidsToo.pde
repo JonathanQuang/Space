@@ -5,7 +5,7 @@ import java.util.ArrayDeque;
 AstSpawner _spawner;
 Market theMarket;
 PlayerShip thePlayer;
-EnemyShip theEnemy;
+//EnemyShip theEnemy;
 ArrayList<MoneyStorage> storageS;
 ArrayList<Wall> wallS;
 boolean gameOver = false;
@@ -22,11 +22,11 @@ void setup() {
   //theShip.changeYaw(90);
   //theShip.accelViaYaw(0.01);
   thePlayer = new PlayerShip();
-  theEnemy = new EnemyShip();
+//  theEnemy = new EnemyShip();
   //enemyS = new PriorityQueue();
   waveSpawner = new Waves();
 
-  waveSpawner.enemyS.add(theEnemy);
+//  waveSpawner.enemyS.add(theEnemy);
   /*
   for (int i=0; i<100; i++) {
    
@@ -54,6 +54,7 @@ void draw() {
   } else if (inMarket) {
     theMarket.openGUI();
     theMarket.updateCursor();
+    theMarket.displayPlayerMoney(thePlayer);
     if (keyPressed == true) {
       System.out.println("test");
       if (key == 'm') {
