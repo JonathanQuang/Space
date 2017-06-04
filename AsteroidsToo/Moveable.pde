@@ -37,9 +37,12 @@ abstract class Moveable {
   }
 
   // displays object
+  abstract void display();
+  /*
   void display() {
     ellipse(pos.x, pos.y, 50, 50);
     c = color(0, 250, 350);
     fill(c);
   }
+  */
 }

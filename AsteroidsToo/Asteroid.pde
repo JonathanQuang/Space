@@ -6,6 +6,7 @@ class Asteroid extends Moveable {
   public float health;
   public float money;
   public boolean killed;
+  public int size;
 
   // default constructor
   Asteroid() {
@@ -15,6 +16,7 @@ class Asteroid extends Moveable {
     health = 100;
     money = random(10, 100);
     killed = false;
+    size = 50;
   }
 
   /*
@@ -113,7 +115,7 @@ class Asteroid extends Moveable {
 
   // display asteroid
   void display() {
-    super.display();
+    ellipse( pos.x, pos.y, size, size );
     c = color(0, 350, 250);
     fill(c);
   }
