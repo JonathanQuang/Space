@@ -7,7 +7,7 @@ class EnemyShip extends Ship {
     super();
     money = (int)random(100.0, 500.0);
     setSpawn();
-    targetControl=new PriorityQueue<Comparable>();
+    targetControl=new PriorityQueue<Comparable>( new TargetMarket() );
     prioritize();
   }
 
