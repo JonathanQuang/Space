@@ -55,7 +55,7 @@ class Asteroid extends Moveable {
     // If the distance is less than the circle's radius, an intersection occurs
     float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
 
-    if (distanceSquared < (25 * 25)) {
+    if (distanceSquared < (size * size / 4)) {
       m.loseHP(20);
       damage(100);
     }
@@ -85,7 +85,7 @@ class Asteroid extends Moveable {
       // If the distance is less than the circle's radius, an intersection occurs
       float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
 
-      if (distanceSquared < (25 * 25)) {
+      if (distanceSquared < (size * size / 4)) {
         m.loseHP(20);
         damage(100);
       }
@@ -106,7 +106,7 @@ class Asteroid extends Moveable {
       // If the distance is less than the circle's radius, an intersection occurs
       float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
 
-      if (distanceSquared < (25 * 25)) {
+      if (distanceSquared < (size * size / 4)) {
         m.loseHP(20);
         damage(100);
       }
