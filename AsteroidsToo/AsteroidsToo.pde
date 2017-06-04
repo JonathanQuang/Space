@@ -58,7 +58,6 @@ void draw() {
     theMarket.processPurchase(thePlayer);
     theMarket.processBought();
     if (keyPressed == true) {
-      System.out.println("test");
       if (key == 'm') {
         inMarket=false;
         key='f';

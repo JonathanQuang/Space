@@ -98,14 +98,9 @@ class Market extends Structure {
   void processBought(){
      for (int i = 0; i < indexList.size(); i++){
         int purchaseIndex = indexList.get(i);
-        purchaseIndex = 1;
         fill(250);
-        beginShape();
-        vertex(0,50+100*purchaseIndex);
-        vertex(0+400,50+100+100*purchaseIndex);
-        vertex(0,50+100+100*purchaseIndex);
-        vertex(0+400,50+100*purchaseIndex);
-        endShape();
+        rect(0,50+purchaseIndex*100,400,50);
+        System.out.println("POOF");
      }
   }
   
