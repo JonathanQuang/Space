@@ -11,8 +11,8 @@ class Market extends Structure implements Comparable {
     len = 40;
     hp = 1000;
     wepList = new ArrayList<String>();
-    wepList.add("Blaster$1K");
-    wepList.add("Piercer$1K");
+    wepList.add("Blaster 2.5K");
+    wepList.add("Piercer 1K");
     indexList = new ArrayList<Integer>();
   }
 
@@ -87,10 +87,11 @@ class Market extends Structure implements Comparable {
             indexList.add(0);
             Player.money -= 1000;
             Player.weapons.addFirst(new Blaster(Player));
-          }
-          if (cursorY==1 && (Player.money >= 1000) && !isBought(1)) {
-            indexList.add(1);
-            Player.money -= 1000;
+            if (cursorY==1 && (Player.money >= 1000) && !isBought(1)) {
+              indexList.add(1);
+              Player.money -= 1000;
+              Player.weapons.addFirst(new Piercer(Player));
+            }
           }
         }
         if (cursorX==1) {
