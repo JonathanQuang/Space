@@ -13,7 +13,6 @@ class Ship extends Moveable {
   boolean startTiming; // for when bullets < 3 -- you want to cap bullets
   int last_not_full; // LinkedList wepps; 
   boolean killed;
-
   ArrayDeque<Weps> weapons;
   ArrayList<Bullet> shotsFired;
   //Placeholder constructor for a general ship
@@ -42,18 +41,20 @@ class Ship extends Moveable {
     weapons = new ArrayDeque();
     weapons.addFirst(new Blaster(this));
     weapons.addFirst(new Weps(this));
+
+    shotsFired = new ArrayList<Bullet>();
   }
   void shoot(Ship currShip) {
     shotsFired.add( new Bullet(currShip, currShip.weapons.getFirst().damage));
   }
-  
+
   void damageShip(int dmg) {
     health -= dmg;
     if ( health <= 0 ) { 
       killed = true;
     }
   }
-  
+
   //change the velocity according to acceleration
   void updateVel() {
     vel.add(accel );
@@ -108,7 +109,12 @@ class Ship extends Moveable {
   void changeMoney(float x) {
     money +=x;
   }
-
+  void fireAll() {
+    for (Bullet b : shotsFired) {
+      b.updateMovement();
+      b.display();
+    }
+  }
   // currently, this just displays an equilateral triangle at the ship's pos.
   void display() {
     float vert[] = new float[6]; 

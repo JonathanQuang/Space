@@ -85,12 +85,17 @@ void draw() {
       x.applyShipMovement();
       x.checkBoundary();
       x.move(thePlayer);
+      if (frameCount % 100 == 0 ) {
+        x.shoot(x);
+      }
+      x.fireAll();
+
       if (x.health <= 0) {
         waveSpawner.enemyS.remove(x);
       }
       x.turnToCoordinate(thePlayer.pos);
     }
-    
+
     // thePlayer.stopLR();
     /*
     theShip.display();
@@ -110,8 +115,7 @@ void draw() {
     if (thePlayer.health <= 0 || !theMarket.isAlive() ) {
       gameOver = true;
     }
-  }
-  else {
+  } else {
     background( 50, 100, 150 );
     fill(0);
     textSize(64); 

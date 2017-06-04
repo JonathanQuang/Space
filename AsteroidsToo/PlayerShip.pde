@@ -12,7 +12,6 @@ class PlayerShip extends Ship {
     lastFrame = 0;
     money = 0;
     health = 1000;
-    shotsFired = new ArrayList<Bullet>();
     wallsPlaced = new ArrayList<Wall>();
     f = createFont("Arial", 4, true);
     storagesPlaced = new ArrayList<MoneyStorage>();
@@ -134,12 +133,7 @@ class PlayerShip extends Ship {
   }
 
   //tells bullets to move
-  void fireAll() {
-    for (Bullet b : shotsFired) {
-      b.updateMovement();
-      b.display();
-    }
-  }
+
 
   // displays player
   void display() {

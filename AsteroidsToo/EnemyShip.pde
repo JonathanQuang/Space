@@ -34,7 +34,6 @@ class EnemyShip extends Ship implements Comparable<EnemyShip> {
     }
     return 0;
   }
-
   // displays enemy ship
   void display() {
     super.display();
