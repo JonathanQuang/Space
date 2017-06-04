@@ -54,11 +54,13 @@ void draw() {
   } else if (inMarket) {
     theMarket.openGUI();
     theMarket.updateCursor();
-    if (key == 'm') {
-      inMarket=false;
-      key='f';
+    if (keyPressed == true) {
+      System.out.println("test");
+      if (key == 'm') {
+        inMarket=false;
+        key='f';
+      }
     }
-    */
   } else if (!gameOver) {
     background(0);
     thePlayer.display();
