@@ -24,6 +24,14 @@ class Bullet extends Moveable {
     vel.x = speed*cos(radians(yaw-90)); 
     vel.y = speed*sin(radians(yaw-90));
   }
+  
+  void damage( int dmg ) {
+    health -= dmg;
+  }
+  
+  boolean isAlive() {
+    return health > 0;
+  }
 
   // moves bullet
   public void updateMovement() {

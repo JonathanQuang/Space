@@ -45,7 +45,7 @@ class Ship extends Moveable {
     shotsFired = new ArrayList<Bullet>();
   }
   void shoot(Ship currShip) {
-    shotsFired.add( new Bullet(currShip, currShip.weapons.getFirst().damage, 100) );
+    shotsFired.add( new Bullet(currShip, currShip.weapons.getFirst().damage, 1) );
   }
 
   void damageShip(int dmg) {

@@ -51,16 +51,14 @@ void draw() {
     fill(0);
     textSize(64); 
     text( "Press anywhere to start", 140, 100 );
-  } 
-    else if (inMarket){
-      theMarket.openGUI();
-      theMarket.updateCursor();
-      if (key == 'm'){
-         inMarket=false;
-         key='f';
-       }
+  } else if (inMarket) {
+    theMarket.openGUI();
+    theMarket.updateCursor();
+    if (key == 'm') {
+      inMarket=false;
+      key='f';
     }
-    else if (!gameOver) {
+  } else if (!gameOver) {
     background(0);
     thePlayer.display();
     thePlayer.keyPressed();
@@ -126,11 +124,11 @@ void draw() {
       gameOver = true;
     }
     //detect if player presses m
-    if (keyPressed == true){
-       if (key == 'm'){
-         inMarket=true;
-         key='f';
-       }
+    if (keyPressed == true) {
+      if (key == 'm') {
+        inMarket=true;
+        key='f';
+      }
     }
   } else {
     background( 50, 100, 150 );
@@ -143,11 +141,12 @@ void draw() {
 // Collisions for player ship and asteroids.
 
 public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) {
-//  ArrayList<Bullet> pShots = ;
+  //  ArrayList<Bullet> pShots = ;
   for (int j=0; j<pShip.getShots().size(); j++) {
     for (int i=0; i<astList.size(); i++) {
       if ( dist(astList.get(i).pos.x, astList.get(i).pos.y, pShip.getShots().get(j).pos.x, pShip.getShots().get(j).pos.y) < 25) {
         astList.get(i).damage(100);
+        pShip.getShots().get(j).damage(1);
         if ( astList.get(i).dead) {
           pShip.changeMoney(astList.get(i).money);
           astList.remove(i);
@@ -161,19 +160,23 @@ public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) {
 
         // 1. Damage ship
         waveSpawner.enemyS.get(k).damageShip(100);
+        pShip.getShots().get(j).damage(1);
         if ( waveSpawner.enemyS.get(k).killed) {
           pShip.changeMoney(waveSpawner.enemyS.get(k).money);
           waveSpawner.enemyS.remove(k);
         }
         // 2. Damage bullet
-        
-    /*
+
+        /*
         pShip.getShots().get(j).changeHealth(-100); // Damage
-          if (pShip.shotsFired.get(j).health <= 0) {
-          pShip.shotsFired.remove(j);
-        }
-       */ 
+         if (pShip.shotsFired.get(j).health <= 0) {
+         pShip.shotsFired.remove(j);
+         }
+         */
       }
+    }
+    if (!pShip.getShots().get(j).isAlive()) {
+      pShip.getShots().remove(j);
     }
   }
 
@@ -183,7 +186,7 @@ public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) {
 
         // Damage Ship
         pShip.damageShip(100);
-        
+
         // Damage bullet
         waveSpawner.enemyS.get(l).shotsFired.get(m).health-=100;
         if (waveSpawner.enemyS.get(l).shotsFired.get(m).health <= 0) {
