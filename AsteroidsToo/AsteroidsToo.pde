@@ -162,7 +162,7 @@ public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) {
         */
       }
     }
-    // Collision between player bullets and asteroids
+    // Collision between player bullets and enemy ship
     for (int k = 0; k<waveSpawner.enemyS.size(); k++) { // Bullets (J) and Enemies (K)
       //eShip = waveSpawner.enemyS.get(k);
       if ( dist(waveSpawner.enemyS.get(k).pos.x, waveSpawner.enemyS.get(k).pos.y, pShip.getShots().get(j).pos.x, pShip.getShots().get(j).pos.y) < 35) { //index bounds exception this line
@@ -189,7 +189,7 @@ public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) {
       if (dist(waveSpawner.enemyS.get(l).shotsFired.get(m).pos.x, waveSpawner.enemyS.get(l).shotsFired.get(m).pos.y, pShip.pos.x, pShip.pos.y) < 35) { // If bullet is within distance of master bullet 
 
         // Damage Ship
-        pShip.damageShip(100);
+        pShip.damageShip(20);
 
         // Damage bullet
         waveSpawner.enemyS.get(l).shotsFired.get(m).damage(1);

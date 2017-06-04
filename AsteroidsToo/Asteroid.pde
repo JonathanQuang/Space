@@ -16,16 +16,16 @@ class Asteroid extends Moveable {
     health = 100;
     money = random(10, 100);
     size = newSize;
-    damage = size/5;
+    damage = size/2 - 10;
   }
-  
+
   Asteroid( int newSize, PVector position ) {
     super( position, new PVector(random(4)-2, random(4)-2));
     dead = false;
     health = 100;
     money = random(10, 100);
     size = newSize;
-    damage = size/5;
+    damage = size/2 - 10;
   }
 
   // inflicts damage on asteroid
@@ -35,13 +35,13 @@ class Asteroid extends Moveable {
       dead = true;
     }
   }
-  
+
   void splitAst() {
     if (size > 20) {
       PVector newPos = new PVector( pos.x, pos.y );
-      _spawner.astList.add( new Asteroid( size-10, newPos ) );
-      _spawner.astList.add( new Asteroid( size-10, newPos ) );
-      _spawner.astList.add( new Asteroid( size-10, newPos ) );
+      for (int i = 0; i< (int)random(1, 4); i++) {
+        _spawner.astList.add( new Asteroid( size-10, newPos ) );
+      }
     }
   }
 
@@ -113,7 +113,7 @@ class Asteroid extends Moveable {
       }
     }
   }
-  
+
   // collision with player
   void collisionWithPlayer() {
     PVector AstPos = new PVector( pos.x, pos.y );

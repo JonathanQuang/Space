@@ -1,27 +1,25 @@
 public class AstSpawner {
   // instance vars
   public ArrayList<Asteroid> astList;
+  int lastFrame;
 
   // constructor
   AstSpawner(int num_Asteroids) {
     astList = new ArrayList();
     while (num_Asteroids > 0 ) { 
-      astList.add( new Asteroid(50) );
+      astList.add( new Asteroid( (int)random(1, 5) * 10 ) );
       num_Asteroids--;
     }
+    lastFrame = 300;
   }
 
-  //keeps fixed amount of asteroids on screen
-  /*
-  void manageRespawn() {
-    for (int i=0; i < astList.size(); i++) {
-      //astList.get(i).isDead();
-      if (astList.get(i).dead == true) {
-        astList.set(i, new Asteroid());
-      }
+  //occasionally spawn asteroids
+  void manageSpawn() {
+    if (frameCount - lastFrame >= 300) {
+      astList.add( new Asteroid(50) );
+      lastFrame = frameCount;
     }
   }
-  */
 
   //checks for collision on market
   void collisionMarketAll( Market m ) {
@@ -86,6 +84,6 @@ public class AstSpawner {
     collisionStorageAll( storageS );
     collisionPlayerAll();
     manageSplit();
-    //manageRespawn();
+    manageSpawn();
   }
 }

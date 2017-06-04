@@ -110,7 +110,7 @@ class PlayerShip extends Ship {
       PVector playerPos = new PVector( pos.x, pos.y );
       PVector enemyPos = new PVector( e.pos.x, e.pos.y );
       if (playerPos.sub(enemyPos).mag() <= 50) {
-        damageShip( 100 );
+        damageShip( 50 );
         e.damageShip( 100 );
       }
     }
