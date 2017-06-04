@@ -1,19 +1,37 @@
-class EnemyShip extends Ship implements Comparable<EnemyShip> {
+class EnemyShip extends Ship {
   // Currently no real functions, needs some more touchups
-
+  PriorityQueue<Comparable> targetControl;
+  Object target;
   // default constructor
-  public EnemyShip() {
+  public EnemyShip( Market m, PlayerShip p) {
     super();
     money = (int)random(100.0, 500.0);
     setSpawn();
+    targetControl=new PriorityQueue<Comparable>();
+    prioritize();
+  }
+
+  // sets target
+  void prioritize() {
+    targetControl.add( theMarket );
+    targetControl.add( thePlayer );
   }
 
   // moves ship
   void move(PlayerShip pShip) {
     // add movement calls
-    this.vel.y = pShip.pos.y-this.pos.y;
+    Object temp = targetControl.peek();
+    if (temp instanceof Market ) {
+      Market target = (Market)temp;
+      this.vel.y = target.pos.y-this.pos.y;
+      this.vel.x = target.pos.x-this.pos.x;
+    }
+    if (temp instanceof PlayerShip ) {
+      PlayerShip target = (PlayerShip)temp;
+      this.vel.y = target.pos.y-this.pos.y;
+      this.vel.x = target.pos.x-this.pos.x;
+    }
 
-    this.vel.x = pShip.pos.x-this.pos.x;
 
 
     this.vel.normalize();
@@ -25,15 +43,7 @@ class EnemyShip extends Ship implements Comparable<EnemyShip> {
 
   // ??
   // sees which ship has more money
-  int compareTo(EnemyShip o) {
-    if ( this.money > o.money) {
-      return 1;
-    }
-    if ( this.money < o.money) {
-      return -1;
-    }
-    return 0;
-  }
+
   // displays enemy ship
   void display() {
     super.display();
@@ -83,7 +93,19 @@ class EnemyShip extends Ship implements Comparable<EnemyShip> {
      */
   }
 
-  void turnToCoordinate(PVector tarPos) {
+  void turnToCoordinate() {
+    Object temp = targetControl.peek();
+    PVector tarPos = new PVector( 0, 0 );
+    if (temp instanceof Market ) {
+      Market target = (Market)temp;
+      tarPos = target.pos;
+    }
+    if (temp instanceof PlayerShip ) {
+      PlayerShip target = (PlayerShip)temp;
+      tarPos = target.pos;
+    }
+    
+    
     //get the angle in radians between the two objects relative to 0 degrees North in a clockwise manner
     float redirectYaw = atan((this.pos.y-tarPos.y)/(this.pos.x-tarPos.x)) + PI/2; 
 

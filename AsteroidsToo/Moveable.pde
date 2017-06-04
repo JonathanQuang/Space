@@ -40,9 +40,9 @@ abstract class Moveable {
   abstract void display();
   /*
   void display() {
-    ellipse(pos.x, pos.y, 50, 50);
-    c = color(0, 250, 350);
-    fill(c);
-  }
-  */
+   ellipse(pos.x, pos.y, 50, 50);
+   c = color(0, 250, 350);
+   fill(c);
+   }
+   */
 }

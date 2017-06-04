@@ -7,7 +7,7 @@ public class Waves {
   boolean all_at_once;
   ArrayList<EnemyShip> enemyS;
   PFont f;
-  Waves() {
+  Waves(){
     level = 0;
     num_shooters = 0;
     time_allotted = time_left = 6000; // in frames
@@ -15,12 +15,12 @@ public class Waves {
     enemyS = new ArrayList<EnemyShip>();
     all_at_once = false;
   }
-  void waveTrack() {
+  void waveTrack(Market theMarket, PlayerShip thePlayer) {
     num_shooters = 3 * (level + 2);
     
     if(shooters_spawned != num_shooters) { // if all ur shooters haven't spawned it's lit to spawn more
       if ( time_left % 180 == 0 ) {
-        enemyS.add(new EnemyShip());
+        enemyS.add(new EnemyShip(theMarket, thePlayer));
         shooters_spawned++;
       }
     }  

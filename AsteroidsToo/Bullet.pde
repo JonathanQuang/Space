@@ -2,7 +2,7 @@ class Bullet extends Moveable {
   // instance vars
   float yaw; // orientation
   float speed; // how fast
-  int damage;
+  int damage;    
   int health;
   // constructor
   public Bullet(Ship theShooter, int dmg, int hp) {

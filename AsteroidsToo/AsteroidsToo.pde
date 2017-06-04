@@ -13,6 +13,7 @@ boolean start = false;
 boolean inMarket;
 int frameTracker;
 Waves waveSpawner;
+
 void setup() {
   size(1000, 800);
   //test1 = new Moveable(new PVector(400,0),new PVector(0,1),new PVector(0,0.05));
@@ -46,7 +47,7 @@ void mouseClicked() {
 void draw() {
   //System.out.println(enemyS.peek().money);
 
-  if (!start) {
+  if (!start) {  
     background( 0, 255, 0 );
     fill(0);
     textSize(64); 
@@ -93,6 +94,7 @@ void draw() {
       }
     }
     for (int j = 0; j < waveSpawner.enemyS.size(); j++ ) {
+
       EnemyShip x = waveSpawner.enemyS.get(j);
       x.display();
       x.applyShipMovement();
@@ -106,7 +108,7 @@ void draw() {
       if (x.health <= 0) {
         waveSpawner.enemyS.remove(x);
       }
-      x.turnToCoordinate(thePlayer.pos);
+      x.turnToCoordinate();
     }
 
     // thePlayer.stopLR();
@@ -123,7 +125,7 @@ void draw() {
 
     theMarket.display();
 
-    waveSpawner.waveTrack();
+    waveSpawner.waveTrack( theMarket, thePlayer);
     waveSpawner.display();
     //moveRichestEnemy();
     if (thePlayer.health <= 0 || !theMarket.isAlive() ) {
