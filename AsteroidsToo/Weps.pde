@@ -6,13 +6,14 @@ class Weps {
   int bulletDirections;
   PVector _pos;
   int damage;
-
+  int bullet_hp;
   // constructor
   public Weps(Ship sh) {
     bullets= 3;
     frameCD = 50;
     _pos = sh.pos;
     damage = 20;
+    bullet_hp = 1;
   }
 
   // display weapon
