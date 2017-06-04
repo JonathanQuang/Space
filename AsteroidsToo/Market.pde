@@ -9,7 +9,7 @@ class Market extends Structure {
   Market() {
     pos = new PVector( width/2-len, height/2-len );
     len = 40;
-    hp = 100;
+    hp = 1000;
     wepList = new ArrayList<String>();
     wepList.add("Blaster$1K");
     wepList.add("Peircer$1K");

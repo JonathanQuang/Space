@@ -6,12 +6,13 @@ public class AstSpawner {
   AstSpawner(int num_Asteroids) {
     astList = new ArrayList();
     while (num_Asteroids > 0 ) { 
-      astList.add( new Asteroid() );
+      astList.add( new Asteroid(50) );
       num_Asteroids--;
     }
   }
 
   //keeps fixed amount of asteroids on screen
+  /*
   void manageRespawn() {
     for (int i=0; i < astList.size(); i++) {
       //astList.get(i).isDead();
@@ -20,6 +21,7 @@ public class AstSpawner {
       }
     }
   }
+  */
 
   //checks for collision on market
   void collisionMarketAll( Market m ) {
@@ -56,6 +58,17 @@ public class AstSpawner {
       astList.get(i).updatePos();
     }
   }
+  
+  void manageSplit() {
+    for (int i=0; i<astList.size(); i++) {
+      if (astList.get(i).dead) {
+         astList.get(i).splitAst();
+         thePlayer.changeMoney(astList.get(i).money);
+         astList.remove(i);
+         i--;
+      }
+    }
+  }
 
   // handles all relevant asteroid commands
   void run() {
@@ -64,6 +77,7 @@ public class AstSpawner {
     collisionMarketAll( theMarket );
     collisionWallAll( wallS );
     collisionStorageAll( storageS );
-    manageRespawn();
+    manageSplit();
+    //manageRespawn();
   }
 }
