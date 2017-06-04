@@ -27,7 +27,7 @@ class Market extends Structure {
     }
     fill(250);
     text(dispString, 0, wepList.size()*50);
-    text("100HP,$200", 400, 100);
+    text("100sHP,$200", 400, 100);
   }
 
   void updateCursor() {
