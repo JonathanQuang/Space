@@ -54,6 +54,7 @@ void draw() {
   } else if (inMarket) {
     theMarket.openGUI();
     theMarket.updateCursor();
+    theMarket.displayPlayerMoney(thePlayer);
     if (keyPressed == true) {
       System.out.println("test");
       if (key == 'm') {

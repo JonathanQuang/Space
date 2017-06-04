@@ -18,6 +18,8 @@ class Market extends Structure {
 
   // makes the market dissapear when dead by moving it offscreen
 
+
+  
   void openGUI(){
        fill(100);
        background(100);
@@ -50,10 +52,20 @@ class Market extends Structure {
         key = 'f';
       } 
     }
+    if (cursorX < 0 || cursorX > 1){
+       cursorX=0; 
+    }
+    if (cursorY < 0 || cursorY > 7){
+       cursorY=0; 
+    }
     fill(0);
     noFill();
     rect(cursorX*400,50+cursorY*100,400,50);
     
     
+  }
+  
+    void displayPlayerMoney(PlayerShip Player){
+      text("Money" + Player.money,0,50);
   }
 }
