@@ -6,6 +6,7 @@ public class Waves {
   int shooters_spawned;
   boolean all_at_once;
   ArrayList<EnemyShip> enemyS;
+  ArrayList<Kamikaze> kamikazE;
   PFont f;
   Waves() {
     level = 0;
@@ -14,6 +15,7 @@ public class Waves {
     shooters_spawned=0;
     enemyS = new ArrayList<EnemyShip>();
     all_at_once = false;
+    kamikazE = new ArrayList<Kamikaze>();
   }
   void waveTrack() {
     num_shooters = 3 * (level + 2);
@@ -21,6 +23,7 @@ public class Waves {
     if(shooters_spawned != num_shooters) { // if all ur shooters haven't spawned it's lit to spawn more
       if ( time_left % 180 == 0 ) {
         enemyS.add(new EnemyShip());
+        kamikazE.add(new Kamikaze());
         shooters_spawned++;
       }
     }  

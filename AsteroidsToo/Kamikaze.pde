@@ -4,7 +4,7 @@ class Kamikaze extends EnemyShip{
   
     public Kamikaze(){
     super();
-    weapons.removeFirst();//remove the weapon
+    
   }
   
     // moves like enemy ship, but twice the velocity
@@ -18,5 +18,7 @@ class Kamikaze extends EnemyShip{
     this.vel.normalize();
     this.vel.setMag(3);
   }
-  
+  void shoot(PlayerShip lol){
+    fill(0,random(0,255),0);
+  }
 }

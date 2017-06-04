@@ -57,7 +57,9 @@ void draw() {
     theMarket.displayPlayerMoney(thePlayer);
     theMarket.processPurchase(thePlayer);
     theMarket.processBought();
+    
     if (keyPressed == true) {
+      System.out.println("test");
       if (key == 'm') {
         inMarket=false;
         key='f';
@@ -94,27 +96,21 @@ void draw() {
     }
     for (int j = 0; j < waveSpawner.enemyS.size(); j++ ) {
       EnemyShip x = waveSpawner.enemyS.get(j);
-        x.display();
-        x.applyShipMovement();
-        x.checkBoundary();
-        x.move(thePlayer);
-        if (frameCount % 100 == 0 ) {
-          x.shoot(x);
-        }
-        x.fireAll();
+      x.display();
+      x.applyShipMovement();
+      x.checkBoundary();
+      x.move(thePlayer);
+      if (frameCount % 100 == 0 ) {
+        x.shoot(x);
+      }
+      x.fireAll();
 
       if (x.health <= 0) {
         waveSpawner.enemyS.remove(x);
       }
       x.turnToCoordinate(thePlayer.pos);
-    
     }
-   for( int z = 0; z < waveSpawner.kamikazE.size();z++){
-         waveSpawner.kamikazE.get(z).display();
-         waveSpawner.kamikazE.get(z).applyShipMovement();
-         waveSpawner.kamikazE.get(z).checkBoundary();
-         waveSpawner.kamikazE.get(z).move(thePlayer);
-   }
+
     // thePlayer.stopLR();
     /*
     theShip.display();
@@ -168,7 +164,7 @@ public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) {
         */
       }
     }
-    // Collision between player bullets and enemy ship
+    // Collision between player bullets and asteroids
     for (int k = 0; k<waveSpawner.enemyS.size(); k++) { // Bullets (J) and Enemies (K)
       //eShip = waveSpawner.enemyS.get(k);
       if ( dist(waveSpawner.enemyS.get(k).pos.x, waveSpawner.enemyS.get(k).pos.y, pShip.getShots().get(j).pos.x, pShip.getShots().get(j).pos.y) < 35) { //index bounds exception this line
@@ -195,7 +191,7 @@ public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) {
       if (dist(waveSpawner.enemyS.get(l).shotsFired.get(m).pos.x, waveSpawner.enemyS.get(l).shotsFired.get(m).pos.y, pShip.pos.x, pShip.pos.y) < 35) { // If bullet is within distance of master bullet 
 
         // Damage Ship
-        pShip.damageShip(20);
+        pShip.damageShip(100);
 
         // Damage bullet
         waveSpawner.enemyS.get(l).shotsFired.get(m).damage(1);

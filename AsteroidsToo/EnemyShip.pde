@@ -1,4 +1,4 @@
-class EnemyShip extends Ship implements Comparable<EnemyShip> {
+class EnemyShip extends Ship implements Comparable<EnemyShip>                     {
   // Currently no real functions, needs some more touchups
 
   // default constructor
@@ -99,7 +99,6 @@ class EnemyShip extends Ship implements Comparable<EnemyShip> {
 
     //turn to face the the targeted coordinate
     redirectYaw = degrees(redirectYaw);
-    System.out.println(redirectYaw + ":" + this.yaw);
     if (this.yaw > redirectYaw) {
       this.changeYaw(-2);
     } else if (this.yaw < redirectYaw) {
