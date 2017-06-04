@@ -1,7 +1,7 @@
 ==============================================================
 2017-06-03
 --------------------------------------------------------------
-1. Jonathan Quang: ??
+1. Jonathan Quang: Through some trig, created a function where enemy ships will turn to face a certain position (the player)
 2. Brian Kwong: collision b/w player and enemies, game over screen, collision improvements, economy changes
 3. Datian: waves, enemy movement, player kills enemies, merge conflict 
 
