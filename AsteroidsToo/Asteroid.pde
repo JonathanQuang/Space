@@ -19,14 +19,6 @@ class Asteroid extends Moveable {
     size = 50;
   }
 
-  /*
-  void isDead(){
-   if (pos.x < 0 || pos.y<0 || pos.x > width || pos.y > height){
-   dead = true; 
-   }
-   }
-   */
-
   // inflicts damage on asteroid
   void damage(float dmg) {
     health-=dmg;
@@ -59,16 +51,6 @@ class Asteroid extends Moveable {
       m.loseHP(20);
       damage(100);
     }
-
-    /*
-    if ( pos.x > m.pos.x && pos.x < m.pos.x + 40 && pos.y > m.pos.y && pos.y < m.pos.y + 40 ) {
-     
-     PVector position = new PVector( pos.x, pos.y );
-     if ( position.sub(m.pos).mag() <= 50 + m.len/2 ) {
-     m.loseHP(20);
-     damage(100);
-     }
-     */
   }
 
   // if asteroid hits wall, inflict damage on wall
