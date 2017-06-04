@@ -17,6 +17,7 @@ public class Waves {
   }
   void waveTrack() {
     num_shooters = 3 * (level + 2);
+    
     if(shooters_spawned != num_shooters) { // if all ur shooters haven't spawned it's lit to spawn more
       if ( time_left % 180 == 0 ) {
         enemyS.add(new EnemyShip());
@@ -28,7 +29,7 @@ public class Waves {
       level++;
       time_allotted +=50;
       time_left = time_allotted;
-     
+      shooters_spawned = 0;
     }
   }
   void display() {
