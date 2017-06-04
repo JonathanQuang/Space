@@ -123,6 +123,17 @@ class Asteroid extends Moveable {
       damage(100);
     }
   }
+  
+  void collisionWithEnemies() {
+    for (EnemyShip e : waveSpawner.enemyS) {
+      PVector EnemyPos = new PVector( e.pos.x, e.pos.y );
+      PVector AstPos = new PVector( pos.x, pos.y );
+      if (AstPos.sub(EnemyPos).mag() <= size/2 + e.collisionRad) {
+        e.damageShip(damage);
+        damage(100);
+      }
+    }
+  }
   //#########################################################// 
 
   // display asteroid

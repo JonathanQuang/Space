@@ -48,6 +48,13 @@ public class AstSpawner {
       a.collisionWithPlayer();
     }
   }
+  
+  //checks for collision with enemies
+  void collisionEnemyAll() {
+    for (Asteroid a : astList) {
+      a.collisionWithEnemies();
+    }
+  }
 
   // calls display method on asteroids 
   void displayAll() {
@@ -83,6 +90,7 @@ public class AstSpawner {
     collisionWallAll( wallS );
     collisionStorageAll( storageS );
     collisionPlayerAll();
+    collisionEnemyAll();
     manageSplit();
     manageSpawn();
   }
