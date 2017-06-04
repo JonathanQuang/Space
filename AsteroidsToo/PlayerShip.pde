@@ -5,6 +5,8 @@ class PlayerShip extends Ship {
   int lastFrame;
   ArrayList<MoneyStorage> storagesPlaced;
   float maxMoney;
+  int storedWalls = 0;
+  int storedMoneyStorages = 0;
 
   // default constructor
   PlayerShip() { 
