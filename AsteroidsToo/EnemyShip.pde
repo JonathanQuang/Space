@@ -21,7 +21,7 @@ class EnemyShip extends Ship {
   }
 
   // moves ship
-  void move(PlayerShip pShip) {
+  void move() {
     // add movement calls
     Object temp = targetControl.peek();
     if (temp instanceof Market ) {

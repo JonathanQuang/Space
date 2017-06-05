@@ -83,7 +83,7 @@ void draw() {
         x.display();
         x.applyShipMovement();
         x.checkBoundary();
-        x.move(thePlayer);
+        x.move();
         if (frameCount % 100 == 0 ) {
           x.shoot(x);
         }
