@@ -16,7 +16,7 @@ class Asteroid extends Moveable {
     health = 100;
     money = random(10, 100);
     size = newSize;
-    damage = size/2 - 10;
+    damage = size/3;
   }
 
   Asteroid( int newSize, PVector position ) {
@@ -25,7 +25,7 @@ class Asteroid extends Moveable {
     health = 100;
     money = random(10, 100);
     size = newSize;
-    damage = size/2 - 10;
+    damage = size/3;
   }
 
   // inflicts damage on asteroid
@@ -128,11 +128,24 @@ class Asteroid extends Moveable {
     for (EnemyShip e : waveSpawner.enemyS) {
       PVector EnemyPos = new PVector( e.pos.x, e.pos.y );
       PVector AstPos = new PVector( pos.x, pos.y );
-      if (AstPos.sub(EnemyPos).mag() <= size/2 + e.collisionRad) {
+      if (EnemyPos.sub(AstPos).mag() <= size/2 + e.collisionRad) {
         e.damageShip(damage);
         damage(100);
       }
+      for (int i=0; i<e.shotsFired.size(); i++) {
+        Bullet b = e.shotsFired.get(i);
+        PVector BulletPos = new PVector( b.pos.x, b.pos.y );
+        if (BulletPos.sub(AstPos).mag() <= size/2) {
+          b.damage(1);
+          damage(100);
+        }
+        if (!b.isAlive()) {
+          e.shotsFired.remove(i);
+        }
+      }
     }
+    
+    /*
     for (Kamikaze k : waveSpawner.kamikazE) {
       PVector EnemyPos = new PVector( k.pos.x, k.pos.y );
       PVector AstPos = new PVector( pos.x, pos.y );
@@ -141,6 +154,7 @@ class Asteroid extends Moveable {
         damage(100);
       }
     }
+    */
   }
   //#########################################################// 
 

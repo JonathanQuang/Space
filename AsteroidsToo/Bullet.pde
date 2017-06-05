@@ -8,7 +8,7 @@ class Bullet extends Moveable {
   public Bullet(Ship theShooter, int dmg, int hp) {
     super( new PVector( theShooter.pos.x, theShooter.pos.y ), new PVector( 0, 0));
     yaw = theShooter.yaw;
-    speed = 3; // to be put as parameter later
+    speed = 7; // to be put as parameter later
     setVel();
     damage = dmg;
     health = hp;

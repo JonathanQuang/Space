@@ -10,7 +10,7 @@ class Weps {
   // constructor
   public Weps(Ship sh) {
     bullets= 3;
-    frameCD = 50;
+    frameCD = 35;
     _pos = sh.pos;
     damage = 20;
     bullet_hp = 1;

@@ -85,6 +85,17 @@ class Market extends Structure implements Comparable {
         e.damageShip(100);
         loseHP(50);
       }
+      for (int i=0; i<e.shotsFired.size(); i++) {
+        Bullet b = e.shotsFired.get(i);
+        PVector BulletPos = new PVector( b.pos.x, b.pos.y );
+        if (BulletPos.sub(MarketPos).mag() <= len/2) {
+          b.damage(1);
+          loseHP(20);
+        }
+        if (!b.isAlive()) {
+          e.shotsFired.remove(i);
+        }
+      }
     }
     /*
     for (Kamikaze k : waveSpawner.kamikazE) {

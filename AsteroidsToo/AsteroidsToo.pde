@@ -216,8 +216,9 @@ public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) {
       pShip.getShots().remove(j);
     }
   }
-  // Collision between enemy bullets and player
+  
   for (int l=0; l<waveSpawner.enemyS.size(); l++) {
+    // Collision between enemy bullets and player
     for (int m=0; m<waveSpawner.enemyS.get(l).shotsFired.size(); m++) {
       if (dist(waveSpawner.enemyS.get(l).shotsFired.get(m).pos.x, waveSpawner.enemyS.get(l).shotsFired.get(m).pos.y, pShip.pos.x, pShip.pos.y) < 35) { // If bullet is within distance of master bullet 
 

@@ -7,7 +7,7 @@ public class AstSpawner {
   AstSpawner(int num_Asteroids) {
     astList = new ArrayList();
     while (num_Asteroids > 0 ) { 
-      astList.add( new Asteroid( (int)random(1, 5) * 10 ) );
+      astList.add( new Asteroid( (int)random(2, 6) * 10 ) );
       num_Asteroids--;
     }
     lastFrame = 300;
