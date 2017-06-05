@@ -13,6 +13,10 @@ public class AstSpawner {
     lastFrame = 300;
   }
 
+  int getSize() {
+    return astList.size();
+  }
+
   //occasionally spawn asteroids
   void manageSpawn() {
     if (frameCount - lastFrame >= 300) {

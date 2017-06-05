@@ -5,14 +5,15 @@ import java.util.ArrayDeque;
 AstSpawner _spawner;
 Market theMarket;
 PlayerShip thePlayer;
-//EnemyShip theEnemy;
 ArrayList<MoneyStorage> storageS;
 ArrayList<Wall> wallS;
+int frameTracker;
+Waves waveSpawner;
+
+// flags
 boolean gameOver = false;
 boolean start = false;
 boolean inMarket;
-int frameTracker;
-Waves waveSpawner;
 
 void setup() {
   size(1000, 800);
@@ -30,32 +31,30 @@ void mouseClicked() {
 }
 
 void draw() {
-  //System.out.println(enemyS.peek().money);
-
-  if (!start) {  
+  if (!start) {  // start screen
     background( 0, 255, 0 );
     fill(0);
     textSize(64); 
     text( "Press anywhere to start", 140, 100 );
-  } else if (inMarket) {
+  } else if (inMarket) { // manage market interface
     theMarket.openGUI();
     theMarket.updateCursor();
     theMarket.displayPlayerMoney(thePlayer);
     theMarket.processPurchase(thePlayer);
     theMarket.processBought();
-    if (keyPressed == true) {
+    if (keyPressed == true) { // close market interface
       if (key == 'm') {
         inMarket=false;
         key='f';
       }
     }
-  } else if (!gameOver) {
+  } else if (!gameOver) { // main game loop
     background(0);
     
+    // manage player 
     thePlayer.run();
     
-    theMarket.collisionWithEnemy();
-
+    // wall storages
     wallS = thePlayer.getWalls();
     for (int i = 0; i < wallS.size(); i++) {
       Wall w = wallS.get(i);
@@ -66,6 +65,7 @@ void draw() {
       }
     }  
 
+    // money storages
     storageS = thePlayer.getStorages();
     for (int i = 0; i < storageS.size(); i++) {
       MoneyStorage w = storageS.get(i);
@@ -76,8 +76,9 @@ void draw() {
         w.display();
       }
     }
+    
+    // enemy ships
     for (int j = 0; j < waveSpawner.enemyS.size(); j++ ) {
-
       EnemyShip x = waveSpawner.enemyS.get(j);
         x.display();
         x.applyShipMovement();
@@ -89,33 +90,39 @@ void draw() {
         if (!(x instanceof Kamikaze)){
           x.fireAll();
         }
-
-      if (x.health <= 0) {
+      if (!x.isAlive()) {
         waveSpawner.enemyS.remove(x);
       }
       x.turnToCoordinate();
     }
-
+    
+    // asteroid spawner
     _spawner.run();
 
+    // collisions
     collisions(thePlayer, _spawner.astList);
 
+    // market
+    theMarket.collisionWithEnemy();
     theMarket.display();
 
-    waveSpawner.waveTrack( theMarket, thePlayer);
+    // manage enemy waves
+    waveSpawner.waveTrack();
     waveSpawner.display();
-    //moveRichestEnemy();
-    if (thePlayer.health <= 0 || !theMarket.isAlive() ) {
+
+    // check if game ended
+    if (!thePlayer.isAlive() || !theMarket.isAlive() ) {
       gameOver = true;
     }
-    //detect if player presses m
+    
+    // open market interface
     if (keyPressed == true) {
       if (key == 'm') {
         inMarket=true;
         key='f';
       }
     }
-  } else {
+  } else { // game over screen
     background( 50, 100, 150 );
     fill(0);
     textSize(64); 
@@ -131,18 +138,18 @@ public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) {
     for (int i=0; i<astList.size(); i++) { // Asteroids (I)
       if ( dist(astList.get(i).pos.x, astList.get(i).pos.y, pShip.getShots().get(j).pos.x, pShip.getShots().get(j).pos.y) < 25) {
         astList.get(i).damage(100);
-        pShip.getShots().get(j).damage(1);
+        pShip.getBullet(j).damage(1);
       }
     }
     // Collision between player bullets and enemy ship
-    for (int k = 0; k<waveSpawner.enemyS.size(); k++) { // Bullets (J) and Enemies (K)
+    for (int k = 0; k<waveSpawner.getSize(); k++) { // Bullets (J) and Enemies (K)
       //eShip = waveSpawner.enemyS.get(k);
       if ( dist(waveSpawner.enemyS.get(k).pos.x, waveSpawner.enemyS.get(k).pos.y, pShip.getShots().get(j).pos.x, pShip.getShots().get(j).pos.y) < waveSpawner.enemyS.get(k).collisionRad) { //index bounds exception this line
 
         // 1. Damage ship
-        waveSpawner.enemyS.get(k).damageShip(100);
+        waveSpawner.getEnemy(k).damageShip(100);
         // 2. Damage bullet
-        pShip.getShots().get(j).damage(1);
+        pShip.getBullet(j).damage(1);
         // 3. Check if enemy is dead, if dead add cash
         if ( waveSpawner.enemyS.get(k).killed) {
           pShip.changeMoney(waveSpawner.enemyS.get(k).money);
@@ -151,14 +158,14 @@ public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) {
       }
     }
     //remove bullets that are not alive
-    if (!pShip.getShots().get(j).isAlive()) {
+    if (!pShip.getBullet(j).isAlive()) {
       pShip.getShots().remove(j);
     }
   }
   
-  for (int l=0; l<waveSpawner.enemyS.size(); l++) {
+  for (int l=0; l<waveSpawner.getSize(); l++) {
     // Collision between enemy bullets and player
-    for (int m=0; m<waveSpawner.enemyS.get(l).shotsFired.size(); m++) {
+    for (int m=0; m<waveSpawner.getEnemy(l).shotsFired.size(); m++) {
       if (dist(waveSpawner.enemyS.get(l).shotsFired.get(m).pos.x, waveSpawner.enemyS.get(l).shotsFired.get(m).pos.y, pShip.pos.x, pShip.pos.y) < 35) { // If bullet is within distance of master bullet 
 
         // Damage Ship
@@ -166,14 +173,14 @@ public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) {
 
         // Damage bullet
         waveSpawner.enemyS.get(l).shotsFired.get(m).damage(1);
-        if (waveSpawner.enemyS.get(l).shotsFired.get(m).health <= 0) {
+        if (waveSpawner.getEnemy(l).getBullet(m).health <= 0) {
           waveSpawner.enemyS.get(l).shotsFired.remove(m);
         }
       }
     }
   }
   // make sure player doesn't go above money cap
-  if (pShip.money > pShip.maxMoney) {
+  if (pShip.getMoney() > pShip.getMaxMoney()) {
     pShip.money = pShip.maxMoney;
   }
 }

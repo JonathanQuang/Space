@@ -25,6 +25,14 @@ abstract class Ship extends Moveable {
   void shoot(Ship currShip) {
     shotsFired.add( new Bullet(currShip, currShip.weapons.getFirst().damage, currShip.weapons.getFirst().bullet_hp) );
   }
+  
+  Bullet getBullet( int index ) {
+    return shotsFired.get(index);
+  }
+  
+  float getMoney() {
+    return money;
+  }
 
   void damageShip(int dmg) {
     health -= dmg;

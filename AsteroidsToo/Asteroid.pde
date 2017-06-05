@@ -22,7 +22,7 @@ class Asteroid extends Moveable {
     super( position, new PVector(random(4)-2, random(4)-2), 100);
     dead = false;
     health = 100;
-    money = random(10, 100);
+    money = random(1,6) * size/2;
     size = newSize;
     damage = size/3;
   }

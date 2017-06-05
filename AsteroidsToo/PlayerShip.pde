@@ -32,6 +32,10 @@ class PlayerShip extends Ship implements Comparable {
   ArrayList<MoneyStorage> getStorages() {
     return storagesPlaced;
   }
+  
+  float getMaxMoney() {
+    return maxMoney; 
+  }
   // ################### //
 
   /*

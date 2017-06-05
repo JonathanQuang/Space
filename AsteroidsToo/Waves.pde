@@ -18,10 +18,17 @@ public class Waves {
     shooters_spawned=0;
     enemyS = new ArrayList<EnemyShip>();
     all_at_once = false;
-    kamikazE = new ArrayList<Kamikaze>();
   }
   
-  void waveTrack(Market theMarket, PlayerShip thePlayer) {
+  EnemyShip getEnemy(int index) {
+    return enemyS.get(index);
+  }
+  
+  int getSize() {
+    return enemyS.size();  
+  }
+  
+  void waveTrack() {
     num_shooters = 3 * (level + 2);
 
     if (shooters_spawned != num_shooters) { // if all ur shooters haven't spawned it's lit to spawn more
