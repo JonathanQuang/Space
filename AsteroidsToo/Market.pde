@@ -99,14 +99,14 @@ class Market extends Structure implements Comparable {
     }
     /*
     for (Kamikaze k : waveSpawner.kamikazE) {
-      PVector EnemyPos = new PVector( k.pos.x, k.pos.y );
-      PVector MarketPos = new PVector( pos.x, pos.y );
-      if (EnemyPos.sub(MarketPos).mag() <= len/2 + k.collisionRad) {
-        k.damageShip(100);
-        loseHP(50);
-      }
-    }
-    */
+     PVector EnemyPos = new PVector( k.pos.x, k.pos.y );
+     PVector MarketPos = new PVector( pos.x, pos.y );
+     if (EnemyPos.sub(MarketPos).mag() <= len/2 + k.collisionRad) {
+     k.damageShip(100);
+     loseHP(50);
+     }
+     }
+     */
   }
 
   void processPurchase(PlayerShip Player) {
@@ -128,14 +128,17 @@ class Market extends Structure implements Comparable {
           if (cursorY==0 && Player.money >= 200) {
             Player.health += 100;
             Player.money -= 200;
+            key = 'f';
           }
           if (cursorY==1 && Player.money >= 250) {
             Player.money -= 250;
             Player.storedWalls += 1;
+            key = 'f';
           }
           if (cursorY==2 && Player.money >= 300) {
             Player.money -= 300;
             Player.storedMoneyStorages += 1;
+            key = 'f';
           }
         }
       }
