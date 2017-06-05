@@ -29,5 +29,6 @@ The Driver class for all of this is contained within <em>AsteroidsToo.pde<em>.
 - WASD for movement (A & D rotate you left / right, W & S accelerates you forwards / back)
 - Q & E for selecting weapons
 - L to fire a bullet
-- B to place a wall ($50)
-- N to place a storage ($100)
+- B to place a wall
+- N to place a storage
+- M to open market interface
