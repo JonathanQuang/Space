@@ -32,3 +32,4 @@ The Driver class for all of this is contained within <em>AsteroidsToo.pde<em>.
 - B to place a wall
 - N to place a storage
 - M to open market interface
+  -WASD to navigate the market interface, l to purchase the selected item
