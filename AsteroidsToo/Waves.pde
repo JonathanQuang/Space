@@ -1,4 +1,5 @@
 public class Waves {
+  //instance vars
   int time_allotted;
   int num_shooters;
   int level;
@@ -8,7 +9,9 @@ public class Waves {
   ArrayList<EnemyShip> enemyS;
   ArrayList<Kamikaze> kamikazE;
   PFont f;
-  Waves(){
+  
+  //default constructor
+  Waves() {
     level = 0;
     num_shooters = 0;
     time_allotted = time_left = 6000; // in frames
@@ -17,15 +20,19 @@ public class Waves {
     all_at_once = false;
     kamikazE = new ArrayList<Kamikaze>();
   }
+  
   void waveTrack(Market theMarket, PlayerShip thePlayer) {
     num_shooters = 3 * (level + 2);
-    
-    if(shooters_spawned != num_shooters) { // if all ur shooters haven't spawned it's lit to spawn more
+
+    if (shooters_spawned != num_shooters) { // if all ur shooters haven't spawned it's lit to spawn more
       if ( time_left % 180 == 0 ) {
 
-        kamikazE.add(new Kamikaze());
-        enemyS.add(new EnemyShip());
-        shooters_spawned++;
+        if (shooters_spawned % 3 == 0) {
+          enemyS.add(new Kamikaze());
+        } else {
+          enemyS.add(new EnemyShip());
+        }
+        shooters_spawned += 1;
       }
     }  
     time_left--;

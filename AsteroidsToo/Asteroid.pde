@@ -133,6 +133,14 @@ class Asteroid extends Moveable {
         damage(100);
       }
     }
+    for (Kamikaze k : waveSpawner.kamikazE) {
+      PVector EnemyPos = new PVector( k.pos.x, k.pos.y );
+      PVector AstPos = new PVector( pos.x, pos.y );
+      if (AstPos.sub(EnemyPos).mag() <= size/2 + k.collisionRad) {
+        k.damageShip(damage);
+        damage(100);
+      }
+    }
   }
   //#########################################################// 
 

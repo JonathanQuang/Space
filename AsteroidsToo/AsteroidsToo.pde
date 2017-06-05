@@ -72,6 +72,8 @@ void draw() {
     thePlayer.checkBoundary();
     thePlayer.makeBullets();
     thePlayer.collisionWithEnemies();
+    
+    theMarket.collisionWithEnemy();
 
     wallS = thePlayer.getWalls();
     for (int i = 0; i < wallS.size(); i++) {
@@ -103,7 +105,9 @@ void draw() {
         if (frameCount % 100 == 0 ) {
           x.shoot(x);
         }
-        x.fireAll();
+        if (!(x instanceof Kamikaze)){
+          x.fireAll();
+        }
 
       if (x.health <= 0) {
         waveSpawner.enemyS.remove(x);
@@ -115,6 +119,10 @@ void draw() {
          waveSpawner.kamikazE.get(z).applyShipMovement();
          waveSpawner.kamikazE.get(z).checkBoundary();
          waveSpawner.kamikazE.get(z).move(thePlayer);
+         waveSpawner.kamikazE.get(z).turnToCoordinate();
+         if (waveSpawner.kamikazE.get(z).health <= 0) {
+           waveSpawner.kamikazE.remove(z);
+         }
    }
     // thePlayer.stopLR();
     /*
@@ -172,7 +180,7 @@ public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) {
     // Collision between player bullets and enemy ship
     for (int k = 0; k<waveSpawner.enemyS.size(); k++) { // Bullets (J) and Enemies (K)
       //eShip = waveSpawner.enemyS.get(k);
-      if ( dist(waveSpawner.enemyS.get(k).pos.x, waveSpawner.enemyS.get(k).pos.y, pShip.getShots().get(j).pos.x, pShip.getShots().get(j).pos.y) < 35) { //index bounds exception this line
+      if ( dist(waveSpawner.enemyS.get(k).pos.x, waveSpawner.enemyS.get(k).pos.y, pShip.getShots().get(j).pos.x, pShip.getShots().get(j).pos.y) < waveSpawner.enemyS.get(k).collisionRad) { //index bounds exception this line
 
         // 1. Damage ship
         waveSpawner.enemyS.get(k).damageShip(100);
@@ -185,6 +193,24 @@ public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) {
         }
       }
     }
+    /*
+    for (int y = 0; y <waveSpawner.kamikazE.size(); y++ ) {
+      Kamikaze lol = waveSpawner.kamikazE.get(y);
+      PVector EnemyPos = new PVector( lol.pos.x, lol.pos.y );
+      PVector BulletPos = new PVector( pShip.getShots().get(j).pos.x, pShip.getShots().get(j).pos.y );
+      if ( EnemyPos.sub(BulletPos).mag() < lol.collisionRad ) {
+        // 1. Damage ship
+        waveSpawner.kamikazE.get(y).damageShip(100);
+        // 2. Damage bullet
+        pShip.getShots().get(j).damage(1);
+        // 3. Check if enemy is dead, if dead add cash
+        if ( waveSpawner.enemyS.get(y).killed) {
+          pShip.changeMoney(waveSpawner.enemyS.get(y).money);
+          waveSpawner.enemyS.remove(y);
+        }
+      }
+    }
+    */
     //remove bullets that are not alive
     if (!pShip.getShots().get(j).isAlive()) {
       pShip.getShots().remove(j);

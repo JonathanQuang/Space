@@ -114,6 +114,16 @@ class PlayerShip extends Ship implements Comparable {
         e.damageShip( 100 );
       }
     }
+    /*
+    for (Kamikaze k : waveSpawner.kamikazE) {
+      PVector playerPos = new PVector( pos.x, pos.y );
+      PVector enemyPos = new PVector( k.pos.x, k.pos.y );
+      if (playerPos.sub(enemyPos).mag() <= 50) {
+        damageShip( 50 );
+        k.damageShip( 100 );
+      }
+    }
+    */
   }
 
   //manages the swapping of weapons 

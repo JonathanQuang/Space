@@ -86,6 +86,16 @@ class Market extends Structure implements Comparable {
         loseHP(50);
       }
     }
+    /*
+    for (Kamikaze k : waveSpawner.kamikazE) {
+      PVector EnemyPos = new PVector( k.pos.x, k.pos.y );
+      PVector MarketPos = new PVector( pos.x, pos.y );
+      if (EnemyPos.sub(MarketPos).mag() <= len/2 + k.collisionRad) {
+        k.damageShip(100);
+        loseHP(50);
+      }
+    }
+    */
   }
 
   void processPurchase(PlayerShip Player) {

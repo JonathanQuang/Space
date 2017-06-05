@@ -4,13 +4,15 @@ class EnemyShip extends Ship                     {
   // Currently no real functions, needs some more touchups
   PriorityQueue<Comparable> targetControl;
   Object target;
+  int speed;
   // default constructor
   public EnemyShip() {
     super();
     money = (int)random(100.0, 500.0);
     setSpawn();
-    targetControl=new PriorityQueue<Comparable>( new TargetMarket() );
+    targetControl=new PriorityQueue<Comparable>();
     prioritize();
+    speed = 1;
   }
 
   // sets target
@@ -33,10 +35,9 @@ class EnemyShip extends Ship                     {
       this.vel.y = target.pos.y-this.pos.y;
       this.vel.x = target.pos.x-this.pos.x;
     }
-
-
-
     this.vel.normalize();
+    this.vel.y *= speed;
+    this.vel.x *= speed;
 
     //this..y = pShip.pos.y-this.pos.y;
     //this.accel.y =
