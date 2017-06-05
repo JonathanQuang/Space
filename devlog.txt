@@ -1,4 +1,11 @@
 ==============================================================
+2017-06-04
+--------------------------------------------------------------
+1. Jonathan Quang: market gui
+2. Brian Kwong: more collisions, enemy prioritization, asteroids splitting
+3. Datian: more waves
+
+==============================================================
 2017-06-03
 --------------------------------------------------------------
 1. Jonathan Quang: Through some trig, created a function where enemy ships will turn to face a certain position (the player)
