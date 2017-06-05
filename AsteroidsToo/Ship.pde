@@ -27,17 +27,6 @@ class Ship extends Moveable {
     last_not_full = 0;
     health = 100;
     killed = false;
-    /*
-     wepps = new LinkedList();
-     wepps.add("eV1");
-     wepps.add("eV1");
-     wepps.add("eV1");
-     wepps.add("eV1");
-     wepps.add("eV1");
-     money = 0;
-     */
-
-
     weapons = new ArrayDeque();
     weapons.addFirst(new Weps(this));
 
@@ -88,8 +77,7 @@ class Ship extends Moveable {
   }
 
   // spawns bullet
-
-
+  /*
   void makeBullets() {
     // System.out.println(bullets);
     if ( bullets < 3 ) {
@@ -103,11 +91,13 @@ class Ship extends Moveable {
       }
     }
   }
+  */
 
   // change the amount of money
   void changeMoney(float x) {
     money +=x;
   }
+  
   void fireAll() {
     for (Bullet b : shotsFired) {
       b.updateMovement();

@@ -1,5 +1,4 @@
 //uses piercer weapon and has more HP
-
 class DeepDestroyer extends EnemyShip{
   
     public DeepDestroyer(){

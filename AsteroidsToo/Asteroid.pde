@@ -8,7 +8,7 @@ class Asteroid extends Moveable {
   public int size;
   public int damage;
 
-  // default constructor
+  // constructor for spawning new asteroids
   Asteroid(int newSize) {
     super(new PVector(random(1000), random(800)), 
       new PVector(random(4)-2, random(4)-2));
@@ -19,6 +19,7 @@ class Asteroid extends Moveable {
     damage = size/3;
   }
 
+  // constructor for splitting asteroids
   Asteroid( int newSize, PVector position ) {
     super( position, new PVector(random(4)-2, random(4)-2));
     dead = false;
@@ -36,6 +37,7 @@ class Asteroid extends Moveable {
     }
   }
 
+  // splits large asteroid into 1-3 smaller asteroids
   void splitAst() {
     if (size > 20) {
       PVector newPos = new PVector( pos.x, pos.y );
@@ -45,9 +47,11 @@ class Asteroid extends Moveable {
     }
   }
 
+  //##################### HELPERS #####################// 
   private float clamp(float value, float min, float max) {
     return Math.max(min, Math.min(max, value));
   }
+  //#########################################################// 
 
   //##################### COLLISION CODE #####################// 
   // if asteroid hits market, inflict damage on market
@@ -144,17 +148,6 @@ class Asteroid extends Moveable {
         }
       }
     }
-    
-    /*
-    for (Kamikaze k : waveSpawner.kamikazE) {
-      PVector EnemyPos = new PVector( k.pos.x, k.pos.y );
-      PVector AstPos = new PVector( pos.x, pos.y );
-      if (AstPos.sub(EnemyPos).mag() <= size/2 + k.collisionRad) {
-        k.damageShip(damage);
-        damage(100);
-      }
-    }
-    */
   }
   //#########################################################// 
 
