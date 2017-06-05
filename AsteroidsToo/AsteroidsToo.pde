@@ -51,12 +51,8 @@ void draw() {
     }
   } else if (!gameOver) {
     background(0);
-    thePlayer.display();
-    thePlayer.keyPressed();
-    thePlayer.fireAll();
-    thePlayer.checkBoundary();
-    //thePlayer.makeBullets();
-    thePlayer.collisionWithEnemies();
+    
+    thePlayer.run();
     
     theMarket.collisionWithEnemy();
 
@@ -136,13 +132,6 @@ public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) {
       if ( dist(astList.get(i).pos.x, astList.get(i).pos.y, pShip.getShots().get(j).pos.x, pShip.getShots().get(j).pos.y) < 25) {
         astList.get(i).damage(100);
         pShip.getShots().get(j).damage(1);
-        /*
-        if ( astList.get(i).dead) {
-          pShip.changeMoney(astList.get(i).money);
-          astList.remove(i);
-          //System.out.println(pShip.money);
-        }
-        */
       }
     }
     // Collision between player bullets and enemy ship

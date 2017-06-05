@@ -3,15 +3,14 @@ class Bullet extends Moveable {
   float yaw; // orientation
   float speed; // how fast
   int damage;    
-  int health;
+  
   // constructor
   public Bullet(Ship theShooter, int dmg, int hp) {
-    super( new PVector( theShooter.pos.x, theShooter.pos.y ), new PVector( 0, 0));
+    super( new PVector( theShooter.pos.x, theShooter.pos.y ), new PVector( 0, 0), hp);
     yaw = theShooter.yaw;
     speed = 7; // to be put as parameter later
     setVel();
     damage = dmg;
-    health = hp;
     while (theShooter.pos.dist(this.pos) < 40) {
       updatePos();
     }
@@ -27,10 +26,6 @@ class Bullet extends Moveable {
   
   void damage( int dmg ) {
     health -= dmg;
-  }
-  
-  boolean isAlive() {
-    return health > 0;
   }
 
   // moves bullet

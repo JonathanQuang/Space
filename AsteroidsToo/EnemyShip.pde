@@ -7,7 +7,7 @@ class EnemyShip extends Ship {
   // default constructor
   public EnemyShip() {
     super();
-    money = (int)random(100.0, 500.0);
+    money = random(1,6) * 20;
     setSpawn();
     targetControl=new PriorityQueue<Comparable>();
     prioritize();

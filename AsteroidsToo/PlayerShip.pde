@@ -149,6 +149,14 @@ class PlayerShip extends Ship implements Comparable {
     return 0;
   }
 
+  void run() {
+    display();
+    keyPressed();
+    fireAll();
+    checkBoundary();
+    collisionWithEnemies();
+  }
+
   // displays player
   void display() {
     super.display();

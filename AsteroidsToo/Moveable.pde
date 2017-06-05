@@ -1,12 +1,14 @@
 abstract class Moveable {
-  // instance var
+  // instance vars
   color c;
   PVector pos, vel;
+  int health;
 
   // constructor
-  Moveable(PVector thePos, PVector theVel) {
+  Moveable(PVector thePos, PVector theVel, int theHealth) {
     pos = thePos;
     vel = theVel;
+    health = theHealth;
   }
 
   //update Position based on velocity
@@ -21,9 +23,12 @@ abstract class Moveable {
   PVector getVel() {
     return vel;
   }
+  boolean isAlive() {
+    return health > 0;
+  }
   // ################### //
-
-  //establish boundaries for moveable objects
+  
+  // boundaries wrap around
   void checkBoundary() {
     if (pos.x > width) {
       pos.x = 20;
@@ -38,11 +43,4 @@ abstract class Moveable {
 
   // displays object
   abstract void display();
-  /*
-  void display() {
-   ellipse(pos.x, pos.y, 50, 50);
-   c = color(0, 250, 350);
-   fill(c);
-   }
-   */
 }
