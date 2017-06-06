@@ -6,7 +6,7 @@ class Wall extends Structure{
     float x = newPos.x;
     float y = newPos.y;
     pos = new PVector( x, y );
-    hp = 200;
+    hp = 300;
     len = 30;
   }
 }

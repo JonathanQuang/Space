@@ -71,7 +71,7 @@ void draw() {
       MoneyStorage w = storageS.get(i);
       if (!w.isAlive()) {
         storageS.remove(i);
-        thePlayer.maxMoney -= 100;
+        thePlayer.maxMoney -= 50;
       } else {
         w.display();
       }

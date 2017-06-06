@@ -27,9 +27,9 @@ class Market extends Structure implements Comparable {
     }
     fill(250);
     text(dispString, 0, wepList.size()*50);
-    text("100sHP,$200", 400, 100);
-    text("Wall, $250", 400, 200);
-    text("Storage,$300", 400, 300);
+    text("HP (100),$200", 400, 100);
+    text("Wall (5), $250", 400, 200);
+    text("Storage (5),$300", 400, 300);
   }
 
   void updateCursor() {
@@ -134,12 +134,12 @@ class Market extends Structure implements Comparable {
           }
           if (cursorY==1 && Player.money >= 250) {
             Player.money -= 250;
-            Player.storedWalls += 1;
+            Player.storedWalls += 5;
             key = 'f';
           }
           if (cursorY==2 && Player.money >= 300) {
             Player.money -= 300;
-            Player.storedMoneyStorages += 1;
+            Player.storedMoneyStorages += 5;
             key = 'f';
           }
         }

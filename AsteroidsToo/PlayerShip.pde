@@ -93,7 +93,7 @@ class PlayerShip extends Ship implements Comparable {
           if ( frameCount - lastFrame > 50) {
             lastFrame = frameCount; // update last wall placed
             storagesPlaced.add( new MoneyStorage( pos ) );
-            maxMoney += 100;
+            maxMoney += 50;
             storedMoneyStorages--;
           }
         }
