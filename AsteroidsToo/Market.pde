@@ -115,7 +115,7 @@ class Market extends Structure implements Comparable {
         if (cursorX==0) { //first column
           if (cursorY==0 && (Player.money >= 1000) && !isBought(0)) {
             indexList.add(0);
-            Player.money -= 1000;
+            Player.money -= 2500;
             Player.weapons.addFirst(new Blaster(Player));
             if (cursorY==1 && (Player.money >= 1000) && !isBought(1)) {
               indexList.add(1);

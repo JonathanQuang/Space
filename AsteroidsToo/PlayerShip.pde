@@ -12,12 +12,12 @@ class PlayerShip extends Ship implements Comparable {
   PlayerShip() { 
     super();
     lastFrame = 0;
-    money = 0;
+    money = 30000;
     health = 1000;
     wallsPlaced = new ArrayList<Wall>();
     f = createFont("Arial", 4, true);
     storagesPlaced = new ArrayList<MoneyStorage>();
-    maxMoney=300;
+    maxMoney=30000;
   }
 
   // #### ACCESSORS #### //
@@ -32,9 +32,9 @@ class PlayerShip extends Ship implements Comparable {
   ArrayList<MoneyStorage> getStorages() {
     return storagesPlaced;
   }
-  
+
   float getMaxMoney() {
-    return maxMoney; 
+    return maxMoney;
   }
   // ################### //
 
@@ -78,7 +78,7 @@ class PlayerShip extends Ship implements Comparable {
           // System.out.println(bullets);
         }
       }
-      if (key == 'b' && lastFrame - frameCount > 50) {
+      if (key == 'b') {
         if (storedWalls > 0) {
           lastFrame = frameCount; // update last wall placed
           wallsPlaced.add( new Wall( pos ) );
@@ -88,16 +88,14 @@ class PlayerShip extends Ship implements Comparable {
         key = 'f';
       }
       if (key == 'n') {
+        System.out.println("works");
         if (storedMoneyStorages > 0) {
-          if ( storagesPlaced.size() == 0 ) {
-            storagesPlaced.add( new MoneyStorage( pos ) );
-            maxMoney += 100;
-          } else if ( frameCount - lastFrame > 50) {
+          if ( frameCount - lastFrame > 50) {
             lastFrame = frameCount; // update last wall placed
             storagesPlaced.add( new MoneyStorage( pos ) );
             maxMoney += 100;
+            storedMoneyStorages--;
           }
-          storedMoneyStorages--;
         }
         key = 'f'; // interupter
       }
@@ -166,7 +164,8 @@ class PlayerShip extends Ship implements Comparable {
     fill(c);
     textFont(f, 16);                  // STEP 3 Specify font to be used
     fill(100);                         // STEP 4 Specify font color 
-    text("Money: " + money + "\nMax Money: " + maxMoney + "\nShip HP: " + health  + "\nMarket HP: " + theMarket.hp, 10, 100);   // STEP 5 Display Text
+    text("Money: " + money + "\nMax Money: " + maxMoney + "\nShip HP: " + health  + "\nMarket HP: " + theMarket.hp +
+      "\nWalls" + storedWalls + "\nStorages" + storedMoneyStorages, 10, 100);   // STEP 5 Display Text
     fill(c);
   }
 }
