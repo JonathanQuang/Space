@@ -32,6 +32,10 @@ class PlayerShip extends Ship implements Comparable {
   ArrayList<MoneyStorage> getStorages() {
     return storagesPlaced;
   }
+  
+  float getMaxMoney() {
+    return maxMoney; 
+  }
   // ################### //
 
   /*
@@ -145,6 +149,14 @@ class PlayerShip extends Ship implements Comparable {
       return -1;
     }
     return 0;
+  }
+
+  void run() {
+    display();
+    keyPressed();
+    fireAll();
+    checkBoundary();
+    collisionWithEnemies();
   }
 
   // displays player

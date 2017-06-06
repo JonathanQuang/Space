@@ -5,36 +5,22 @@ import java.util.ArrayDeque;
 AstSpawner _spawner;
 Market theMarket;
 PlayerShip thePlayer;
-//EnemyShip theEnemy;
 ArrayList<MoneyStorage> storageS;
 ArrayList<Wall> wallS;
-boolean gameOver = false;
-boolean start = false;
-boolean inMarket;
 int frameTracker;
 Waves waveSpawner;
 
+// flags
+boolean gameOver = false;
+boolean start = false;
+boolean inMarket;
+
 void setup() {
   size(1000, 800);
-  //test1 = new Moveable(new PVector(400,0),new PVector(0,1),new PVector(0,0.05));
   _spawner = new AstSpawner(5);
-  // theShip = new Ship();
   theMarket = new Market();
-  //theShip.changeYaw(90);
-  //theShip.accelViaYaw(0.01);
   thePlayer = new PlayerShip();
-//  theEnemy = new EnemyShip();
-  //enemyS = new PriorityQueue();
   waveSpawner = new Waves();
-
-//  waveSpawner.enemyS.add(theEnemy);
-  /*
-  for (int i=0; i<100; i++) {
-   
-   waveSpawner.enemyS.add(new EnemyShip());
-   }
-   */
-  //enemyS.poll(); // removes richest
   wallS = new ArrayList<Wall>();
   storageS = new ArrayList<MoneyStorage>();
 }
@@ -45,36 +31,30 @@ void mouseClicked() {
 }
 
 void draw() {
-  //System.out.println(enemyS.peek().money);
-
-  if (!start) {  
+  if (!start) {  // start screen
     background( 0, 255, 0 );
     fill(0);
     textSize(64); 
     text( "Press anywhere to start", 140, 100 );
-  } else if (inMarket) {
+  } else if (inMarket) { // manage market interface
     theMarket.openGUI();
     theMarket.updateCursor();
     theMarket.displayPlayerMoney(thePlayer);
     theMarket.processPurchase(thePlayer);
     theMarket.processBought();
-    if (keyPressed == true) {
+    if (keyPressed == true) { // close market interface
       if (key == 'm') {
         inMarket=false;
         key='f';
       }
     }
-  } else if (!gameOver) {
+  } else if (!gameOver) { // main game loop
     background(0);
-    thePlayer.display();
-    thePlayer.keyPressed();
-    thePlayer.fireAll();
-    thePlayer.checkBoundary();
-    thePlayer.makeBullets();
-    thePlayer.collisionWithEnemies();
     
-    theMarket.collisionWithEnemy();
-
+    // manage player 
+    thePlayer.run();
+    
+    // wall storages
     wallS = thePlayer.getWalls();
     for (int i = 0; i < wallS.size(); i++) {
       Wall w = wallS.get(i);
@@ -85,6 +65,7 @@ void draw() {
       }
     }  
 
+    // money storages
     storageS = thePlayer.getStorages();
     for (int i = 0; i < storageS.size(); i++) {
       MoneyStorage w = storageS.get(i);
@@ -95,63 +76,53 @@ void draw() {
         w.display();
       }
     }
+    
+    // enemy ships
     for (int j = 0; j < waveSpawner.enemyS.size(); j++ ) {
-
       EnemyShip x = waveSpawner.enemyS.get(j);
         x.display();
         x.applyShipMovement();
         x.checkBoundary();
-        x.move(thePlayer);
+        x.move();
         if (frameCount % 100 == 0 ) {
           x.shoot(x);
         }
         if (!(x instanceof Kamikaze)){
           x.fireAll();
         }
-
-      if (x.health <= 0) {
+      if (!x.isAlive()) {
         waveSpawner.enemyS.remove(x);
       }
       x.turnToCoordinate();
     }
-   for( int z = 0; z < waveSpawner.kamikazE.size();z++){
-         waveSpawner.kamikazE.get(z).display();
-         waveSpawner.kamikazE.get(z).applyShipMovement();
-         waveSpawner.kamikazE.get(z).checkBoundary();
-         waveSpawner.kamikazE.get(z).move(thePlayer);
-         waveSpawner.kamikazE.get(z).turnToCoordinate();
-         if (waveSpawner.kamikazE.get(z).health <= 0) {
-           waveSpawner.kamikazE.remove(z);
-         }
-   }
-    // thePlayer.stopLR();
-    /*
-    theShip.display();
-     theShip.applyShipMovement();
-     theShip.checkBoundary();
-     theShip.makeBullets();
-     */
-
+    
+    // asteroid spawner
     _spawner.run();
 
+    // collisions
     collisions(thePlayer, _spawner.astList);
 
+    // market
+    theMarket.collisionWithEnemy();
     theMarket.display();
 
-    waveSpawner.waveTrack( theMarket, thePlayer);
+    // manage enemy waves
+    waveSpawner.waveTrack();
     waveSpawner.display();
-    //moveRichestEnemy();
-    if (thePlayer.health <= 0 || !theMarket.isAlive() ) {
+
+    // check if game ended
+    if (!thePlayer.isAlive() || !theMarket.isAlive() ) {
       gameOver = true;
     }
-    //detect if player presses m
+    
+    // open market interface
     if (keyPressed == true) {
       if (key == 'm') {
         inMarket=true;
         key='f';
       }
     }
-  } else {
+  } else { // game over screen
     background( 50, 100, 150 );
     fill(0);
     textSize(64); 
@@ -167,25 +138,18 @@ public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) {
     for (int i=0; i<astList.size(); i++) { // Asteroids (I)
       if ( dist(astList.get(i).pos.x, astList.get(i).pos.y, pShip.getShots().get(j).pos.x, pShip.getShots().get(j).pos.y) < 25) {
         astList.get(i).damage(100);
-        pShip.getShots().get(j).damage(1);
-        /*
-        if ( astList.get(i).dead) {
-          pShip.changeMoney(astList.get(i).money);
-          astList.remove(i);
-          //System.out.println(pShip.money);
-        }
-        */
+        pShip.getBullet(j).damage(1);
       }
     }
     // Collision between player bullets and enemy ship
-    for (int k = 0; k<waveSpawner.enemyS.size(); k++) { // Bullets (J) and Enemies (K)
+    for (int k = 0; k<waveSpawner.getSize(); k++) { // Bullets (J) and Enemies (K)
       //eShip = waveSpawner.enemyS.get(k);
       if ( dist(waveSpawner.enemyS.get(k).pos.x, waveSpawner.enemyS.get(k).pos.y, pShip.getShots().get(j).pos.x, pShip.getShots().get(j).pos.y) < waveSpawner.enemyS.get(k).collisionRad) { //index bounds exception this line
 
         // 1. Damage ship
-        waveSpawner.enemyS.get(k).damageShip(100);
+        waveSpawner.getEnemy(k).damageShip(100);
         // 2. Damage bullet
-        pShip.getShots().get(j).damage(1);
+        pShip.getBullet(j).damage(1);
         // 3. Check if enemy is dead, if dead add cash
         if ( waveSpawner.enemyS.get(k).killed) {
           pShip.changeMoney(waveSpawner.enemyS.get(k).money);
@@ -193,33 +157,15 @@ public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) {
         }
       }
     }
-    /*
-    for (int y = 0; y <waveSpawner.kamikazE.size(); y++ ) {
-      Kamikaze lol = waveSpawner.kamikazE.get(y);
-      PVector EnemyPos = new PVector( lol.pos.x, lol.pos.y );
-      PVector BulletPos = new PVector( pShip.getShots().get(j).pos.x, pShip.getShots().get(j).pos.y );
-      if ( EnemyPos.sub(BulletPos).mag() < lol.collisionRad ) {
-        // 1. Damage ship
-        waveSpawner.kamikazE.get(y).damageShip(100);
-        // 2. Damage bullet
-        pShip.getShots().get(j).damage(1);
-        // 3. Check if enemy is dead, if dead add cash
-        if ( waveSpawner.enemyS.get(y).killed) {
-          pShip.changeMoney(waveSpawner.enemyS.get(y).money);
-          waveSpawner.enemyS.remove(y);
-        }
-      }
-    }
-    */
     //remove bullets that are not alive
-    if (!pShip.getShots().get(j).isAlive()) {
+    if (!pShip.getBullet(j).isAlive()) {
       pShip.getShots().remove(j);
     }
   }
   
-  for (int l=0; l<waveSpawner.enemyS.size(); l++) {
+  for (int l=0; l<waveSpawner.getSize(); l++) {
     // Collision between enemy bullets and player
-    for (int m=0; m<waveSpawner.enemyS.get(l).shotsFired.size(); m++) {
+    for (int m=0; m<waveSpawner.getEnemy(l).shotsFired.size(); m++) {
       if (dist(waveSpawner.enemyS.get(l).shotsFired.get(m).pos.x, waveSpawner.enemyS.get(l).shotsFired.get(m).pos.y, pShip.pos.x, pShip.pos.y) < 35) { // If bullet is within distance of master bullet 
 
         // Damage Ship
@@ -227,14 +173,14 @@ public void collisions(PlayerShip pShip, ArrayList<Asteroid> astList) {
 
         // Damage bullet
         waveSpawner.enemyS.get(l).shotsFired.get(m).damage(1);
-        if (waveSpawner.enemyS.get(l).shotsFired.get(m).health <= 0) {
+        if (waveSpawner.getEnemy(l).getBullet(m).health <= 0) {
           waveSpawner.enemyS.get(l).shotsFired.remove(m);
         }
       }
     }
   }
   // make sure player doesn't go above money cap
-  if (pShip.money > pShip.maxMoney) {
+  if (pShip.getMoney() > pShip.getMaxMoney()) {
     pShip.money = pShip.maxMoney;
   }
 }

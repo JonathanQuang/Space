@@ -1,14 +1,13 @@
-
-class EnemyShip extends Ship                     {
-
-  // Currently no real functions, needs some more touchups
+class EnemyShip extends Ship {
+  // instance vars
   PriorityQueue<Comparable> targetControl;
   Object target;
   int speed;
+  
   // default constructor
   public EnemyShip() {
     super();
-    money = (int)random(100.0, 500.0);
+    money = random(1,6) * 20;
     setSpawn();
     targetControl=new PriorityQueue<Comparable>();
     prioritize();
@@ -22,7 +21,7 @@ class EnemyShip extends Ship                     {
   }
 
   // moves ship
-  void move(PlayerShip pShip) {
+  void move() {
     // add movement calls
     Object temp = targetControl.peek();
     if (temp instanceof Market ) {
@@ -38,14 +37,7 @@ class EnemyShip extends Ship                     {
     this.vel.normalize();
     this.vel.y *= speed;
     this.vel.x *= speed;
-
-    //this..y = pShip.pos.y-this.pos.y;
-    //this.accel.y =
-    //this.vel.x = pShip.pos.x-this.pos.x;
   }
-
-  // ??
-  // sees which ship has more money
 
   // displays enemy ship
   void display() {
@@ -57,11 +49,6 @@ class EnemyShip extends Ship                     {
   } 
 
   void setSpawn() {
-    /* bottom right corner
-     pos.x = random(width - 100, width);
-     pos.y= random(height-100,height);
-     */
-
     int x = (int)random(4); // 0 to 3
     //System.out.println(x);
     if ( x == 0 ) {
@@ -85,15 +72,6 @@ class EnemyShip extends Ship                     {
       pos.x=random(0, width);
       pos.y=random(0, 100);
     }
-    /*
-      else if (pos.x < 0) {
-     pos.x = width-20;
-     } else if (pos.y > height) {
-     pos.y = 20;
-     } else if (pos.y < 0) {
-     pos.y = height-20;
-     }
-     */
   }
 
   void turnToCoordinate() {

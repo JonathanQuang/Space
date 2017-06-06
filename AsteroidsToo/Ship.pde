@@ -1,50 +1,37 @@
-class Ship extends Moveable {
+abstract class Ship extends Moveable {
   // instance vars
-  int health;
   float money;
   float yaw = 0;
   float maxVel = 1.4;
   //float maxAccel = 1;
   float collisionRad = 25;
   PVector accel;
-  int bullets;
-  int bulletCap;
-  int lastFrame; // last frame of shooting
-  boolean startTiming; // for when bullets < 3 -- you want to cap bullets
-  int last_not_full; // LinkedList wepps; 
   boolean killed;
   ArrayDeque<Weps> weapons;
   ArrayList<Bullet> shotsFired;
-  //Placeholder constructor for a general ship
+  
+  // default constructor
   Ship() {
     super(new PVector(400, 400), 
-      new PVector(0, 0));
+      new PVector(0, 0), 100);
     accel = new PVector(0, 0);
-    bullets = 3;
-    bulletCap = 3;
-    lastFrame = 0;
-    startTiming=false;
-    last_not_full = 0;
-    health = 100;
     killed = false;
-    /*
-     wepps = new LinkedList();
-     wepps.add("eV1");
-     wepps.add("eV1");
-     wepps.add("eV1");
-     wepps.add("eV1");
-     wepps.add("eV1");
-     money = 0;
-     */
-
-
     weapons = new ArrayDeque();
     weapons.addFirst(new Weps(this));
 
     shotsFired = new ArrayList<Bullet>();
   }
+  
   void shoot(Ship currShip) {
     shotsFired.add( new Bullet(currShip, currShip.weapons.getFirst().damage, currShip.weapons.getFirst().bullet_hp) );
+  }
+  
+  Bullet getBullet( int index ) {
+    return shotsFired.get(index);
+  }
+  
+  float getMoney() {
+    return money;
   }
 
   void damageShip(int dmg) {
@@ -87,34 +74,20 @@ class Ship extends Moveable {
     updatePos();
   }
 
-  // spawns bullet
-
-
-  void makeBullets() {
-    // System.out.println(bullets);
-    if ( bullets < 3 ) {
-      //System.out.println(frameCount);
-      if (frameCount % 100 == 0 ) {
-        bullets++; 
-        //System.out.println("new bullet added");
-      }
-      if (bullets==3) {
-        startTiming=false;
-      }
-    }
-  }
-
   // change the amount of money
   void changeMoney(float x) {
     money +=x;
   }
+  
+  // handles bullet functions
   void fireAll() {
     for (Bullet b : shotsFired) {
       b.updateMovement();
       b.display();
     }
   }
-  // currently, this just displays an equilateral triangle at the ship's pos.
+  
+  // displays ship
   void display() {
     float vert[] = new float[6]; 
     float a = yaw; // i don't get this line

@@ -13,6 +13,10 @@ public class AstSpawner {
     lastFrame = 300;
   }
 
+  int getSize() {
+    return astList.size();
+  }
+
   //occasionally spawn asteroids
   void manageSpawn() {
     if (frameCount - lastFrame >= 300) {
@@ -71,11 +75,12 @@ public class AstSpawner {
     }
   }
   
+  // splits asteroids upon death
   void manageSplit() {
     for (int i=0; i<astList.size(); i++) {
       if (astList.get(i).dead) {
          astList.get(i).splitAst();
-         thePlayer.changeMoney(astList.get(i).money);
+         thePlayer.changeMoney(astList.get(i).money); // gives money to player when asteroids are destroyed
          astList.remove(i);
          i--;
       }
