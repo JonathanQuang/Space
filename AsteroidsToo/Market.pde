@@ -113,18 +113,20 @@ class Market extends Structure implements Comparable {
   void processPurchase(PlayerShip Player) {
     if (keyPressed==true) {
       if (key == 'l') {
+        System.out.println(cursorY==1 && (Player.money >= 1000) && !isBought(1));
         if (cursorX==0) { //first column
-          if (cursorY==0 && (Player.money >= 1000) && !isBought(0)) {
+          if (cursorY==0 && (Player.money >= 2500) && !isBought(0)) {
             indexList.add(0);
             Player.money -= 2500;
             Player.weapons.addFirst(new Blaster(Player));
+          }
             if (cursorY==1 && (Player.money >= 1000) && !isBought(1)) {
               indexList.add(1);
+              System.out.println("bob");
               Player.money -= 1000;
               Player.weapons.addFirst(new Piercer(Player));
             }
           }
-        }
         if (cursorX==1) {
           if (cursorY==0 && Player.money >= 200) {
             Player.health += 100;

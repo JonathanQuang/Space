@@ -14,7 +14,7 @@ class PlayerShip extends Ship implements Comparable {
     lastFrame = 0;
     money = 30000;
     health = 1000;
-    wallsPlaced = new ArrayList<Wall>();
+    wallsPlaced = new ArrayList<Wall>();  
     f = createFont("Arial", 4, true);
     storagesPlaced = new ArrayList<MoneyStorage>();
     maxMoney=30000;
