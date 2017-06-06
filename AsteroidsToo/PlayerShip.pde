@@ -12,12 +12,12 @@ class PlayerShip extends Ship implements Comparable {
   PlayerShip() { 
     super();
     lastFrame = 0;
-    money = 30000;
+    money = 0;
     health = 1000;
     wallsPlaced = new ArrayList<Wall>();  
     f = createFont("Arial", 4, true);
     storagesPlaced = new ArrayList<MoneyStorage>();
-    maxMoney=30000;
+    maxMoney=300;
     c = color(0, 350, 0);
   }
 
@@ -81,11 +81,12 @@ class PlayerShip extends Ship implements Comparable {
       }
       if (key == 'b') {
         if (storedWalls > 0) {
-          lastFrame = frameCount; // update last wall placed
-          wallsPlaced.add( new Wall( pos ) );
-          storedWalls--;
+          if (frameCount - lastFrame > 50) {
+            lastFrame = frameCount; // update last wall placed
+            wallsPlaced.add( new Wall( pos ) );
+            storedWalls--;
+          }
         }
-
         key = 'f';
       }
       if (key == 'n') {
