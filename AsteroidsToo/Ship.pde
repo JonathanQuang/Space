@@ -72,6 +72,9 @@ abstract class Ship extends Moveable {
     }
     updateVel(); 
     updatePos();
+    if(this instanceof Kamikaze){
+      ((Kamikaze)this).updatePos();  
+    }
   }
 
   // change the amount of money

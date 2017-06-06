@@ -21,7 +21,7 @@ class EnemyShip extends Ship {
   }
 
   // moves ship
-  void move() {
+  void move() { // for different classes
     // add movement calls
     Object temp = targetControl.peek();
     if (temp instanceof Market ) {
@@ -35,8 +35,12 @@ class EnemyShip extends Ship {
       this.vel.x = target.pos.x-this.pos.x;
     }
     this.vel.normalize();
-    this.vel.y *= speed;
-    this.vel.x *= speed;
+    if( temp instanceof Kamikaze){
+      
+    this.vel.y *= ((Kamikaze)this).speed;
+    this.vel.x *= ((Kamikaze)this).speed;
+    }
+   
   }
 
   // displays enemy ship
