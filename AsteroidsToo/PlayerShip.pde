@@ -74,16 +74,14 @@ class PlayerShip extends Ship implements Comparable {
           // System.out.println(bullets);
         }
       }
-      if (key == 'b') {
+      if (key == 'b' && lastFrame - frameCount > 50) {
         if (storedWalls > 0) {
-          if ( wallsPlaced.size() == 0 ) {
-            wallsPlaced.add( new Wall( pos ) );
-          } else if (frameCount - lastFrame > 50) {
-            lastFrame = frameCount; // update last wall placed
-            wallsPlaced.add( new Wall( pos ) );
-          }
+          lastFrame = frameCount; // update last wall placed
+          wallsPlaced.add( new Wall( pos ) );
           storedWalls--;
         }
+
+        key = 'f';
       }
       if (key == 'n') {
         if (storedMoneyStorages > 0) {
@@ -116,14 +114,14 @@ class PlayerShip extends Ship implements Comparable {
     }
     /*
     for (Kamikaze k : waveSpawner.kamikazE) {
-      PVector playerPos = new PVector( pos.x, pos.y );
-      PVector enemyPos = new PVector( k.pos.x, k.pos.y );
-      if (playerPos.sub(enemyPos).mag() <= 50) {
-        damageShip( 50 );
-        k.damageShip( 100 );
-      }
-    }
-    */
+     PVector playerPos = new PVector( pos.x, pos.y );
+     PVector enemyPos = new PVector( k.pos.x, k.pos.y );
+     if (playerPos.sub(enemyPos).mag() <= 50) {
+     damageShip( 50 );
+     k.damageShip( 100 );
+     }
+     }
+     */
   }
 
   //manages the swapping of weapons 
