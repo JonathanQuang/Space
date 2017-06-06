@@ -12,6 +12,7 @@ class EnemyShip extends Ship {
     targetControl=new PriorityQueue<Comparable>();
     prioritize();
     speed = 1;
+    c = color(250, 250, 0);
   }
 
   // sets target
@@ -41,11 +42,7 @@ class EnemyShip extends Ship {
 
   // displays enemy ship
   void display() {
-    super.display();
-    c = color(250, 250, 0);
-    //System.out.println(c);
-    fill(c);
-    //pos = posAtEdge();
+    super.display(c);
   } 
 
   void setSpawn() {

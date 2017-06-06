@@ -88,7 +88,7 @@ abstract class Ship extends Moveable {
   }
   
   // displays ship
-  void display() {
+  void display( color newColor ) {
     float vert[] = new float[6]; 
     float a = yaw; // i don't get this line
     for (int x = 0; x < 6; x+=2) {
@@ -96,6 +96,7 @@ abstract class Ship extends Moveable {
       vert[x+1] = pos.y + collisionRad*sin(radians(a-90));
       a+=120;
     }
+    fill( newColor );
     triangle(vert[0], vert[1], vert[2], vert[3], vert[4], vert[5]);
   }
 }

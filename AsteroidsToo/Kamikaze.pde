@@ -5,5 +5,6 @@ class Kamikaze extends EnemyShip{
     targetControl=new PriorityQueue<Comparable>( new TargetMarket() );
     prioritize();
     speed = 2;
+    c = color( 150, 0, 0 );
   }
 }

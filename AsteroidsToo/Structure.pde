@@ -1,5 +1,6 @@
 abstract class Structure {
   // instance vars
+  color c;
   PVector pos;
   int hp;
   int len;
@@ -8,8 +9,9 @@ abstract class Structure {
     hp -= dmg;
   }
 
-  void display() {
-    rect( pos.x, pos.y, len, len );
+  void display(color newColor) {
+    fill(newColor);
+    rect( pos.x, pos.y, len, len ); 
   }
 
   boolean isAlive() {

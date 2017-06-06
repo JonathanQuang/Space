@@ -18,6 +18,7 @@ class PlayerShip extends Ship implements Comparable {
     f = createFont("Arial", 4, true);
     storagesPlaced = new ArrayList<MoneyStorage>();
     maxMoney=30000;
+    c = color(0, 350, 0);
   }
 
   // #### ACCESSORS #### //
@@ -159,9 +160,7 @@ class PlayerShip extends Ship implements Comparable {
 
   // displays player
   void display() {
-    super.display();
-    c = color(0, 350, 0);
-    fill(c);
+    super.display(c);
     textFont(f, 16);                  // STEP 3 Specify font to be used
     fill(100);                         // STEP 4 Specify font color 
     text("Money: " + money + "\nMax Money: " + maxMoney + "\nShip HP: " + health  + "\nMarket HP: " + theMarket.hp +
