@@ -8,5 +8,10 @@ class Wall extends Structure{
     pos = new PVector( x, y );
     hp = 300;
     len = 30;
+    c = color( 0, 150, 0 );
+  }
+  
+  void display() {
+    super.display(c);
   }
 }

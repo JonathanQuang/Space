@@ -164,8 +164,8 @@ class Asteroid extends Moveable {
 
   // display asteroid
   void display() {
-    ellipse( pos.x, pos.y, size, size );
     c = color(0, 350, 250);
     fill(c);
+    ellipse( pos.x, pos.y, size, size );
   }
 }

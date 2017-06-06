@@ -14,6 +14,7 @@ class Market extends Structure implements Comparable {
     wepList.add("Blaster 2.5K");
     wepList.add("Piercer 1K");
     indexList = new ArrayList<Integer>();
+    c = color( 0, 0, 175 );
   }
 
   // makes the market dissapear when dead by moving it offscreen
@@ -160,5 +161,9 @@ class Market extends Structure implements Comparable {
       fill(250);
       rect(0, 50+purchaseIndex*100, 400, 50);
     }
+  }
+  
+  void display() {
+    super.display(c);
   }
 }
