@@ -1,3 +1,44 @@
+Obstacles Overcome (and how!)
+-The color bug was a bug that plagued our project since our conception. This was due to a misunderstanding of how the fill function 
+worked. We were calling the fill function after something had already been drawn, which caused what was drawn after to acquire the 
+color. We realized that the fill function had to be called before the object was rendered.
+
+Unresolved Issues: 
+-Sometimes the player's ship is stuck turning indefinitely on Brian's computer and sometimes on Datian's computer, but 
+never on a lab machine.
+
+Cool Stuff Learned (conceptual and/or practical):
+-Trig is very powerful, however confusing in processing because of how an increase in y values refers to a lower position on the screen
+-Processing uses radians by default
+-You are supposed to call fill() before what you want to redner.
+-We learned how to do a proper merge in git, which is to commit our changes, pull, and check through our working directory for "HEAD", 
+which indicates areas of conflict.
+
+Mid-development Design Changes (and why!):
+-We decided to give the player the ability to build things because we believed there wasn't enough content in the game that used
+-data structures from this curriculum.
+-We had to scrap the powerup system because there simply wasn't enough time to implement it
+
+Lessons Learned (...which you might apply to future projects, CS or otherwise):
+-People are much more productive when working together in the same room. We accomplished a lot in a 6 hour session in a cafe.
+-Think about the data structure before implementing it.
+
+==============================================================
+2017-06-06
+--------------------------------------------------------------
+1. Jonathan Quang: fixed unbuyable piercer weapon in market and helped brian fix the color bug
+2. Brian Kwong: fix the color bug
+3. Datian: adjusted certain values in the market
+
+
+==============================================================
+2017-06-05
+--------------------------------------------------------------
+1. Jonathan Quang: updated flow chart and read me
+2. Brian Kwong: cleaned up the code
+3. Datian: preventing the buying of multiple walls/ hp boosts in the market in "one" keypress
+
+
 ==============================================================
 2017-06-04
 --------------------------------------------------------------
